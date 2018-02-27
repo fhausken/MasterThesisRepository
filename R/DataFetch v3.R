@@ -1,0 +1,151 @@
+library(readxl)
+library(quantmod)
+library(xts)
+
+rm(list=ls()) #Clears environment
+
+URL.repo=getwd()
+URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
+stocks <- read_excel(URL,sheet = "Sheet1")
+
+
+stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
+
+
+from.date <- as.Date("01/04/10", format="%m/%d/%y")
+
+consecutiveZerosCapClose=10
+
+XCapVolume=0
+consecutiveXCapVolume=20
+
+stocks.nrow=nrow(stocks)
+  
+stocksRemoved.index=vector()
+stocksRemoved.reason=vector()
+
+
+stockData=new.env()
+
+for (row in 1:stocks.nrow) {
+  
+  tryCatch({
+    
+    fetchName=paste(stocks$Ticker[row],".OL",sep="")
+    stock.data=getSymbols(fetchName,from=from.date,auto.assign = FALSE)
+    
+    
+    if(index(stock.data)[1]==(from.date)){
+      
+      vectorizedClose=drop(coredata(stock.data[,4]))
+      vectorizedClose[is.na(vectorizedClose)] <- 1000000000
+      occurences = rle(vectorizedClose)
+      consecutiveZerosVector=occurences$lengths[occurences$values == 1000000000]
+      if(length(consecutiveZerosVector>0)){
+        
+        maxOfconsecutiveZerosVectorClose=max(consecutiveZerosVector)
+        #print(fetchName)
+        #print(maxOfconsecutiveZerosVectorClose)
+        #print("")
+      }
+      else{
+        maxOfconsecutiveZerosVectorClose=0
+      }
+      
+    
+      vectorizedVolume=drop(coredata(stock.data[,5]))
+      vectorizedVolume[is.na(vectorizedVolume)] <- 10000000000000 #Skummelt å sette denne til null. Da det ikke er sikkert at volumet er 0, og NA i volum ikke påvirker utregninger som GARCH
+      occurences = rle(vectorizedVolume)
+      consecutiveZerosVector=occurences$lengths[occurences$values <= XCapVolume]
+      if(length(consecutiveZerosVector>0)){
+        
+        maxOfconsecutiveZerosVectorVolume=max(consecutiveZerosVector)
+        #print(fetchName)
+        #print(maxOfconsecutiveZerosVectorVolume)
+        #print("")
+      }
+      else{
+        maxOfconsecutiveZerosVectorVolume=0
+      }
+      
+      
+      if(maxOfconsecutiveZerosVectorClose<=consecutiveZerosCapClose){
+        if(maxOfconsecutiveZerosVectorVolume<=consecutiveXCapVolume){
+          getSymbols(fetchName,from=from.date,auto.assign =TRUE,env=stockData)
+        }
+        else{
+          stocksRemoved.index[length(stocksRemoved.index)+1]=row
+          stocksRemoved.reason[length(stocksRemoved.reason)+1]="Illiquid"
+        }
+      }
+      else{
+        stocksRemoved.index[length(stocksRemoved.index)+1]=row
+        stocksRemoved.reason[length(stocksRemoved.reason)+1]="Data Missing/Not Continously Listed"
+      }
+    }
+    else{
+      stocksRemoved.index[length(stocksRemoved.index)+1]=row
+      stocksRemoved.reason[length(stocksRemoved.reason)+1]="Listed Later"
+    }
+
+  },error = function(e) {
+    #message(e)
+    stocksRemoved.index[length(stocksRemoved.index)+1]<<-row #Merk dobbel pil som betyr at man aksesserer en globalvariabel
+    stocksRemoved.reason[length(stocksRemoved.reason)+1]<<-"Not Found"
+    })
+
+}
+
+stocksRemoved=NULL #Hvis if-testen på neste linje er false, må objektet ha verdi for at det ikke skal bli feil. Dette fordi objektet lagres tilslutt
+if (length(stocksRemoved.index)>0){
+  
+  stocksRemoved=stocks[stocksRemoved.index,]
+  stocksRemoved$Reason=stocksRemoved.reason
+  stocks=stocks[-stocksRemoved.index,]
+}
+  
+
+#Prices and Returns
+
+stockPricesList <- eapply(stockData, Cl)
+stockPrices <- do.call(merge, stockPricesList)
+
+#raderFor=nrow(stockPrices)
+#stockPrices=na.omit(stockPrices) #Tar bort rader med na
+#raderEtter=nrow(stockPrices)
+
+stockReturns=diff(log(stockPrices))
+stockReturns=stockReturns[-c(1),] #Fjerner første rad siden den er NA
+
+stockPrices[is.na(stockPrices)] <- 0 # Setter NA elementer til 0.
+stockReturns[is.na(stockReturns)] <- 0 # Setter NA elementer til 0.
+
+names(stockPrices)=stocks$Ticker #Endrer navn på kolonner
+names(stockReturns)=stocks$Ticker
+
+#Volume
+
+stockVolumesList <- eapply(stockData, Vo)
+stockVolumes <- do.call(merge, stockVolumesList)
+
+#raderFor=nrow(stockPrices)
+#stockPrices=na.omit(stockPrices) #Tar bort rader med na
+#raderEtter=nrow(stockPrices)
+
+#stockVolumes[is.na(stockVolumes)] <- 0 # Setter NA elementer til 0.
+names(stockVolumes)=stocks$Ticker #Endrer navn på kolonner
+
+
+
+#Lagring
+
+URL=paste(URL.repo,"/Data/stockPrices.Rda",sep="")
+save(stockPrices,file=URL)
+URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
+save(stockReturns,file=URL)
+URL=paste(URL.repo,"/Data/stockVolumes.Rda",sep="")
+save(stockVolumes,file=URL)
+URL=paste(URL.repo,"/Data/stocks.Rda",sep="")
+save(stocks,file=URL)
+URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
+save(stocksRemoved,file=URL)

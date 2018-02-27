@@ -1,0 +1,31 @@
+Output:
+
+2018-02-23 18:39:35	Starting iteration: 1/6. Stock: DNB. Sample size: 780 
+2018-02-23 18:39:38	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 167/542. Model: gjrGARCH1200. Error in infocriteria!
+2018-02-23 18:39:52	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 169/542. Model: gjrGARCH1200. Error in infocriteria!
+2018-02-23 18:39:52	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 168/542. Model: gjrGARCH1200. Error in infocriteria!
+2018-02-23 18:40:07	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 166/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:40:27	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 170/542. Model: gjrGARCH1200. Error in infocriteria!
+2018-02-23 18:40:39	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 171/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:40:40	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 167/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:40:41	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 168/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:40:41	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 169/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:40:54	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 168/542. Model: gjrGARCH2210. Error in infocriteria!
+2018-02-23 18:41:09	Iteration: 1/6. Stock: DNB. Sample size: 250. Day: 170/542. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:42:53	Starting iteration: 1/6. Stock: DNB. Sample size: 785 
+2018-02-23 18:44:18	Starting iteration: 2/6. Stock: Norsk Hydro. Sample size: 780 
+2018-02-23 18:44:58	Iteration: 2/6. Stock: Norsk Hydro. Sample size: 780. Day: 2/12. Model: gjrGARCH2200. Error in infocriteria!
+2018-02-23 18:46:53	Starting iteration: 2/6. Stock: Norsk Hydro. Sample size: 785 
+2018-02-23 18:48:30	Starting iteration: 3/6. Stock: Orkla. Sample size: 780 
+2018-02-23 18:50:52	Starting iteration: 3/6. Stock: Orkla. Sample size: 785 
+2018-02-23 18:52:13	Starting iteration: 4/6. Stock: SalMar. Sample size: 780 
+2018-02-23 18:54:14	Starting iteration: 4/6. Stock: SalMar. Sample size: 785 
+2018-02-23 18:55:27	Starting iteration: 5/6. Stock: Statoil. Sample size: 780 
+2018-02-23 18:57:53	Starting iteration: 5/6. Stock: Statoil. Sample size: 785 
+2018-02-23 18:59:23	Starting iteration: 6/6. Stock: Yara International. Sample size: 780 
+2018-02-23 18:59:39	Iteration: 6/6. Stock: Yara International. Sample size: 780. Day: 4/12. Model: gjrGARCH0211. Error in infocriteria!
+2018-02-23 19:00:26	Iteration: 6/6. Stock: Yara International. Sample size: 780. Day: 5/12. Model: gjrGARCH2211. Error in infocriteria!
+2018-02-23 19:01:53	Starting iteration: 6/6. Stock: Yara International. Sample size: 785 
+2018-02-23 19:02:32	Iteration: 6/6. Stock: Yara International. Sample size: 785. Day: 4/7. Model: gjrGARCH1211. Error in infocriteria!
+
+Kjøretid: 23.8158649325371 
