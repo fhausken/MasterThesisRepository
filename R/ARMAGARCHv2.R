@@ -17,7 +17,7 @@ registerDoParallel(c1)
 
 URL.repo=getwd()
 
-URL.logging=paste(URL.repo,"/Output/ParallellLog_NewParallell.txt", sep="")
+URL.logging=paste(URL.repo,"/Output/ParallellLog.txt", sep="")
 cat("Output:\n\n", file=URL.logging, append=FALSE) #Clears log
 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
@@ -186,13 +186,13 @@ for (stocksIndex in 1:nrow(stocks)){
 
 names(allStocksResults)=stocks[[1]]
 
-URL=paste(URL.repo,"/Data/ARMAGARCHResults_NewParallell.Rda",sep="")
+URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 save(allStocksResults,file=URL)
 
-URL=paste(URL.repo,"/Data/sampleSizes_NewParallell.Rda",sep="")
+URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 save(sampleSizes,file=URL)
 
-URL=paste(URL.repo,"/Data/GARCHModels_NewParallell.Rda",sep="")
+URL=paste(URL.repo,"/Data/GARCHModels.Rda",sep="")
 save(garchModels,file=URL)
 
 end_time <- Sys.time()
