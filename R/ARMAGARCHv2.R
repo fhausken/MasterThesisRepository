@@ -32,10 +32,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(250)#,500,750,1000)
+sampleSizes=c(250,500)#,500,750,1000)
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=10
-MALag.max=10
+ARLag.max=5
+MALag.max=5
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -196,6 +196,6 @@ save(garchModels,file=URL)
 
 end_time <- Sys.time()
 run_time=end_time-start_time
-cat(paste("\nKj?retid:",run_time, "\n"), file=URL.logging, append=TRUE)
+cat(paste("\nKjoreretid:",run_time, "\n"), file=URL.logging, append=TRUE)
 
 stopCluster(c1)
