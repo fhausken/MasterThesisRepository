@@ -32,10 +32,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(250)#,500,750,1000)
+sampleSizes=c(150,250,500,750,1000)#,500,750,1000)
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=10
-MALag.max=10
+ARLag.max=3
+MALag.max=3
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
 
@@ -59,8 +59,8 @@ for (stocksIndex in 1:nrow(stocks)){
     sampleSize = sampleSizes[sampleSizesIndex]
     rollingWindowSize = individualStockRetunTotalDays - sampleSize
     
-    cat(paste(Sys.time(), "\t","Starting iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize," \n",sep=""), file=URL.logging, append=TRUE)
     print(paste(Sys.time(), "\t","Starting iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize," \n",sep=""))
+    cat(paste(Sys.time(), "\t","Starting iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize," \n",sep=""), file=URL.logging, append=TRUE)
     #individualStockResults=list()
     #for (day in 0:rollingWindowSize){
     individualStockResults=foreach(day=0:rollingWindowSize) %dopar%{
@@ -72,7 +72,10 @@ for (stocksIndex in 1:nrow(stocks)){
       library(rugarch)
       library(xts)
       library(tseries)
-
+      
+      
+      
+      
       individualStockReturnOffset = individualStockRetun[(1+day):(sampleSize+day)]
     
       AIC.final=1000000 # tilsvarer + infinity
@@ -83,8 +86,8 @@ for (stocksIndex in 1:nrow(stocks)){
         
         for (ARLag in 0:ARLag.max){
           for (MALag in 0:MALag.max){
-            for (GARCHLagOne in 1:GARCHLagOne.max){
-              for (GARCHLagTwo in 1:GARCHLagTwo.max){
+            for (GARCHLagOne in 0:GARCHLagOne.max){
+              for (GARCHLagTwo in 0:GARCHLagTwo.max){
                 spec = ugarchspec(
                   variance.model=list(model=garchModel,garchOrder=c(GARCHLagOne,GARCHLagTwo)),
                   mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T),
@@ -102,7 +105,7 @@ for (stocksIndex in 1:nrow(stocks)){
                 } else if(is(fit," error")){
                   
                   AIC=1000000
-                  cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i fit!","\n",sep=""), file=URL.logging, append=TRUE)
+                  cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize, ". Model: ",garchModel,ARLag,MALag,GARCHLagOne,GARCHLagTwo,". Error i fit!","\n",sep=""), file=URL.logging, append=TRUE)
                   
                 }else{
                   
@@ -111,7 +114,7 @@ for (stocksIndex in 1:nrow(stocks)){
                     forecast=ugarchforecast(fit,n.ahead=1)
                     forecastOneDayAhead=drop(forecast@forecast$seriesFor) #Drop fjerner kolonne og radnavn}
                     }, error = function(e) { 
-                      cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error in infocriteria!","\n",sep=""), file=URL.logging, append=TRUE) #Skjønner ikke hvorfor denne feilen ikke blir fanget over...
+                      cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,ARLag,MALag,GARCHLagOne,GARCHLagTwo,". Error in infocriteria!","\n",sep=""), file=URL.logging, append=TRUE) #Skjønner ikke hvorfor denne feilen ikke blir fanget over...
                       URL=paste(URL.repo,"/Data/ErroriFit.Rda",sep="")
                       save(fit,file=URL)
                       URL=paste(URL.repo,"/Data/ErroriSpec.Rda",sep="")
@@ -119,7 +122,8 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                       AIC=1000000
                     })
-  
+                  
+                  
                   
                 }
                 
@@ -142,6 +146,7 @@ for (stocksIndex in 1:nrow(stocks)){
           }
           
         }
+        
 
       }
       if (AIC.final==1000000){
@@ -161,8 +166,6 @@ for (stocksIndex in 1:nrow(stocks)){
           }
         }
       }
-      
-      cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) 
       
       results=list(AIC.final, forecastOneDayAhead.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, stockDistribution.fullname) # Merk at man må bruke to brackets for å legge til en liste inni en liste
       names(results)=c("AIC", "One-Day-Ahead Forecast",  "Garch Model","AR Lag","MA Lag", "GARCH Lag 1","GARCH Lag 2","Stock Distribution" )

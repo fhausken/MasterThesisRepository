@@ -5,6 +5,8 @@ library(rugarch)
 library(psych)
 library(quantmod)
 library(xtable)
+
+
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
 
@@ -66,7 +68,7 @@ pValue=vector()
 testConclusion=vector()
 
 for (stock in 1:numberOfStocks){
-  dickyFuller=PP.test(stockReturns[,stock])
+  dickyFuller=adf.test(stockReturns[,stock])
   
   testStatistic[length(testStatistic)+1]=dickyFuller$statistic
   pValue[length(pValue)+1]=dickyFuller$p.value
@@ -118,7 +120,7 @@ for (stock in 1:numberOfStocks){
   results[length(results)+1]=bestDistributionFit
 }
 
-distributionsFitResults=data.frame(stocks[,1],matrix(unlist(results), ncol=length(distributions)+2, byrow=TRUE),stringsAsFactors=FALSE)
+distributionsFitResults=data.frame(stocks[,1],matrix(results, ncol=length(distributions)+2, byrow=TRUE),stringsAsFactors=FALSE)
 names(distributionsFitResults)=c("Stock","AIC Normal Distribution","AIC Generalized Error Distribution","AIC Student Distribution","AIC Skewed Normal Distribution","AIC Skewed Generalized Error Distribution","AIC Skewed Student Distribution","AIC Generalized Hyperbolic Function Distribution","AIC Normal Inverse Gaussian Distribution","AIC Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
 
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
