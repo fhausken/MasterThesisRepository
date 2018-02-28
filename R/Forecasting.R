@@ -55,7 +55,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   library(tseries)
   library(rugarch)
 
-  
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
     forecastVector=vector()
@@ -68,7 +67,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     }else{
       stockForecastDataFrame=cbind(stockForecastDataFrame,forecastVector)
     }
-    
   }
  
   names(stockForecastDataFrame)=stocks[[1]]
