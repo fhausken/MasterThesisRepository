@@ -10,7 +10,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 
 #stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
-stocks=stocks[c(102),]
+stocks=stocks[c(10,114),]
 
 from.date <- as.Date("01/04/10", format="%m/%d/%y")
 

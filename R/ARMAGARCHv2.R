@@ -49,8 +49,9 @@ for (stocksIndex in 1:nrow(stocks)){
   individualStockRetun=stockReturns[,stocksIndex]
   individualStockRetunTotalDays=length(individualStockRetun)
   print(length(individualStockRetun))
-  stockDistribution=distributionsFitResults[stocksIndex,12]
-  stockDistribution.fullname=distributionsFitResults[stocksIndex,11]
+  stockDistribution=distributionsFitResults[stocksIndex,12][[1]] 
+  stockDistribution.fullname=distributionsFitResults[stocksIndex,11][[1]] 
+  print(stockDistribution)
   
   sampleSizeResults=list()
   for (sampleSizesIndex in 1:length(sampleSizes)){
