@@ -6,10 +6,7 @@ library(psych)
 library(quantmod)
 library(xtable)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
 
@@ -124,11 +121,9 @@ for (stock in 1:numberOfStocks){
 }
 
 distributionsFitResults=data.frame(stocks[,1],matrix(results, ncol=length(distributions)+2, byrow=TRUE),stringsAsFactors=FALSE)
-<<<<<<< HEAD
-names(distributionsFitResults)=c("Stock","AIC Normal Distribution","AIC Generalized Error Distribution","AIC Student Distribution","AIC Skewed Normal Distribution","AIC Skewed Generalized Error Distribution","AIC Skewed Student Distribution","AIC Generalized Hyperbolic Function Distribution","AIC Normal Inverse Gaussian Distribution","AIC Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
-=======
+
 names(distributionsFitResults)=c("Stock","Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
->>>>>>> master
+
 
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 save(distributionsFitResults,file=URL)
