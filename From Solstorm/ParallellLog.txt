@@ -1,7 +1,0 @@
-Output:
-
-2018-02-22 13:19:45	Starting iteration: 4/5. Stock: Statoil
-2018-02-22 13:19:45	Starting iteration: 1/5. Stock: Norsk Hydro
-2018-02-22 13:19:45	Starting iteration: 2/5. Stock: Orkla
-2018-02-22 13:19:45	Starting iteration: 3/5. Stock: SalMar
-2018-02-22 13:19:45	Starting iteration: 5/5. Stock: Yara International
