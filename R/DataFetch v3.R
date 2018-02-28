@@ -12,7 +12,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
 
 
-from.date <- as.Date("01/04/16", format="%m/%d/%y")
+from.date <- as.Date("01/04/10", format="%m/%d/%y")
 
 consecutiveZerosCapClose=10
 
