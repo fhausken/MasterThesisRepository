@@ -12,7 +12,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
 
 
-from.date <- as.Date("01/04/10", format="%m/%d/%y")
+from.date <- as.Date("01/04/16", format="%m/%d/%y")
 
 consecutiveZerosCapClose=10
 
@@ -23,7 +23,6 @@ stocks.nrow=nrow(stocks)
   
 stocksRemoved.index=vector()
 stocksRemoved.reason=vector()
-
 
 stockData=new.env()
 
@@ -54,7 +53,7 @@ for (row in 1:stocks.nrow) {
       
     
       vectorizedVolume=drop(coredata(stock.data[,5]))
-      vectorizedVolume[is.na(vectorizedVolume)] <- 10000000000000 #Skummelt å sette denne til null. Da det ikke er sikkert at volumet er 0, og NA i volum ikke påvirker utregninger som GARCH
+      vectorizedVolume[is.na(vectorizedVolume)] <- 10000000000000 #Skummelt ? sette denne til null. Da det ikke er sikkert at volumet er 0, og NA i volum ikke p?virker utregninger som GARCH
       occurences = rle(vectorizedVolume)
       consecutiveZerosVector=occurences$lengths[occurences$values <= XCapVolume]
       if(length(consecutiveZerosVector>0)){
@@ -96,7 +95,7 @@ for (row in 1:stocks.nrow) {
 
 }
 
-stocksRemoved=NULL #Hvis if-testen på neste linje er false, må objektet ha verdi for at det ikke skal bli feil. Dette fordi objektet lagres tilslutt
+stocksRemoved=NULL #Hvis if-testen p? neste linje er false, m? objektet ha verdi for at det ikke skal bli feil. Dette fordi objektet lagres tilslutt
 if (length(stocksRemoved.index)>0){
   
   stocksRemoved=stocks[stocksRemoved.index,]
@@ -115,12 +114,12 @@ stockPrices <- do.call(merge, stockPricesList)
 #raderEtter=nrow(stockPrices)
 
 stockReturns=diff(log(stockPrices))
-stockReturns=stockReturns[-c(1),] #Fjerner første rad siden den er NA
+stockReturns=stockReturns[-c(1),] #Fjerner f?rste rad siden den er NA
 
 stockPrices[is.na(stockPrices)] <- 0 # Setter NA elementer til 0.
 stockReturns[is.na(stockReturns)] <- 0 # Setter NA elementer til 0.
 
-names(stockPrices)=stocks$Ticker #Endrer navn på kolonner
+names(stockPrices)=stocks$Ticker #Endrer navn p? kolonner
 names(stockReturns)=stocks$Ticker
 
 #Volume
@@ -133,12 +132,9 @@ stockVolumes <- do.call(merge, stockVolumesList)
 #raderEtter=nrow(stockPrices)
 
 #stockVolumes[is.na(stockVolumes)] <- 0 # Setter NA elementer til 0.
-names(stockVolumes)=stocks$Ticker #Endrer navn på kolonner
-
-
+names(stockVolumes)=stocks$Ticker #Endrer navn p? kolonner
 
 #Lagring
-
 URL=paste(URL.repo,"/Data/stockPrices.Rda",sep="")
 save(stockPrices,file=URL)
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
