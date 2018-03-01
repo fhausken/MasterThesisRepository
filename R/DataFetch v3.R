@@ -9,16 +9,20 @@ URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
-#stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
-stocks=stocks[c(10,114),]
+stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
+#stocks=stocks[c(10,114),]
 
+# SET FROM DATE
 from.date <- as.Date("01/04/10", format="%m/%d/%y")
 
 consecutiveZerosCapClose=10
 
+# VOLUME CONSTRAINTS
 XCapVolume=0
 consecutiveXCapVolume=20
 
+
+# INIT LISTS AND LENGTH OF DESIRED OSEAX STOCKS
 stocks.nrow=nrow(stocks)
   
 stocksRemoved.index=vector()
@@ -33,16 +37,16 @@ for (row in 1:stocks.nrow) {
     fetchName=paste(stocks$Ticker[row],".OL",sep="")
     stock.data=getSymbols(fetchName,from=from.date,auto.assign = FALSE)
     
-    
+    print(stock.data)
     if(index(stock.data)[1]==(from.date)){
       
       vectorizedClose=drop(coredata(stock.data[,4]))
       vectorizedClose[is.na(vectorizedClose)] <- 1000000000
       occurences = rle(vectorizedClose)
-      consecutiveZerosVector=occurences$lengths[occurences$values == 1000000000]
-      if(length(consecutiveZerosVector>0)){
+      consecutiveZerosVector.close=occurences$lengths[occurences$values == 1000000000]
+      if(length(consecutiveZerosVector.close>0)){
         
-        maxOfconsecutiveZerosVectorClose=max(consecutiveZerosVector)
+        maxOfconsecutiveZerosVectorClose=max(consecutiveZerosVector.close)
         #print(fetchName)
         #print(maxOfconsecutiveZerosVectorClose)
         #print("")
@@ -55,10 +59,10 @@ for (row in 1:stocks.nrow) {
       vectorizedVolume=drop(coredata(stock.data[,5]))
       vectorizedVolume[is.na(vectorizedVolume)] <- 10000000000000 #Skummelt ? sette denne til null. Da det ikke er sikkert at volumet er 0, og NA i volum ikke p?virker utregninger som GARCH
       occurences = rle(vectorizedVolume)
-      consecutiveZerosVector=occurences$lengths[occurences$values <= XCapVolume]
-      if(length(consecutiveZerosVector>0)){
+      consecutiveZerosVector.volume=occurences$lengths[occurences$values <= XCapVolume]
+      if(length(consecutiveZerosVector.volume>0)){
         
-        maxOfconsecutiveZerosVectorVolume=max(consecutiveZerosVector)
+        maxOfconsecutiveZerosVectorVolume=max(consecutiveZerosVector.volume)
         #print(fetchName)
         #print(maxOfconsecutiveZerosVectorVolume)
         #print("")
@@ -106,6 +110,7 @@ if (length(stocksRemoved.index)>0){
 
 #Prices and Returns
 
+# RETRIEVE CLOSING PRICES AND MERGE CLOSE FOR ALL STOCKS INTO DATAFRAME
 stockPricesList <- eapply(stockData, Cl)
 stockPrices <- do.call(merge, stockPricesList)
 
