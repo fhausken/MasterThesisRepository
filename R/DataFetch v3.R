@@ -13,13 +13,13 @@ stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
-from.date <- as.Date("01/04/10", format="%m/%d/%y")
+from.date <- as.Date("01/02/13", format="%m/%d/%y")
 
 consecutiveZerosCapClose=10
 
 # VOLUME CONSTRAINTS
 XCapVolume=0
-consecutiveXCapVolume=20
+consecutiveXCapVolume=10
 
 
 # INIT LISTS AND LENGTH OF DESIRED OSEAX STOCKS
