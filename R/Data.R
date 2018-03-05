@@ -7,7 +7,7 @@ library(quantmod)
 library(xtable)
 library(het.test)
 library(lmtest)
-
+library(vars)
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -16,7 +16,6 @@ options(xtable.timestamp = "")
 rm(list=ls()) #Clears environment
 
 URL.repo=getwd()
-
 
 if (grepl("Fredrik", URL.repo)){
   URL.drop="C:/Users/Fredrik Hausken/Dropbox/Apper/ShareLaTeX/Master thesis"
@@ -74,7 +73,7 @@ for (stock in 1:numberOfStocks){
   testStatistic[length(testStatistic)+1]=phillip.perron.test$statistic
   pValue[length(pValue)+1]=phillip.perron.test$p.value
   
-  if (pValue<=0.01){
+  if (pValue <= 0.01){
     testConclusion[length(testConclusion)+1]="Stationary"
   }
   else{
@@ -87,48 +86,6 @@ names(phillipPerronResults)=c("Stock", "Test Statistic", "P-Value", "Test Conlcu
 
 URL=paste(URL.repo,"/Data/phillipPerronResults.Rda",sep="")
 save(phillipPerronResults,file=URL)
-
-# WHITE-TEST
-lmValue.wt = c()
-testConclusion.wt = c()
-
-for (stock in 1:numberOfStocks){
-  
-  # BRUKER 2 LAGS I REGRESJONEN
-  y = stockReturns[3:nrow(stockReturns),stock]
-  x1 = stockReturns[2:nrow(stockReturns),stock]
-  x2 = stockReturns[1:nrow(stockReturns),stock]
-  
-  x1 = x1[-c(nrow(x1)),]
-  x2 = x2[-c(nrow(x2)),]
-  x2 = x2[-c(nrow(x2)),]
-  
-  # KJORER REGRESJONEN - RETRIEVES RESIDUALS
-  reg.model <- lm(y ~ x1 + x2)
-  
-  # RUN THE WHITE TEST - RESIDUALS ON LHS AND LOG RETURNS ON RHS
-  residuals.reg = reg.model$residuals
-  
-  reg.model2 <- lm(residuals.reg^2 ~ x1 + x2 + x1^2 + x2^2 + x1*x2)
-  LM.statistic = nrow(stockReturns)*summary(reg.model2)$r.squared
-  
-  # LM.statistic is chi-squared distributed with 5 DF --> cutoff value: 11.07 for significance of 0.05
-  lmValue.wt[length(lmValue.wt)+1] = LM.statistic
-  
-  if (LM.statistic >= 11.07){
-    testConclusion.wt[length(testConclusion.wt)+1]="Heteroscedasticity"
-  }
-  else{
-    testConclusion.wt[length(testConclusion.wt)+1]="Homoscedasticity"
-  }
-  
-}
-
-wtResults=data.frame(stocks[,1],lmValue.wt, testConclusion.wt)
-names(wtResults)=c("Stock", "Lagrange Multiplier Value", "Test Conlcusion")
-
-URL=paste(URL.repo,"/Data/wtResults.Rda",sep="")
-save(wtResults,file=URL)
 
 #DISTRIBUTION FITTING
 distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
@@ -190,17 +147,6 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
 print(xtable(phillipPerronResults, auto=FALSE, digits=c(1,1,3,3,1), align = c('c','l','c','c','c'), type = "latex", caption = "Phillip Perron test for OSEAX stocks"),hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
-
-
-# WHITE TEST
-x = wtResults
-# GENERAL LONG-TABLE COMMAND
-add.to.row <- list(pos = list(0), command = NULL)
-command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
-add.to.row$command <- command
-
-URL=paste(URL.drop,"/Tables/wtResults.txt",sep="")
-print(xtable(wtResults, auto=FALSE, digits=c(1,1,2,1), align = c('c','l','c','c'), type = "latex", caption = "White test for OSEAX stocks"),hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
