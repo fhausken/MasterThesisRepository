@@ -169,3 +169,4 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleHitRatioDataFramesList[[length(sampleHitRatioDataFramesList)+1]]=data.frame((colSums(sampleHitDataFramesList[[sampleSizesIndex]]))/nrow(sampleHitDataFramesList[[sampleSizesIndex]]))
 }
 names(sampleHitRatioDataFramesList)=sampleSizes
+
