@@ -9,7 +9,7 @@ URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
-stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
+stocks=stocks[c(55),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
