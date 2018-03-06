@@ -11,7 +11,8 @@ library(tseries)
 library(rugarch)
 library(ggplot2)
 library(plotly)
-install.packages("webshot")
+library(webshot)
+
 
 no_cores=detectCores()
 c1=makeCluster(no_cores)
@@ -277,25 +278,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
     
-    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".png",sep="")
-    tmpFile <- tempfile(fileext = URL)
-    export(fullPlot, file = tmpFile)
-   
-    
-    # returnPlot=ggplot() + geom_line(data=plotDataFrame, aes(x=dates,y=buyAndHold, color="Buy and Hold"),size=0.5)+
-    #   geom_line( data=plotDataFrame, aes(x=dates,y=shortLong, color="Short and Long"),size=0.5)  + xlab("Date") + ylab("Return [%]") +
-    #   scale_colour_manual(name = "Legends: ", values=c("orange","blue"))
-    # 
-    # alphaPlot=ggplot() + geom_line(data=plotDataFrame, aes(x=dates,y=alpha, color="Alpha"),size=0.5)+
-    #   scale_colour_manual(name = "Legends: ", values=c("green"))
-    # 
-    # 
-    # 
-    # grid.newpage()
-    # grid.draw(rbind(ggplotGrob(returnPlot), ggplotGrob(alphaPlot), size = "last"))
-    # grid.arrange(returnPlot, alphaPlot, ncol = 1, heights = c(2, 1))
-     
-    # URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
-    # ggsave(URL, plot = returnPlot,dpi=500)
+    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
+    export(fullPlot, file = URL)
   }
 }
