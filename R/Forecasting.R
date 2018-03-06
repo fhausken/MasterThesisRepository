@@ -144,15 +144,22 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleBuyAndHoldReturnDataFramesList)=sampleSizes
 names(notAccumulatedSampleBuyAndHoldReturnDataFramesList) = sampleSizes
 
-#CALCULATE VARIANCE BUY-AND-HOLD
+#CALCULATE MEAN & VARIANCE BUY-AND-HOLD
 varianceBuyAndHold = list()
+meanBuyAndHold = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   varianceDataFrame = data.frame(colVars(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
+  meanDataFrame = data.frame(colMeans(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
+  
   colnames(varianceDataFrame) = stocks$Ticker
+  colnames(meanDataFrame) = stocks$Ticker
+  
   varianceBuyAndHold[[length(varianceBuyAndHold)+1]] = varianceDataFrame
+  meanBuyAndHold[[length(meanBuyAndHold)+1]] = meanDataFrame
 }
 
 names(varianceBuyAndHold) = sampleSizes
+names(meanBuyAndHold) = sampleSizes
 
 #Short/Sell Long Hit
 
@@ -196,6 +203,7 @@ sampleHitDataFramesList=list()
 sampleShortLongReturnDataFramesList=list()
 sampleAccumulatedShortLongReturnDataFramesList=list()
 sampleErrorDataFramesList=list()
+
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   rollingWindowSize = nrow(stockReturns) - sampleSize
@@ -264,14 +272,22 @@ names(sampleErrorDataFramesList)=sampleSizes
 names(sampleAccumulatedShortLongReturnDataFramesList)=sampleSizes
 names(sampleShortLongReturnDataFramesList)=sampleSizes
 
-#CALCULATE VARIANCE SHORT-LONG RETURN
+#CALCULATE MEAN & VARIANCE SHORT-LONG RETURN
 varianceLongShort = list()
+meanLongShort = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
+  meanLongShortDataFrame = data.frame(colMeans(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
   varianceDataFrame = data.frame(colVars(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
+  
+  colnames(meanLongShortDataFrame) = stocks$Ticker
   colnames(varianceDataFrame) = stocks$Ticker
+  
   varianceLongShort[[length(varianceLongShort)+1]] = varianceDataFrame
+  meanLongShort[[length(meanLongShort)+1]] = meanLongShortDataFrame
 }
+
 names(varianceLongShort) = sampleSizes
+names(meanLongShort) = sampleSizes
 
 #Short/Sell Long Hit Ratio
 
@@ -293,7 +309,6 @@ MAE <- function(errorListStock) {
   return(colMeans(abs(errorListStock)))
 }
 
-
 sampleRMSEDataFrameList=list()
 sampleMAEDataFrameList=list()
 
@@ -302,7 +317,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAE(sampleErrorDataFramesList[[sampleSizesIndex]])
 }
 
-# CREATE RMSE, MAE DATA FRAME FOR LATEX
+# CREATE RMSE, MAE DATAFRAME FOR LATEX
 sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), nrow=1, byrow=T),stringsAsFactors=FALSE)
 
 # ADD RMSE COL NAME
@@ -327,6 +342,19 @@ colnames(sampleRMSE.MAE.dataFrame) = sampleSizeNameList
 row.names(sampleRMSE.MAE.dataFrame) = unlist(stockNameList)
 
 
+# CREATE INFORMATION METRIC TABLE (Stock, mean_buy-and-hold, std.dev_buy-and-hold, r_buy-and-hold, Sign Ratio, mean_short-long, std.dev_short-long, return_short-long, alpha, SR_buy-and-hold, SR_short-long)
+informationDataFrameList = list()
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  informationDataFrame = data.frame(stocks[[1]], meanBuyAndHold[[sampleSizesIndex]], varianceBuyAndHold[[sampleSizesIndex]], sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]], meanLongShort[[sampleSizesIndex]], varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
+  
+  colnames(informationDataFrame) = c("Stock","Buy-and-hold mean", "Buy-and-hold std.dev","Buy-and-hold return", "Short-long mean", "Short-long std.dev")#, "Short-long return") #, "Alpha", "Buy-and-hold SR", "Long-short SR")
+  
+  informationDataFrameList[[length(informationDataFrameList)+1]] = informationDataFrame
+  
+}
+
+names(informationDataFrameList) = sampleSizes
 
 # TABLES-TO-LATEX
 
@@ -339,3 +367,15 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
 print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+
+# RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
+x = informationDataFrame
+# GENERAL LONG-TABLE COMMAND
+add.to.row <- list(pos = list(0), command = NULL)
+command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
