@@ -34,8 +34,8 @@ load(URL)
 
 sampleSizes=c(250,500)#,500,750,1000)
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=5
-MALag.max=5
+ARLag.max=7
+MALag.max=7
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -48,10 +48,9 @@ for (stocksIndex in 1:nrow(stocks)){
   
   individualStockRetun=stockReturns[,stocksIndex]
   individualStockRetunTotalDays=length(individualStockRetun)
-  print(length(individualStockRetun))
+  
   stockDistribution=distributionsFitResults[stocksIndex,12][[1]] 
   stockDistribution.fullname=distributionsFitResults[stocksIndex,11][[1]] 
-  print(stockDistribution)
   
   sampleSizeResults=list()
   for (sampleSizesIndex in 1:length(sampleSizes)){

@@ -9,7 +9,9 @@ library(rugarch)
 library(xts)
 library(tseries)
 library(rugarch)
-#library(ggplot2)
+library(ggplot2)
+library(plotly)
+install.packages("webshot")
 
 no_cores=detectCores()
 c1=makeCluster(no_cores)
@@ -17,6 +19,14 @@ registerDoParallel(c1)
 
 
 URL.repo=getwd()
+
+if (grepl("Fredrik", URL.repo)){
+  URL.drop="C:/Users/Fredrik Hausken/Dropbox/Apper/ShareLaTeX/Master thesis"
+}else if (grepl("andersronold", URL.repo)){
+  URL.drop="/Users/andersronold/Dropbox/Apper/ShareLaTeX/Master\ thesis" #Anders ma fylle inn
+}else{
+  URL.drop="Does not find"
+}
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -113,7 +123,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 }
 names(sampleBuyAndHoldReturnDataFramesList)=sampleSizes
 
-#Short/Sell Long Hit
+#Short/Sell Long Sign
 
 sampleSignDataFramesList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
@@ -153,7 +163,9 @@ names(sampleSignDataFramesList)=sampleSizes
 
 sampleHitDataFramesList=list()
 sampleAccumulatedShortLongReturnDataFramesList=list()
-sampeErrorDataFramesList=list()
+sampleAccumulatedBuyAndHoldReturnDataFramesList=list()
+sampleAccumulatedAlphaReturnDataFramesList=list()
+sampleErrorDataFramesList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   rollingWindowSize = nrow(stockReturns) - sampleSize
@@ -163,6 +175,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     hitVector=vector()
     accumulatedShortLongReturnVector=c(0)
     accumulatedShortLongReturn=0
+    accumulatedBuyAndHoldReturnVector=c(0)
+    accumulatedBuyAndHoldReturn=0
     errorVector=vector()
      
     for (day in 1:(rollingWindowSize)){
@@ -181,16 +195,22 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       }
       
       accumulatedShortLongReturnVector[length(accumulatedShortLongReturnVector)+1]=accumulatedShortLongReturn
+      accumulatedBuyAndHoldReturn=accumulatedBuyAndHoldReturn+nextDayReturn
+      accumulatedBuyAndHoldReturnVector[length(accumulatedBuyAndHoldReturnVector)+1]=accumulatedBuyAndHoldReturn
     }
     
     if (stocksIndex==1){
       stockHitDataFrame=data.frame(hitVector)
       accumulatedShortLongReturnDataFrame=data.frame(accumulatedShortLongReturnVector)
+      accumulatedBuyAndHoldReturnDataFrame=data.frame(accumulatedBuyAndHoldReturnVector)
+      accumulatedAlphaReturnDataFrame=data.frame((accumulatedShortLongReturnVector-accumulatedBuyAndHoldReturnVector))
       errorDataFrame=data.frame(errorVector)
     }else{
       stockHitDataFrame=cbind(stockHitDataFrame,hitVector)
       accumulatedShortLongReturnDataFrame=cbind(accumulatedShortLongReturnDataFrame,accumulatedShortLongReturnVector)
       errorDataFrame=cbind(errorDataFrame, errorVector)
+      accumulatedBuyAndHoldReturnDataFrame=cbind(accumulatedBuyAndHoldReturnDataFrame,accumulatedBuyAndHoldReturnVector)
+      accumulatedAlphaReturnDataFrame=cbind(accumulatedAlphaReturnDataFrame,(accumulatedShortLongReturnVector-accumulatedBuyAndHoldReturnVector))
     }
   }
   
@@ -200,16 +220,26 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   
   names(errorDataFrame)=stocks[[1]]
   row.names(errorDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
-  sampeErrorDataFramesList[[length(sampeErrorDataFramesList)+1]]=errorDataFrame
+  sampleErrorDataFramesList[[length(sampleErrorDataFramesList)+1]]=errorDataFrame
   
   names(accumulatedShortLongReturnDataFrame)=stocks[[1]]
   row.names(accumulatedShortLongReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
   sampleAccumulatedShortLongReturnDataFramesList[[length(sampleAccumulatedShortLongReturnDataFramesList)+1]]=accumulatedShortLongReturnDataFrame
   
+  names(accumulatedBuyAndHoldReturnDataFrame)=stocks[[1]]
+  row.names(accumulatedBuyAndHoldReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
+  sampleAccumulatedBuyAndHoldReturnDataFramesList[[length(sampleAccumulatedBuyAndHoldReturnDataFramesList)+1]]=accumulatedBuyAndHoldReturnDataFrame
+  
+  names(accumulatedAlphaReturnDataFrame)=stocks[[1]]
+  row.names(accumulatedAlphaReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
+  sampleAccumulatedAlphaReturnDataFramesList[[length(sampleAccumulatedAlphaReturnDataFramesList)+1]]=accumulatedAlphaReturnDataFrame
+  
+  
 }
 names(sampleHitDataFramesList)=sampleSizes
-names(sampeErrorDataFramesList)=sampleSizes
+names(sampleErrorDataFramesList)=sampleSizes
 names(sampleAccumulatedShortLongReturnDataFramesList)=sampleSizes
+names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 
 #Short/Sell Long Hit Ratio
 
@@ -221,4 +251,51 @@ names(sampleHitRatioDataFramesList)=sampleSizes
 
 # STATISTICAL METRICS
 
+#Plotting
 
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleSize = sampleSizes[sampleSizesIndex]
+  
+  for (stocksIndex in 1:nrow(stocks)){
+    stockName=stocks[stocksIndex,1]
+  
+    accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    rowNamesAccumulatedShortLongReturnVector=as.Date(row.names(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]]))
+    plotDataFrame=data.frame(dates=rowNamesAccumulatedShortLongReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, shortLong=accumulatedShortLongReturnVector, alpha=accumulatedAlphaReturnVector)
+    
+    subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
+      add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
+      add_trace(y = ~shortLong, name = 'Short Long Strategy',type='scatter', mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
+    
+    subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
+      add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+    
+    
+    fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+    
+    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".png",sep="")
+    tmpFile <- tempfile(fileext = URL)
+    export(fullPlot, file = tmpFile)
+   
+    
+    # returnPlot=ggplot() + geom_line(data=plotDataFrame, aes(x=dates,y=buyAndHold, color="Buy and Hold"),size=0.5)+
+    #   geom_line( data=plotDataFrame, aes(x=dates,y=shortLong, color="Short and Long"),size=0.5)  + xlab("Date") + ylab("Return [%]") +
+    #   scale_colour_manual(name = "Legends: ", values=c("orange","blue"))
+    # 
+    # alphaPlot=ggplot() + geom_line(data=plotDataFrame, aes(x=dates,y=alpha, color="Alpha"),size=0.5)+
+    #   scale_colour_manual(name = "Legends: ", values=c("green"))
+    # 
+    # 
+    # 
+    # grid.newpage()
+    # grid.draw(rbind(ggplotGrob(returnPlot), ggplotGrob(alphaPlot), size = "last"))
+    # grid.arrange(returnPlot, alphaPlot, ncol = 1, heights = c(2, 1))
+     
+    # URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
+    # ggsave(URL, plot = returnPlot,dpi=500)
+  }
+}

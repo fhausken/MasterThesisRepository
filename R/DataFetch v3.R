@@ -9,7 +9,7 @@ URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
-stocks=stocks[c(39,102,114,133,164,193),] #For testing. Et utvalg av aksjer.
+stocks=stocks[c(114,125,128),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
@@ -37,7 +37,6 @@ for (row in 1:stocks.nrow) {
     fetchName=paste(stocks$Ticker[row],".OL",sep="")
     stock.data=getSymbols(fetchName,from=from.date,auto.assign = FALSE)
     
-    print(stock.data)
     if(index(stock.data)[1]==(from.date)){
       
       vectorizedClose=drop(coredata(stock.data[,4]))
@@ -124,8 +123,8 @@ stockReturns=stockReturns[-c(1),] #Fjerner f?rste rad siden den er NA
 stockPrices[is.na(stockPrices)] <- 0 # Setter NA elementer til 0.
 stockReturns[is.na(stockReturns)] <- 0 # Setter NA elementer til 0.
 
-names(stockPrices)=stocks$Ticker #Endrer navn p? kolonner
-names(stockReturns)=stocks$Ticker
+names(stockPrices)=stocks$Stock #Endrer navn p? kolonner
+names(stockReturns)=stocks$Stock
 
 #Volume
 
