@@ -85,32 +85,46 @@ names(sampleRunTimeDiagnosticsList)=sampleSizes
 
 
 #FORECASTS
-sampleForecastsDataFramesList=list()
-
+sampleMeanForecastsDataFramesList=list()
+sampleVolatilityForecastsDataFramesList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   rollingWindowSize = nrow(stockReturns) - sampleSize
   
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
-    forecastVector=vector()
+    meanForecastVector=vector()
+    volatilityForecastVector=vector()
     for (day in 1:(rollingWindowSize+1)){
-      forecastVector[length(forecastVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[2]]
+      meanForecastVector[length(meanForecastVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[2]]
+      volatilityForecastVector[length(volatilityForecastVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[9]]
       #print(allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[3]])
     }
     if (stocksIndex==1){
-      stockForecastDataFrame=data.frame(forecastVector)
+      stockMeanForecastDataFrame=data.frame(meanForecastVector)
+      stockVolatilityForecastDataFrame=data.frame(volatilityForecastVector)
     }else{
-      stockForecastDataFrame=cbind(stockForecastDataFrame,forecastVector)
+      stockMeanForecastDataFrame=cbind(stockMeanForecastDataFrame,meanForecastVector)
+      stockVolatilityForecastDataFrame=cbind(stockVolatilityForecastDataFrame,volatilityForecastVector)
     }
   }
   
-  names(stockForecastDataFrame)=stocks[[1]]
-  row.names(stockForecastDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
-  sampleForecastsDataFramesList[[length(sampleForecastsDataFramesList)+1]]=stockForecastDataFrame
+  names(stockMeanForecastDataFrame)=stocks[[1]]
+  row.names(stockMeanForecastDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
+  sampleMeanForecastsDataFramesList[[length(sampleMeanForecastsDataFramesList)+1]]=stockMeanForecastDataFrame
+  
+  names(stockVolatilityForecastDataFrame)=stocks[[1]]
+  row.names(stockVolatilityForecastDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
+  sampleVolatilityForecastsDataFramesList[[length(sampleVolatilityForecastsDataFramesList)+1]]=stockVolatilityForecastDataFrame
 }
 
-names(sampleForecastsDataFramesList)=sampleSizes
+names(sampleMeanForecastsDataFramesList)=sampleSizes
+names(sampleVolatilityForecastsDataFramesList)=sampleSizes
+
+URL=paste(URL.repo,"/Data/sampleMeanForecastsDataFramesList.Rda",sep="")
+save(sampleMeanForecastsDataFramesList,file=URL)
+URL=paste(URL.repo,"/Data/sampleVolatilityForecastsDataFramesList.Rda",sep="")
+save(sampleVolatilityForecastsDataFramesList,file=URL)
 
 #Buy and Hold Return
 
@@ -121,7 +135,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   rollingWindowSize = nrow(stockReturns) - sampleSize
   
-  buyAndHoldDataFrame=data.frame(colSums(stockReturns[sampleSize:nrow(stockReturns)]))
+  buyAndHoldDataFrame=data.frame(colSums(stockReturns[(sampleSize+1):nrow(stockReturns)]))
   names(buyAndHoldDataFrame)="Buy and Hold Return"
   sampleBuyAndHoldReturnDataFramesList[[length(sampleBuyAndHoldReturnDataFramesList)+1]]=buyAndHoldDataFrame
 
@@ -188,11 +202,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     accumulatedBuyAndHoldReturnVector=c(0)
     accumulatedBuyAndHoldReturn=0
     shortLongReturnVector = c()
-    longShortReturn = 0
+    shortLongReturn = 0
     errorVector=vector()
     
     for (day in 1:(rollingWindowSize)){
-      forecast=sampleForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
+      forecast=sampleMeanForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
       nextDayReturn=drop(coredata(stockReturns[sampleSize+day,stocksIndex]))
       
       errorVector[length(errorVector)+1]=nextDayReturn-forecast #realized - forecast
@@ -222,14 +236,14 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       accumulatedBuyAndHoldReturnDataFrame=data.frame(accumulatedBuyAndHoldReturnVector)
       accumulatedAlphaReturnDataFrame=data.frame((accumulatedShortLongReturnVector-accumulatedBuyAndHoldReturnVector))
       errorDataFrame=data.frame(errorVector)
-      longShortReturnDataFrame = data.frame(shortLongReturnVector)
+      shortLongReturnDataFrame = data.frame(shortLongReturnVector)
     }else{
       stockHitDataFrame=cbind(stockHitDataFrame,hitVector)
       accumulatedShortLongReturnDataFrame=cbind(accumulatedShortLongReturnDataFrame,accumulatedShortLongReturnVector)
       errorDataFrame=cbind(errorDataFrame, errorVector)
       accumulatedBuyAndHoldReturnDataFrame=cbind(accumulatedBuyAndHoldReturnDataFrame,accumulatedBuyAndHoldReturnVector)
       accumulatedAlphaReturnDataFrame=cbind(accumulatedAlphaReturnDataFrame,(accumulatedShortLongReturnVector-accumulatedBuyAndHoldReturnVector))
-      longShortReturnDataFrame = cbind(longShortReturnDataFrame, shortLongReturnVector)
+      shortLongReturnDataFrame = cbind(shortLongReturnDataFrame, shortLongReturnVector)
 
     }
   }
@@ -256,9 +270,9 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleAccumulatedAlphaReturnDataFramesList[[length(sampleAccumulatedAlphaReturnDataFramesList)+1]]=accumulatedAlphaReturnDataFrame
   
 
-  names(longShortReturnDataFrame)=stocks[[1]]
-  row.names(longShortReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
-  sampleShortLongReturnDataFramesList[[length(sampleShortLongReturnDataFramesList)+1]]=longShortReturnDataFrame
+  names(shortLongReturnDataFrame)=stocks[[1]]
+  row.names(shortLongReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  sampleShortLongReturnDataFramesList[[length(sampleShortLongReturnDataFramesList)+1]]=shortLongReturnDataFrame
 
   
 }
@@ -380,7 +394,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
     
-    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
+    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
     export(fullPlot, file = URL)
   }
 }
