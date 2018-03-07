@@ -57,7 +57,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   rollingWindowSize = nrow(stockReturns) - sampleSize
   
-  stockRunTimeDiagnosticsList=list()
+  stocksRunTimeDiagnosticsList=list()
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
     garchModelVector=vector()
@@ -68,17 +68,19 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       ARLagVector[length(ARLagVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[4]]
       MALagVector[length(MALagVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[5]]
     }
-    occurences=table(garchModelVector)
-    averageARLag=mean(ARLagVector)
-    averageMALag=mean(MALagVector)
-    runTimeDiagnosticsList=list(occurences,averageARLag,averageMALag)
-    names(runTimeDiagnosticsList)=c("Occurences", "Average AR Lag", "Average MA Lag")
-    stockRunTimeDiagnosticsList[[length(stockRunTimeDiagnosticsList)+1]]=runTimeDiagnosticsList
+    for (garchModelsIndex in 1:length(garchModels)){
+      garchModel=garchModels[garchModelsIndex]
+      occurence=length(which(garchModelVector == garchModel))
+      stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=occurence       
+    }
     
+    stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=mean(ARLagVector)
+    stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=mean(MALagVector)
   }
   
-  names(stockRunTimeDiagnosticsList)=stocks[[1]]
-  sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stockRunTimeDiagnosticsList
+  stocksRunTimeDiagnosticsDataFrame=data.frame(stocks[,1],matrix(stocksRunTimeDiagnosticsList, ncol=(length(garchModels)+2), byrow=TRUE),stringsAsFactors=FALSE)
+  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", garchModels, "Mean AR-LAG","Mean MA-Lag")
+  sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stocksRunTimeDiagnosticsDataFrame
 }
 
 names(sampleRunTimeDiagnosticsList)=sampleSizes
@@ -292,3 +294,17 @@ add.to.row$command <- command
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
 print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
+
+# Diagnostics Metrics (Antar tre forskjellige GARCHer)
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleSize = sampleSizes[sampleSizesIndex]
+  # STATISTICAL METRICS
+  x = sampleRunTimeDiagnosticsList[[sampleSizesIndex]]
+  # GENERAL LONG-TABLE COMMAND
+  add.to.row <- list(pos = list(0), command = NULL)
+  command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+  add.to.row$command <- command
+  
+  URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
+  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], auto=FALSE, digits=c(1,1,0,0,0,2,2), align = c('l','c','c','c','c','c','c'), type = "latex", caption = "Model Diagnostics"), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+}
