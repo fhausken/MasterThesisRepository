@@ -9,7 +9,6 @@ library(rugarch)
 library(xts)
 library(tseries)
 library(rugarch)
-library(ggplot2)
 library(plotly)
 library(webshot)
 
@@ -113,8 +112,8 @@ names(sampleForecastsDataFramesList)=sampleSizes
 
 #Buy and Hold Return
 
-sampleBuyAndHoldReturnDataFramesList=list()
-notAccumulatedSampleBuyAndHoldReturnDataFramesList = list()
+sampleBuyAndHoldTotalReturnDataFramesList=list()
+sampleBuyAndHoldReturnDataFramesList = list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
@@ -122,7 +121,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   
   buyAndHoldDataFrame=data.frame(colSums(stockReturns[sampleSize:nrow(stockReturns)]))
   names(buyAndHoldDataFrame)="Buy and Hold Return"
-  sampleBuyAndHoldReturnDataFramesList[[length(sampleBuyAndHoldReturnDataFramesList)+1]]=buyAndHoldDataFrame
+  sampleBuyAndHoldTotalReturnDataFramesList[[length(sampleBuyAndHoldTotalReturnDataFramesList)+1]]=buyAndHoldDataFrame
 
   
   for (stocksIndex in 1:nrow(stocks)){
@@ -142,17 +141,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   }
   colnames(stockReturnDataFrame) = stocks[[1]]
   row.names(stockReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
-  notAccumulatedSampleBuyAndHoldReturnDataFramesList[[length(notAccumulatedSampleBuyAndHoldReturnDataFramesList)+1]] = stockReturnDataFrame
+  sampleBuyAndHoldReturnDataFramesList[[length(sampleBuyAndHoldReturnDataFramesList)+1]] = stockReturnDataFrame
 }
-names(sampleBuyAndHoldReturnDataFramesList)=sampleSizes
-names(notAccumulatedSampleBuyAndHoldReturnDataFramesList) = sampleSizes
+names(sampleBuyAndHoldTotalReturnDataFramesList)=sampleSizes
+names(sampleBuyAndHoldReturnDataFramesList) = sampleSizes
 
 #CALCULATE MEAN & VARIANCE BUY-AND-HOLD
 varianceBuyAndHold = list()
 meanBuyAndHold = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  varianceDataFrame = data.frame(colVars(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
-  meanDataFrame = data.frame(colMeans(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
+  varianceDataFrame = data.frame(colVars(sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
+  meanDataFrame = data.frame(colMeans(sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
   
   colnames(varianceDataFrame) = stocks$Ticker
   colnames(meanDataFrame) = stocks$Ticker
@@ -309,8 +308,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   meanLongShortDataFrame = data.frame(colMeans(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
   varianceDataFrame = data.frame(colVars(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
   
-  colnames(meanLongShortDataFrame) = stocks$Ticker
-  colnames(varianceDataFrame) = stocks$Ticker
+  colnames(meanLongShortDataFrame) = stocks$Stock
+  colnames(varianceDataFrame) = stocks$Stock
   
   varianceLongShort[[length(varianceLongShort)+1]] = varianceDataFrame
   meanLongShort[[length(meanLongShort)+1]] = meanLongShortDataFrame
@@ -376,9 +375,18 @@ sampleRMSEDataFrameList=list()
 sampleMAEDataFrameList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleRMSEDataFrameList[[length(sampleRMSEDataFrameList)+1]] = RMSE(sampleErrorDataFramesList[[sampleSizesIndex]])
-  sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAE(sampleErrorDataFramesList[[sampleSizesIndex]])
+  RMSEDataFrame = data.frame(RMSE(sampleErrorDataFramesList[[sampleSizesIndex]]))
+  MAEDataFrame = data.frame(MAE(sampleErrorDataFramesList[[sampleSizesIndex]]))
+  
+  colnames(RMSEDataFrame) = stocks$Stock
+  colnames(MAEDataFrame) = stocks$Stock
+  
+  sampleRMSEDataFrameList[[length(sampleRMSEDataFrameList)+1]] = RMSEDataFrame
+  sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAEDataFrame
 }
+
+names(sampleRMSEDataFrameList) = sampleSizes
+names(sampleMAEDataFrameList) = sampleSizes
 
 # CREATE RMSE, MAE DATAFRAME FOR LATEX
 sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), nrow=1, byrow=T),stringsAsFactors=FALSE)
@@ -409,7 +417,8 @@ row.names(sampleRMSE.MAE.dataFrame) = unlist(stockNameList)
 informationDataFrameList = list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  informationDataFrame = data.frame(stocks[[1]], meanBuyAndHold[[sampleSizesIndex]], varianceBuyAndHold[[sampleSizesIndex]], sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]], meanLongShort[[sampleSizesIndex]], varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
+  
+  informationDataFrame = data.frame(stocks[[1]], meanBuyAndHold[[sampleSizesIndex]], varianceBuyAndHold[[sampleSizesIndex]], sampleBuyAndHoldTotalReturnDataFramesList[[sampleSizesIndex]], meanLongShort[[sampleSizesIndex]], varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
   
   colnames(informationDataFrame) = c("Stock","Buy-and-hold mean", "Buy-and-hold std.dev","Buy-and-hold return", "Short-long mean", "Short-long std.dev")#, "Short-long return") #, "Alpha", "Buy-and-hold SR", "Long-short SR")
   

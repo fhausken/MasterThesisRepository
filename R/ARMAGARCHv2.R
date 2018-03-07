@@ -32,10 +32,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(250,500)#,500,750,1000)
+sampleSizes=c(1296,1298)#,500,750,1000)
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=7
-MALag.max=7
+ARLag.max=2
+MALag.max=2
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -110,7 +110,7 @@ for (stocksIndex in 1:nrow(stocks)){
                     forecastOneDayAhead=drop(forecast@forecast$seriesFor) #Drop fjerner kolonne og radnavn}
                     }, error = function(e) { 
 
-                      cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error in infocriteria!","\n",sep=""), file=URL.logging, append=TRUE) #Skjønner ikke hvorfor denne feilen ikke blir fanget over...
+                      cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error in infocriteria!","\n",sep=""), file=URL.logging, append=TRUE) #Skj?nner ikke hvorfor denne feilen ikke blir fanget over...
 
                       URL=paste(URL.repo,"/Data/ErroriFit.Rda",sep="")
                       save(fit,file=URL)
@@ -163,9 +163,9 @@ for (stocksIndex in 1:nrow(stocks)){
       }
       
 
-      cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) 
+      cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullf?rt!","\n",sep=""), file=URL.logging, append=TRUE) 
       
-      results=list(AIC.final, forecastOneDayAhead.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, stockDistribution.fullname) # Merk at man må bruke to brackets for å legge til en liste inni en liste
+      results=list(AIC.final, forecastOneDayAhead.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, stockDistribution.fullname) # Merk at man m? bruke to brackets for ? legge til en liste inni en liste
 
       names(results)=c("AIC", "One-Day-Ahead Forecast",  "Garch Model","AR Lag","MA Lag", "GARCH Lag 1","GARCH Lag 2","Stock Distribution" )
       #individualStockResults[[length(individualStockResults)+1]]=results
