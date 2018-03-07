@@ -17,3 +17,18 @@ Output:
 2018-03-07 10:07:00		Iteration: 2/3. Stock: Q-Free. Sample size: 1296. Day: 1/4. Model: eGARCH(2211). Iterasjon fullf?rt!
 2018-03-07 10:07:22		Iteration: 2/3. Stock: Q-Free. Sample size: 1296. Day: 4/4. Model: eGARCH(2211). Iterasjon fullf?rt!
 2018-03-07 10:07:22	Starting iteration: 2/3. Stock: Q-Free. Sample size: 1298 
+2018-03-07 10:07:50		Iteration: 2/3. Stock: Q-Free. Sample size: 1298. Day: 2/2. Model: eGARCH(2211). Iterasjon fullf?rt!
+2018-03-07 10:07:51		Iteration: 2/3. Stock: Q-Free. Sample size: 1298. Day: 0/2. Model: eGARCH(2211). Iterasjon fullf?rt!
+2018-03-07 10:07:51		Iteration: 2/3. Stock: Q-Free. Sample size: 1298. Day: 1/2. Model: eGARCH(2211). Iterasjon fullf?rt!
+2018-03-07 10:07:51	Starting iteration: 3/3. Stock: REC Silicon. Sample size: 1296 
+2018-03-07 10:08:45		Iteration: 3/3. Stock: REC Silicon. Sample size: 1296. Day: 3/4. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:08:45		Iteration: 3/3. Stock: REC Silicon. Sample size: 1296. Day: 2/4. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:08:46		Iteration: 3/3. Stock: REC Silicon. Sample size: 1296. Day: 0/4. Model: eGARCH(1211). Iterasjon fullf?rt!
+2018-03-07 10:08:46		Iteration: 3/3. Stock: REC Silicon. Sample size: 1296. Day: 1/4. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:09:18		Iteration: 3/3. Stock: REC Silicon. Sample size: 1296. Day: 4/4. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:09:18	Starting iteration: 3/3. Stock: REC Silicon. Sample size: 1298 
+2018-03-07 10:10:05		Iteration: 3/3. Stock: REC Silicon. Sample size: 1298. Day: 1/2. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:10:05		Iteration: 3/3. Stock: REC Silicon. Sample size: 1298. Day: 2/2. Model: eGARCH(2111). Iterasjon fullf?rt!
+2018-03-07 10:10:05		Iteration: 3/3. Stock: REC Silicon. Sample size: 1298. Day: 0/2. Model: eGARCH(1211). Iterasjon fullf?rt!
+
+Kjoreretid: 9.18525075117747 
