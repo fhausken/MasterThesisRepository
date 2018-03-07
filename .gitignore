@@ -1,4 +1,5 @@
 *.Rhistory
-*.Rda
+*.RData
+*.Rdata
 *.txt
 *.jpeg
