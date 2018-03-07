@@ -205,6 +205,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     
     fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+    print(fullPlot) #Printer plottet
     
     URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
     export(fullPlot, file = URL)

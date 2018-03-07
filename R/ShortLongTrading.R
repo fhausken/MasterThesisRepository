@@ -208,8 +208,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
       layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
     
-    
     fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+    print(fullPlot) #Printer plottet
     
     URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
     export(fullPlot, file = URL)
