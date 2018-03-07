@@ -9,7 +9,6 @@ library(rugarch)
 library(xts)
 library(tseries)
 library(rugarch)
-library(ggplot2)
 library(plotly)
 library(webshot)
 
@@ -27,6 +26,8 @@ if (grepl("Fredrik", URL.repo)){
 }else{
   URL.drop="Does not find"
 }
+
+#INPUT
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -154,8 +155,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   varianceDataFrame = data.frame(colVars(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
   meanDataFrame = data.frame(colMeans(notAccumulatedSampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]]))
   
-  colnames(varianceDataFrame) = stocks$Ticker
-  colnames(meanDataFrame) = stocks$Ticker
+  colnames(varianceDataFrame) = stocks$Stock
+  colnames(meanDataFrame) = stocks$Stock
   
   varianceBuyAndHold[[length(varianceBuyAndHold)+1]] = varianceDataFrame
   meanBuyAndHold[[length(meanBuyAndHold)+1]] = meanDataFrame
@@ -164,43 +165,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(varianceBuyAndHold) = sampleSizes
 names(meanBuyAndHold) = sampleSizes
 
-#Short/Sell Long Hit
 
-sampleSignDataFramesList=list()
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
-  shortLongVector=vector()
-  
-  for (stocksIndex in 1:nrow(stocks)){
-    stockName=stocks[stocksIndex,1]
-    signVector=vector()
-    for (day in 1:(rollingWindowSize+1)){
-      forecast=sampleForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
-      signOfForecast=sign(forecast)
-      
-      if (signOfForecast==1){
-        signVector[length(signVector)+1]=1 #Long
-      }else{
-        signVector[length(signVector)+1]=0 #Short or Sell
-      }
-      
-    }
-    if (stocksIndex==1){
-      stockSignDataFrame=data.frame(signVector)
-    }else{
-      stockSignDataFrame=cbind(stockSignDataFrame,signVector)
-    }
-  }
-  
-  names(stockSignDataFrame)=stocks[[1]]
-  row.names(stockSignDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
-  sampleSignDataFramesList[[length(sampleSignDataFramesList)+1]]=stockSignDataFrame
-  
-}
-names(sampleSignDataFramesList)=sampleSizes
-
-#Short/Sell Long Hit and Return
+#Short/Sell Long Hit and Return and Error
 
 sampleHitDataFramesList=list()
 sampleAccumulatedShortLongReturnDataFramesList=list()
@@ -328,39 +294,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 }
 names(sampleHitRatioDataFramesList)=sampleSizes
 
+
 # STATISTICAL METRICS
-
-
-#Plotting
-
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  
-  for (stocksIndex in 1:nrow(stocks)){
-    stockName=stocks[stocksIndex,1]
-    
-    accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    rowNamesAccumulatedShortLongReturnVector=as.Date(row.names(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]]))
-    plotDataFrame=data.frame(dates=rowNamesAccumulatedShortLongReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, shortLong=accumulatedShortLongReturnVector, alpha=accumulatedAlphaReturnVector)
-    
-    subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
-      add_trace(y = ~shortLong, name = 'Short Long Strategy',type='scatter', mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
-    
-    subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
-    
-    
-    fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
-    
-    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
-    export(fullPlot, file = URL)
-  }
-}
 
 # RMSE function
 RMSE <- function(errorListStock) {
@@ -409,7 +344,7 @@ row.names(sampleRMSE.MAE.dataFrame) = unlist(stockNameList)
 informationDataFrameList = list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  informationDataFrame = data.frame(stocks[[1]], meanBuyAndHold[[sampleSizesIndex]], varianceBuyAndHold[[sampleSizesIndex]], sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]], meanLongShort[[sampleSizesIndex]], varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
+  informationDataFrame = cbind(stocks[[1]], meanBuyAndHold[[sampleSizesIndex]], varianceBuyAndHold[[sampleSizesIndex]], sampleBuyAndHoldReturnDataFramesList[[sampleSizesIndex]], meanLongShort[[sampleSizesIndex]], varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
   
   colnames(informationDataFrame) = c("Stock","Buy-and-hold mean", "Buy-and-hold std.dev","Buy-and-hold return", "Short-long mean", "Short-long std.dev")#, "Short-long return") #, "Alpha", "Buy-and-hold SR", "Long-short SR")
   
@@ -418,6 +353,37 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 }
 
 names(informationDataFrameList) = sampleSizes
+
+#Plotting
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleSize = sampleSizes[sampleSizesIndex]
+  
+  for (stocksIndex in 1:nrow(stocks)){
+    stockName=stocks[stocksIndex,1]
+    
+    accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+    rowNamesAccumulatedShortLongReturnVector=as.Date(row.names(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]]))
+    plotDataFrame=data.frame(dates=rowNamesAccumulatedShortLongReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, shortLong=accumulatedShortLongReturnVector, alpha=accumulatedAlphaReturnVector)
+    
+    subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
+      add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
+      add_trace(y = ~shortLong, name = 'Short Long Strategy',type='scatter', mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
+    
+    subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
+      add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+    
+    
+    fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+    
+    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,".jpeg",sep="")
+    export(fullPlot, file = URL)
+  }
+}
 
 # # TABLES-TO-LATEX
 # 
