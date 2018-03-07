@@ -395,6 +395,15 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAEDataFrame
 }
 
+# GET TOTAL RETURN FUNCTION
+getTotalTotalReturn <- function(dataFrameList) {
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    dataFrameList[[sampleSizesIndex]] = colSums(dataFrameList[[sampleSizesIndex]])
+  }
+  return(dataFrameList)
+}
+
+
 names(sampleRMSEDataFrameList) = sampleSizes
 names(sampleMAEDataFrameList) = sampleSizes
 
@@ -435,17 +444,19 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   hitratio = unlist(sampleHitRatioDataFramesList[[sampleSizesIndex]])
   mean.ls = unlist(meanLongShort[[sampleSizesIndex]])
   stDev.ls = unlist(standardDevShortLong[[sampleSizesIndex]])
-  return.ls = unlist(sampl)
+  return.ls = unlist(getTotalTotalReturn(sampleShortLongReturnDataFramesList)[[sampleSizesIndex]]) #Use short-long returns to calculate total accumulated return
+  alpha = unlist(getTotalTotalReturn(sampleAccumulatedAlphaReturnDataFramesList)[[sampleSizesIndex]])
+  sr.bh = return.bh/stDev.bh
+  sr.ls = return.ls/stDev.ls
   
-  informationDataFrame = data.frame(stock.names, mean.bh, variance.bh, return.bh, ,mean.ls)
+  # CREATE DATAFRAME
+  informationDataFrame = data.frame(stock.names, mean.bh, stDev.bh, return.bh, hitratio, mean.ls, stDev.ls, return.ls, alpha, sr.bh, sr.ls)
   
-  rownames(informationDataFrame) <- NULL
-  
-  ########------------########--------------########--------------########--------------########--------------########--------------
-  
-  , varianceLongShort[[sampleSizesIndex]]) #, sampleShortLongReturnDataFramesList[[sampleSizesIndex]])
-  
-  colnames(informationDataFrame) = c("Stock","Buy-and-hold mean", "Buy-and-hold std.dev","Buy-and-hold return", "Short-long mean", "Short-long std.dev")#, "Short-long return") #, "Alpha", "Buy-and-hold SR", "Long-short SR")
+  # RESET ROWNAMES
+  rownames(informationDataFrame) <- NULL 
+
+  # SET COLNAMES
+  colnames(informationDataFrame) = c("Stock","Buy-and-hold mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Short-long mean", "Short-long std.dev", "Short-long return", "Alpha", "Buy-and-hold SR", "Long-short SR")
   
   informationDataFrameList[[length(informationDataFrameList)+1]] = informationDataFrame
   
@@ -453,26 +464,31 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
 names(informationDataFrameList) = sampleSizes
 
-# # TABLES-TO-LATEX
-# 
-# # STATISTICAL METRICS
-# x = sampleRMSE.MAE.dataFrame
-# # GENERAL LONG-TABLE COMMAND
-# add.to.row <- list(pos = list(0), command = NULL)
-# command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
-# add.to.row$command <- command
-# 
-# URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-# print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
-# 
-# 
-# # RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
-# x = informationDataFrame
-# # GENERAL LONG-TABLE COMMAND
-# add.to.row <- list(pos = list(0), command = NULL)
-# command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
-# add.to.row$command <- command
-# 
-# URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-# print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+# TABLES-TO-LATEX
+
+# STATISTICAL METRICS
+ x = sampleRMSE.MAE.dataFrame
+# GENERAL LONG-TABLE COMMAND
+add.to.row <- list(pos = list(0), command = NULL)
+command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+
+# RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  x = informationDataFrameList[[sampleSizesIndex]]
+  
+  # GENERAL LONG-TABLE COMMAND
+  add.to.row <- list(pos = list(0), command = NULL)
+  command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+  add.to.row$command <- command
+  
+  URL=paste(URL.drop,"/Tables/informationTable.txt",sep="")
+  print(xtable(informationDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=c(1,1,3,3,3,3,3,3,3,3,3,3), align = c('l','c','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Stock metrics"), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+  
+  
+}
 
