@@ -148,6 +148,30 @@ names(sampleAccumulatedBoundReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleBoundReturnDataFramesList)=sampleSizes
 
+#CALCULATE MEAN & VARIANCE SHORT-LONG RETURN
+# varianceLongShort = list()
+# standardDevShortLong = list()
+# meanLongShort = list()
+# for (sampleSizesIndex in 1:length(sampleSizes)){
+#   meanLongShortDataFrame = data.frame(colMeans(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
+#   standardDeviationDataFrame = data.frame(colSds(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
+#   varianceDataFrame = data.frame(colVars(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
+#   
+#   colnames(meanLongShortDataFrame) = "Mean short long"
+#   colnames(standardDeviationDataFrame) = "Standard deviation short long"
+#   colnames(varianceDataFrame) = "Variance short long"
+#   
+#   varianceLongShort[[length(varianceLongShort)+1]] = varianceDataFrame
+#   standardDevShortLong[[length(standardDevShortLong)+1]] = standardDeviationDataFrame
+#   meanLongShort[[length(meanLongShort)+1]] = meanLongShortDataFrame
+# }
+# 
+# names(varianceLongShort) = sampleSizes
+# names(standardDevShortLong) = sampleSizes
+# names(meanLongShort) = sampleSizes
+# 
+# 
+
 #Bound trading Hit Ratio
 
 sampleHitRatioDataFramesList=list()
