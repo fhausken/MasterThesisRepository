@@ -55,7 +55,7 @@ load(URL)
 sampleRunTimeDiagnosticsList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   stocksRunTimeDiagnosticsList=list()
   for (stocksIndex in 1:nrow(stocks)){
@@ -90,8 +90,8 @@ names(sampleRunTimeDiagnosticsList)=sampleSizes
 sampleMeanForecastsDataFramesList=list()
 sampleVolatilityForecastsDataFramesList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
@@ -134,8 +134,8 @@ sampleBuyAndHoldTotalReturnDataFramesList=list()
 sampleBuyAndHoldReturnDataFramesList = list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   buyAndHoldDataFrame=data.frame(colSums(stockReturns[(sampleSize+1):nrow(stockReturns)]))
   names(buyAndHoldDataFrame)="Buy and Hold Return"
@@ -191,8 +191,8 @@ names(meanBuyAndHold) = sampleSizes
 sampleErrorDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]

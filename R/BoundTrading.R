@@ -55,8 +55,8 @@ sampleAccumulatedAlphaReturnDataFramesList=list()
 sampleBoundReturnDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
@@ -185,7 +185,18 @@ names(sampleHitRatioDataFramesList)=sampleSizes
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   
-  for (stocksIndex in 1:nrow(stocks)){
+  individualStockPlotting=foreach(stocksIndex=1:nrow(stocks)) %dopar%{
+    library(parallel)
+    library(doParallel)
+    library(quantmod)
+    library(lattice)
+    library(timeSeries)
+    library(rugarch)
+    library(xts)
+    library(tseries)
+    library(rugarch)
+    library(plotly)
+    library(webshot)
     stockName=stocks[stocksIndex,1]
     
     accumulatedBoundReturnVector=drop(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
@@ -205,9 +216,14 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     
     fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
-    print(fullPlot) #Printer plottet
+    
     
     URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
     export(fullPlot, file = URL)
+    return(fullPlot)
   }
+  for (plotIndex in 1:length(individualStockPlotting)){
+    print(individualStockPlotting[[plotIndex]]) #Plotter
+  }
+  
 }

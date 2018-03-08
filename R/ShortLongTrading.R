@@ -57,8 +57,8 @@ sampleErrorDataFramesList=list()
 sampleShortLongReturnDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  rollingWindowSize = nrow(stockReturns) - sampleSize
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
@@ -179,16 +179,25 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleHitRatioDataFramesList)=sampleSizes
 
 
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  dataFrameList[[sampleSizesIndex]] = colSums(dataFrameList[[sampleSizesIndex]])
-}
 
 #Plotting
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   
-  for (stocksIndex in 1:nrow(stocks)){
+  individualStockPlotting=foreach(stocksIndex=1:nrow(stocks)) %dopar%{
+    library(parallel)
+    library(doParallel)
+    library(quantmod)
+    library(lattice)
+    library(timeSeries)
+    library(rugarch)
+    library(xts)
+    library(tseries)
+    library(rugarch)
+    library(plotly)
+    library(webshot)
+    
     stockName=stocks[stocksIndex,1]
     
     accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
@@ -211,5 +220,9 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
     export(fullPlot, file = URL)
+    return(fullPlot)
+  }
+  for (plotIndex in 1:length(individualStockPlotting)){
+    print(individualStockPlotting[[plotIndex]]) #plotter
   }
 }
