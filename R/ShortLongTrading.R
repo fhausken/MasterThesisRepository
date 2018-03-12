@@ -125,7 +125,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   row.names(accumulatedShortLongReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
   sampleAccumulatedShortLongReturnDataFramesList[[length(sampleAccumulatedShortLongReturnDataFramesList)+1]]=accumulatedShortLongReturnDataFrame
   
-  
   names(accumulatedBuyAndHoldReturnDataFrame)=stocks[[1]]
   row.names(accumulatedBuyAndHoldReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
   sampleAccumulatedBuyAndHoldReturnDataFramesList[[length(sampleAccumulatedBuyAndHoldReturnDataFramesList)+1]]=accumulatedBuyAndHoldReturnDataFrame
@@ -133,7 +132,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   names(accumulatedAlphaReturnDataFrame)=stocks[[1]]
   row.names(accumulatedAlphaReturnDataFrame)=index(stockReturns)[(sampleSize):nrow(stockReturns)]
   sampleAccumulatedAlphaReturnDataFramesList[[length(sampleAccumulatedAlphaReturnDataFramesList)+1]]=accumulatedAlphaReturnDataFrame
-  
   
   names(shortLongReturnDataFrame)=stocks[[1]]
   row.names(shortLongReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
@@ -262,12 +260,3 @@ save(sampleShortLongTotalReturnDataFramesList,file=URL)
 # ALPHA
 URL=paste(URL.repo,"/Data/sampleAlphaDataFramesList.Rda",sep="")
 save(sampleAlphaDataFramesList,file=URL)
-
-
-
-
-
-
-
-
-
