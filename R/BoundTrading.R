@@ -120,9 +120,9 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       accumulatedBuyAndHoldReturnDataFrame=cbind(accumulatedBuyAndHoldReturnDataFrame,accumulatedBuyAndHoldReturnVector)
       accumulatedAlphaReturnDataFrame=cbind(accumulatedAlphaReturnDataFrame,(accumulatedBoundReturnVector-accumulatedBuyAndHoldReturnVector))
       boundReturnDataFrame = cbind(boundReturnDataFrame, boundReturnVector)
-      
     }
   }
+  
   names(stockHitDataFrame)=stocks[[1]]
   row.names(stockHitDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
   sampleHitDataFramesList[[length(sampleHitDataFramesList)+1]]=stockHitDataFrame
@@ -148,65 +148,120 @@ names(sampleAccumulatedBoundReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleBoundReturnDataFramesList)=sampleSizes
 
-#CALCULATE MEAN & VARIANCE SHORT-LONG RETURN
-# varianceLongShort = list()
-# standardDevShortLong = list()
-# meanLongShort = list()
-# for (sampleSizesIndex in 1:length(sampleSizes)){
-#   meanLongShortDataFrame = data.frame(colMeans(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
-#   standardDeviationDataFrame = data.frame(colSds(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
-#   varianceDataFrame = data.frame(colVars(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
-#   
-#   colnames(meanLongShortDataFrame) = "Mean short long"
-#   colnames(standardDeviationDataFrame) = "Standard deviation short long"
-#   colnames(varianceDataFrame) = "Variance short long"
-#   
-#   varianceLongShort[[length(varianceLongShort)+1]] = varianceDataFrame
-#   standardDevShortLong[[length(standardDevShortLong)+1]] = standardDeviationDataFrame
-#   meanLongShort[[length(meanLongShort)+1]] = meanLongShortDataFrame
-# }
-# 
-# names(varianceLongShort) = sampleSizes
-# names(standardDevShortLong) = sampleSizes
-# names(meanLongShort) = sampleSizes
-# 
-# 
+# CALCULATE TOTAL LONG-SHORT STRATEGY RETURN
+sampleBoundTotalReturnDataFramesList=list()
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  
+  totReturnDataFrame = data.frame(colSums(sampleBoundReturnDataFramesList[[sampleSizesIndex]]))
+  
+  colnames(totReturnDataFrame) = "Total bound strategy return"
+  
+  sampleBoundTotalReturnDataFramesList[[length(sampleBoundTotalReturnDataFramesList)+1]] = totReturnDataFrame
+}
+
+names(sampleBoundTotalReturnDataFramesList) = sampleSizes
+
+# CALCULATE TOTAL ALPHA RETURN
+sampleBoundAlphaDataFramesList=list()
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  
+  totAlphaDataFrame = data.frame(unlist(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][nrow(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]]),]))
+  
+  colnames(totAlphaDataFrame) = 'Alpha'
+  
+  sampleBoundAlphaDataFramesList[[length(sampleBoundAlphaDataFramesList)+1]] = totAlphaDataFrame
+}
+
+names(sampleBoundAlphaDataFramesList) = sampleSizes
+
+#CALCULATE MEAN & VARIANCE BOUND TRADING RETURN
+varianceBound = list()
+standardDevBound = list()
+meanBound = list()
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  meanBoundDataFrame = data.frame(colMeans(sampleBoundReturnDataFramesList[[sampleSizesIndex]]))
+  standardDeviationDataFrame = data.frame(colSds(sampleBoundReturnDataFramesList[[sampleSizesIndex]]))
+  varianceDataFrame = data.frame(colVars(sampleBoundReturnDataFramesList[[sampleSizesIndex]]))
+  
+  colnames(meanBoundDataFrame) = "Mean bound"
+  colnames(standardDeviationDataFrame) = "Standard deviation bound"
+  colnames(varianceDataFrame) = "Variance bound"
+  
+  varianceBound[[length(varianceBound)+1]] = varianceDataFrame
+  standardDevBound[[length(standardDevBound)+1]] = standardDeviationDataFrame
+  meanBound[[length(meanBound)+1]] = meanBoundDataFrame
+}
+
+names(varianceBound) = sampleSizes
+names(standardDevBound) = sampleSizes
+names(meanBound) = sampleSizes
 
 #Bound trading Hit Ratio
 
-sampleHitRatioDataFramesList=list()
+sampleBoundHitRatioDataFramesList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleHitRatioDataFramesList[[length(sampleHitRatioDataFramesList)+1]]=data.frame((colSums(sampleHitDataFramesList[[sampleSizesIndex]]))/nrow(sampleHitDataFramesList[[sampleSizesIndex]]))
+  sampleBoundHitRatioDataFramesList[[length(sampleBoundHitRatioDataFramesList)+1]]=data.frame((colSums(sampleHitDataFramesList[[sampleSizesIndex]]))/nrow(sampleHitDataFramesList[[sampleSizesIndex]]))
 }
-names(sampleHitRatioDataFramesList)=sampleSizes
+names(sampleBoundHitRatioDataFramesList)=sampleSizes
 
 #Plotting
+PLOTTING = FALSE
 
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  
-  for (stocksIndex in 1:nrow(stocks)){
-    stockName=stocks[stocksIndex,1]
+if(PLOTTING == TRUE) {
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    sampleSize = sampleSizes[sampleSizesIndex]
     
-    accumulatedBoundReturnVector=drop(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    rowNamesAccumulatedBoundReturnVector=as.Date(row.names(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]]))
-    plotDataFrame=data.frame(dates=rowNamesAccumulatedBoundReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, bound=accumulatedBoundReturnVector, alpha=accumulatedAlphaReturnVector)
-    
-    subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
-      add_trace(y = ~bound, name = 'Bound Strategy',type='scatter', mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
-    
-    subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
-    
-    
-    fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
-    
-    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
-    export(fullPlot, file = URL)
+    for (stocksIndex in 1:nrow(stocks)){
+      stockName=stocks[stocksIndex,1]
+      
+      accumulatedBoundReturnVector=drop(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      rowNamesAccumulatedBoundReturnVector=as.Date(row.names(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]]))
+      plotDataFrame=data.frame(dates=rowNamesAccumulatedBoundReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, bound=accumulatedBoundReturnVector, alpha=accumulatedAlphaReturnVector)
+      
+      subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
+        add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
+        add_trace(y = ~bound, name = 'Bound Strategy',type='scatter', mode = 'lines')%>%
+        layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
+      
+      subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
+        add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
+        layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+      
+      
+      fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+      
+      URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
+      export(fullPlot, file = URL)
+    }
   }
 }
+
+
+# SAVE RDA-files FOR INFORMATION-TABLE
+#BOUND
+URL=paste(URL.repo,"/Data/tradingBound.Rda",sep="")
+save(tradingBound,file=URL)
+
+# HIT RATIO
+URL=paste(URL.repo,"/Data/sampleBoundHitRatioDataFramesList.Rda",sep="")
+save(sampleBoundHitRatioDataFramesList,file=URL)
+
+# MEAN
+URL=paste(URL.repo,"/Data/meanBound.Rda",sep="")
+save(meanBound,file=URL)
+
+# STD_DEV
+URL=paste(URL.repo,"/Data/standardDevBound.Rda",sep="")
+save(standardDevBound,file=URL)
+
+# RETURN
+URL=paste(URL.repo,"/Data/sampleBoundTotalReturnDataFramesList.Rda",sep="")
+save(sampleBoundTotalReturnDataFramesList,file=URL)
+
+# ALPHA
+URL=paste(URL.repo,"/Data/sampleBoundAlphaDataFramesList.Rda",sep="")
+save(sampleBoundAlphaDataFramesList,file=URL)

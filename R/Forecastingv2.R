@@ -281,6 +281,9 @@ colnames(sampleRMSE.MAE.dataFrame) = sampleSizeNameList
 row.names(sampleRMSE.MAE.dataFrame) = unlist(stockNameList)
 
 # TABLES-TO-LATEX
+bold <- function(x){
+  paste0('{\\bfseries ', x, '}')
+}
 
 # STATISTICAL METRICS
  x = sampleRMSE.MAE.dataFrame
@@ -290,5 +293,21 @@ command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+
+
+# SAVE LISTS TO Rda-files
+
+URL=paste(URL.repo,"/Data/meanBuyAndHold.Rda",sep="")
+save(meanBuyAndHold,file=URL)
+
+URL=paste(URL.repo,"/Data/standardDevBuyAndHold.Rda",sep="")
+save(standardDevBuyAndHold,file=URL)
+
+URL=paste(URL.repo,"/Data/sampleBuyAndHoldTotalReturnDataFramesList.Rda",sep="")
+save(sampleBuyAndHoldTotalReturnDataFramesList,file=URL)
+
+
+
 

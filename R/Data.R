@@ -127,7 +127,9 @@ save(distributionsFitResults,file=URL)
 
 
 # TABLES-TO-LATEX
-
+bold <- function(x){
+  paste0('{\\bfseries ', x, '}')
+}
 # DESCRIPTIVE STATISTICS
 x = descriptiveStatisticsResults
 # GENERAL LONG-TABLE COMMAND
@@ -136,7 +138,7 @@ command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/descriptiveStatisticsResults.txt",sep="")
-print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=c(1,1,4,4,5,5,4,5,4,4,4,4), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Descriptive statistics for OSEAX stocks"), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=c(1,1,4,4,5,5,4,5,4,4,4,4), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Descriptive statistics for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # PHILLIP PERRON TEST
 x = phillipPerronResults
@@ -146,7 +148,7 @@ command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
-print(xtable(phillipPerronResults, auto=FALSE, digits=c(1,1,3,3,1), align = c('c','l','c','c','c'), type = "latex", caption = "Phillip Perron test for OSEAX stocks"),hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(phillipPerronResults, auto=FALSE, digits=c(1,1,3,3,1), align = c('c','l','c','c','c'), type = "latex", caption = "Phillip Perron test for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
@@ -158,4 +160,4 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/distributionFitResults.txt", sep="")
 names(x)=c("Stock", "NORM","GED","STD","SNORM","SGED","SSTD","GHYP","NIG","GHST","Best Fit")
-print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=c(1,1,1,1,1,1,1,1,1,1,1,1), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "AIC results for various distributions for OSEAX stocks"), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=c(1,1,1,1,1,1,1,1,1,1,1,1), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "AIC results for various distributions for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)

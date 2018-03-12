@@ -29,8 +29,6 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-tradingBound=0.2 #Number of times the standard deviation
-
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
 
@@ -149,6 +147,43 @@ names(sampleAccumulatedShortLongReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleShortLongReturnDataFramesList)=sampleSizes
 
+#Short/Sell Long Hit Ratio
+
+sampleHitRatioDataFramesList=list()
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleHitRatioDataFramesList[[length(sampleHitRatioDataFramesList)+1]]=data.frame((colSums(sampleHitDataFramesList[[sampleSizesIndex]]))/nrow(sampleHitDataFramesList[[sampleSizesIndex]]))
+}
+names(sampleHitRatioDataFramesList)=sampleSizes
+
+
+# CALCULATE TOTAL LONG-SHORT STRATEGY RETURN
+sampleShortLongTotalReturnDataFramesList=list()
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  
+  totReturnDataFrame = data.frame(colSums(sampleShortLongReturnDataFramesList[[sampleSizesIndex]]))
+  
+  colnames(totReturnDataFrame) = "Total short long strategy return"
+  
+  sampleShortLongTotalReturnDataFramesList[[length(sampleShortLongTotalReturnDataFramesList)+1]] = totReturnDataFrame
+}
+
+names(sampleShortLongTotalReturnDataFramesList) = sampleSizes
+
+# CALCULATE TOTAL ALPHA RETURN
+sampleAlphaDataFramesList=list()
+
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  
+  totAlphaDataFrame = data.frame(unlist(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][nrow(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]]),]))
+  
+  colnames(totAlphaDataFrame) = 'Alpha'
+  
+  sampleAlphaDataFramesList[[length(sampleAlphaDataFramesList)+1]] = totAlphaDataFrame
+}
+
+names(sampleAlphaDataFramesList) = sampleSizes
+
 #CALCULATE MEAN & VARIANCE SHORT-LONG RETURN
 varianceLongShort = list()
 standardDevShortLong = list()
@@ -171,47 +206,68 @@ names(varianceLongShort) = sampleSizes
 names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
-
-#Short/Sell Long Hit Ratio
-
-sampleHitRatioDataFramesList=list()
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleHitRatioDataFramesList[[length(sampleHitRatioDataFramesList)+1]]=data.frame((colSums(sampleHitDataFramesList[[sampleSizesIndex]]))/nrow(sampleHitDataFramesList[[sampleSizesIndex]]))
-}
-names(sampleHitRatioDataFramesList)=sampleSizes
-
-
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  dataFrameList[[sampleSizesIndex]] = colSums(dataFrameList[[sampleSizesIndex]])
-}
-
 #Plotting
+PLOTTING = FALSE
 
-for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
-  
-  for (stocksIndex in 1:nrow(stocks)){
-    stockName=stocks[stocksIndex,1]
+if(PLOTTING == TRUE) {
+
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    sampleSize = sampleSizes[sampleSizesIndex]
     
-    accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
-    rowNamesAccumulatedShortLongReturnVector=as.Date(row.names(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]]))
-    plotDataFrame=data.frame(dates=rowNamesAccumulatedShortLongReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, shortLong=accumulatedShortLongReturnVector, alpha=accumulatedAlphaReturnVector)
-    
-    subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
-      add_trace(y = ~shortLong, name = 'Short Long Strategy',type='scatter', mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
-    
-    subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
-      add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
-    
-    
-    fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
-    
-    URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
-    export(fullPlot, file = URL)
+    for (stocksIndex in 1:nrow(stocks)){
+      stockName=stocks[stocksIndex,1]
+      
+      accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      accumulatedAlphaReturnVector=drop(sampleAccumulatedAlphaReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
+      rowNamesAccumulatedShortLongReturnVector=as.Date(row.names(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]]))
+      plotDataFrame=data.frame(dates=rowNamesAccumulatedShortLongReturnVector,buyAndHold=accumulatedBuyAndHoldReturnVector, shortLong=accumulatedShortLongReturnVector, alpha=accumulatedAlphaReturnVector)
+      
+      subplotOne=plot_ly(plotDataFrame, x=~dates) %>%
+        add_trace(y = ~buyAndHold, name = 'Buy and Hold Strategy',type='scatter',mode = 'lines') %>%
+        add_trace(y = ~shortLong, name = 'Short Long Strategy',type='scatter', mode = 'lines')%>%
+        layout(legend = list(x = 100, y = 0.5), yaxis=list(title="Return"))
+      
+      subplotTwo=plot_ly(plotDataFrame, x=~dates) %>%
+        add_trace(y = ~alpha, name = 'Alpha',type='scatter',mode = 'lines')%>%
+        layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+      
+      
+      fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+      
+      URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
+      export(fullPlot, file = URL)
+    }
   }
 }
+
+# SAVE RDA-files FOR INFORMATION-TABLE
+
+# HIT RATIO
+URL=paste(URL.repo,"/Data/sampleHitRatioDataFramesList.Rda",sep="")
+save(sampleHitRatioDataFramesList,file=URL)
+
+# MEAN
+URL=paste(URL.repo,"/Data/meanLongShort.Rda",sep="")
+save(meanLongShort,file=URL)
+
+# STD_DEV
+URL=paste(URL.repo,"/Data/standardDevShortLong.Rda",sep="")
+save(standardDevShortLong,file=URL)
+
+# RETURN
+URL=paste(URL.repo,"/Data/sampleShortLongTotalReturnDataFramesList.Rda",sep="")
+save(sampleShortLongTotalReturnDataFramesList,file=URL)
+
+# ALPHA
+URL=paste(URL.repo,"/Data/sampleAlphaDataFramesList.Rda",sep="")
+save(sampleAlphaDataFramesList,file=URL)
+
+
+
+
+
+
+
+
+
