@@ -259,7 +259,7 @@ if(PLOTTING == TRUE) {
   }
 }
  
-
+stopCluster(c1)
 
 # SAVE RDA-files FOR INFORMATION-TABLE
 #BOUND

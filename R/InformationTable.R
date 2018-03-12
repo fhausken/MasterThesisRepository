@@ -14,10 +14,6 @@ library(plotly)
 library(webshot)
 library(xtable)
 
-no_cores=detectCores()
-c1=makeCluster(no_cores)
-registerDoParallel(c1)
-
 URL.repo=getwd()
 
 if (grepl("Fredrik", URL.repo)){
