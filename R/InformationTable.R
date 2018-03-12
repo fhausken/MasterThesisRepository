@@ -143,7 +143,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   rownames(informationBoundDataFrame) <- NULL 
   
   # SET COLNAMES
-  colnames(informationBoundDataFrame) = c("Stock","$\sigma_{BH}$", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Bound mean", "Bound std.dev", "Bound return", "Alpha", "Buy-and-hold SR", "Bound SR")
+  colnames(informationBoundDataFrame) = c("Stock","BH mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Bound mean", "Bound std.dev", "Bound return", "Alpha", "Buy-and-hold SR", "Bound SR")
   
   informationBoundDataFrameList[[length(informationBoundDataFrameList)+1]] = informationBoundDataFrame
   
