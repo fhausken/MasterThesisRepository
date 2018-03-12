@@ -205,7 +205,7 @@ names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
 #Plotting
-PLOTTING = FALSE
+PLOTTING = TRUE
 
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){

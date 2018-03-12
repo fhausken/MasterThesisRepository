@@ -32,7 +32,7 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(200,250,1298)#,500,750,1000)
+sampleSizes=c(1300,1301)#,500,750,1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 ARLag.max=5
@@ -44,7 +44,7 @@ GARCHLagTwo.max=1
 
 start_time <- Sys.time()
 allStocksResults=list()
-#allStocksResults=foreach(stocksIndex=1:nrow(stocks)) %do%{
+#allStocksResults=foreach(stocksIndex=1:nrow(stocks)) %dopar%{
 for (stocksIndex in 1:nrow(stocks)){
   
   individualStockRetun=stockReturns[,stocksIndex]
@@ -62,7 +62,7 @@ for (stocksIndex in 1:nrow(stocks)){
     print(paste(Sys.time(), "\t","Starting iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize," \n",sep=""))
     #individualStockResults=list()
     #for (day in 0:rollingWindowSize){
-    individualStockResults=foreach(day=0:rollingWindowSize) %do%{ #
+    individualStockResults=foreach(day=0:rollingWindowSize) %dopar%{ #
       library(parallel)
       library(doParallel)
       library(quantmod)
