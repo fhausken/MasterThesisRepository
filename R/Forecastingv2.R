@@ -11,6 +11,7 @@ library(tseries)
 library(rugarch)
 library(plotly)
 library(webshot)
+library(xtable)
 
 
 URL.repo=getwd()
@@ -24,6 +25,8 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
+
+PLOTTING=TRUE
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -49,8 +52,12 @@ load(URL)
 
 #DIAGNOSTICS
 sampleRunTimeDiagnosticsList=list()
+sampleARLagDataFrameList=list()
+sampleMALagDataFrameList=list()
+sampleGARCHModelDataFrameList=list()
+
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSize = sampleSizes[sampleSizesIndex]
+  sampleSize = max(sampleSizes)
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
   stocksRunTimeDiagnosticsList=list()
@@ -72,15 +79,53 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=mean(ARLagVector)
     stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=mean(MALagVector)
+    
+    if (stocksIndex==1){
+      ARLagDataFrame=data.frame(ARLagVector)
+      MALagDataFrame=data.frame(MALagVector)
+      GARCHModelDataFrame=data.frame(garchModelVector)
+    }else{
+      ARLagDataFrame=cbind(ARLagDataFrame,ARLagVector)
+      MALagDataFrame=cbind(MALagDataFrame,MALagVector)
+      GARCHModelDataFrame=cbind(GARCHModelDataFrame,garchModelVector)
+    }
   }
   
   stocksRunTimeDiagnosticsDataFrame=data.frame(stocks[,1],matrix(stocksRunTimeDiagnosticsList, ncol=(length(garchModels)+2), byrow=TRUE),stringsAsFactors=FALSE)
   names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", garchModels, "Mean AR-LAG","Mean MA-Lag")
   sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stocksRunTimeDiagnosticsDataFrame
+  
+  ARLagDataFrame=cbind(ARLagDataFrame,(rowMeans(ARLagDataFrame)))
+  names(ARLagDataFrame)=c(stocks[[1]], "Row Mean")
+  row.names(ARLagDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
+  sampleARLagDataFrameList[[length(sampleARLagDataFrameList)+1]]=ARLagDataFrame
+  
+  MALagDataFrame=cbind(MALagDataFrame,(rowMeans(MALagDataFrame)))
+  names(MALagDataFrame)=c(stocks[[1]], "Row Mean")
+  row.names(MALagDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
+  sampleMALagDataFrameList[[length(sampleMALagDataFrameList)+1]]=MALagDataFrame
+ 
+  
+  for (garchModelsIndex in 1:length(garchModels)){
+    garchModelCountVector=c()
+    for (day in 1:(rollingWindowSize+1)){
+      garchModel=garchModels[garchModelsIndex]
+      occurence=length(which(GARCHModelDataFrame[day,] == garchModel))
+      garchModelCountVector[length(garchModelCountVector)+1]=occurence
+    }
+    GARCHModelDataFrame=cbind(GARCHModelDataFrame,garchModelCountVector)
+
+  }
+  names(GARCHModelDataFrame)=c(stocks[[1]], garchModels)
+  row.names(GARCHModelDataFrame)=index(stockReturns)[sampleSize:nrow(stockReturns)]
+  sampleGARCHModelDataFrameList[[length(sampleGARCHModelDataFrameList)+1]]=GARCHModelDataFrame
+
 }
 
 names(sampleRunTimeDiagnosticsList)=sampleSizes
-
+names(sampleARLagDataFrameList)=sampleSizes
+names(sampleMALagDataFrameList)=sampleSizes
+names(sampleGARCHModelDataFrameList)=sampleSizes
 
 #FORECASTS
 sampleMeanForecastsDataFramesList=list()
@@ -225,7 +270,7 @@ names(sampleErrorDataFramesList)=sampleSizes
 
 
 
-# STATISTICAL METRICS
+# STATISTICAL METRICS 
 
 # RMSE function
 RMSE <- function(errorListStock) {
@@ -255,7 +300,7 @@ names(sampleRMSEDataFrameList) = sampleSizes
 names(sampleMAEDataFrameList) = sampleSizes
 
 # CREATE RMSE, MAE DATAFRAME FOR LATEX
-sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), ncol=4, byrow=F),stringsAsFactors=FALSE)
+sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), ncol=(2*length(sampleSizes)), byrow=F),stringsAsFactors=FALSE)
 
 # ADD RMSE COL NAME
 sampleSizeNameList = list()
@@ -293,6 +338,80 @@ add.to.row$command <- command
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
 print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
+#Plotting
+
+if(PLOTTING == TRUE) {
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    sampleSize = sampleSizes[sampleSizesIndex]
+    
+    stockName=stocks[stocksIndex,1]
+    
+    ARLagDataFrame=sampleARLagDataFrameList[[sampleSizesIndex]]
+    averageARLagVector=drop(ARLagDataFrame[,ncol(ARLagDataFrame)])
+    MALagDataFrame=sampleMALagDataFrameList[[sampleSizesIndex]]
+    averageMALagVector=drop(MALagDataFrame[,ncol(MALagDataFrame)])
+    
+    
+    if (sampleSizesIndex==1){
+
+      rowNamesARLagDataFrame=as.Date(row.names(ARLagDataFrame))
+      ARPlotDataFrame=data.frame(rowNamesARLagDataFrame,averageARLagVector)
+      rowNamesMALagDataFrame=as.Date(row.names(MALagDataFrame))
+      MAPlotDataFrame=data.frame(rowNamesMALagDataFrame,averageMALagVector)
+    }else{
+      ARPlotDataFrame=cbind(ARPlotDataFrame,averageARLagVector)
+      MAPlotDataFrame=cbind(MAPlotDataFrame,averageMALagVector)    
+    }
+    
+    
+    GARCHModelDataFrame=sampleGARCHModelDataFrameList[[sampleSizesIndex]]
+    GARCHModelDataFrameVector=c()
+    for (day in 1:nrow(GARCHModelDataFrame)){
+      previous=0
+      for (column in (ncol(GARCHModelDataFrame)-length(sampleSizes)+1):ncol(GARCHModelDataFrame)){
+        GARCHModelDataFrameVector[length(GARCHModelDataFrameVector)+1]=previous+(GARCHModelDataFrame[day,column]/nrow(stocks))
+        previous=previous+(GARCHModelDataFrame[day,column]/nrow(stocks))
+      }
+    }
+    
+    rowNamesGARCHModelPlotDataFrame=as.Date(row.names(GARCHModelDataFrame))
+    GARCHModelPlotDataFrame=data.frame(rowNamesGARCHModelPlotDataFrame, matrix(GARCHModelDataFrameVector, ncol=length(garchModels), byrow=TRUE))
+    names(GARCHModelPlotDataFrame)=c("dates",garchModels)
+
+    GARCHPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates)
+    for (garchModelsIndex in 1:length(garchModels)){
+      garchModel = garchModels[garchModelsIndex]
+      GARCHPlot=add_trace(GARCHPlot, y = GARCHModelPlotDataFrame[,(1+garchModelsIndex)], name = garchModel,type='scatter',mode = 'lines', fill='tonexty')
+    }
+    GARCHPlot=layout(GARCHPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Percentage of Stocks"), xaxis=list(title="Date"))
+
+    print(GARCHPlot) #Printer plottet
+
+    URL=paste(URL.drop,"/Plot/GARCHPlot_",sampleSize,".jpeg",sep="")
+    export(GARCHPlot, file = URL)
+
+  }
+  names(ARPlotDataFrame)=c("dates",sampleSizes)
+  names(MAPlotDataFrame)=c("dates",sampleSizes)
+  
+  ARPlot=plot_ly(data=ARPlotDataFrame, x=~dates)
+  MAPlot=plot_ly(data=MAPlotDataFrame, x=~dates)
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    sampleSize = sampleSizes[sampleSizesIndex]
+    ARPlot=add_trace(ARPlot, y = ARPlotDataFrame[,(1+sampleSizesIndex)], name = sampleSize,type='scatter',mode = 'lines')
+    MAPlot=add_trace(MAPlot, y = MAPlotDataFrame[,(1+sampleSizesIndex)], name = sampleSize,type='scatter',mode = 'lines')
+  }
+  ARPlot=layout(ARPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean AR Lag"), xaxis=list(title="Date"))
+  MAPlot=layout(MAPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MA Lag"), xaxis=list(title="Date"))
+
+  # print(ARPlot) #Printer plottet
+  # print(MAPlot)
+  
+  URL=paste(URL.drop,"/Plot/averageARLags.jpeg",sep="")
+  export(ARPlot, file = URL)
+  URL=paste(URL.drop,"/Plot/averageMALags.jpeg",sep="")
+  export(MAPlot, file = URL)
+}
 
 
 # SAVE LISTS TO Rda-files

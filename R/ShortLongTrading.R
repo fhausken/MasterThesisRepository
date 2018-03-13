@@ -29,6 +29,10 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
+transactionCost.variable=0.0001
+PLOTTING = TRUE
+
+
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
 
@@ -53,11 +57,13 @@ sampleAccumulatedBuyAndHoldReturnDataFramesList=list()
 sampleAccumulatedAlphaReturnDataFramesList=list()
 sampleErrorDataFramesList=list()
 sampleShortLongReturnDataFramesList=list()
+sampleNumberOfTransactionsDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
+  numberOfTransactionsVector=c()
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
     hitVector=vector()
@@ -70,6 +76,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     shortLongReturn = 0
     errorVector=vector()
     
+    numberOfTransactions=0
+    position=0
     for (day in 1:(rollingWindowSize)){
       forecast=sampleMeanForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
       nextDayReturn=drop(coredata(stockReturns[sampleSize+day,stocksIndex]))
@@ -77,16 +85,32 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       errorVector[length(errorVector)+1]=nextDayReturn-forecast #realized - forecast
       
       if (sign(nextDayReturn)==sign(forecast)){
-        hitVector[length(hitVector)+1]=1 #Hit
-        accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)
-        shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)
-        
+        if (position==sign(forecast)){
+          hitVector[length(hitVector)+1]=1 #Hit
+          accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)
+          shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)
+        }else{
+          hitVector[length(hitVector)+1]=1 #Hit
+          accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-transactionCost.variable
+          shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
+          numberOfTransactions=numberOfTransactions+1
+        }
+    
         
       }else{
-        hitVector[length(hitVector)+1]=0 #Miss
-        accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)
-        shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)
+        if (position==sign(forecast)){
+          hitVector[length(hitVector)+1]=0 #Miss
+          accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)
+          shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)
+        }else{
+          hitVector[length(hitVector)+1]=0 #Miss
+          accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-transactionCost.variable
+          shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-transactionCost.variable
+          numberOfTransactions=numberOfTransactions+1
+        }
+        
       }
+      position=sign(forecast)
       
       accumulatedShortLongReturnVector[length(accumulatedShortLongReturnVector)+1]=accumulatedShortLongReturn
       accumulatedBuyAndHoldReturn=accumulatedBuyAndHoldReturn+nextDayReturn
@@ -111,6 +135,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       shortLongReturnDataFrame = cbind(shortLongReturnDataFrame, shortLongReturnVector)
       
     }
+    
+    numberOfTransactionsVector[length(numberOfTransactionsVector)+1]=numberOfTransactions
   }
   
   names(stockHitDataFrame)=stocks[[1]]
@@ -137,13 +163,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   row.names(shortLongReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
   sampleShortLongReturnDataFramesList[[length(sampleShortLongReturnDataFramesList)+1]]=shortLongReturnDataFrame
   
-  
+  numberOfTransactionsDataFrame=data.frame(numberOfTransactionsVector)
+  names(numberOfTransactionsDataFrame)=c("Number of Transactions")
+  row.names(numberOfTransactionsDataFrame)=stocks[[1]]
+  sampleNumberOfTransactionsDataFramesList[length(sampleNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
 }
 names(sampleHitDataFramesList)=sampleSizes
 names(sampleErrorDataFramesList)=sampleSizes
 names(sampleAccumulatedShortLongReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleShortLongReturnDataFramesList)=sampleSizes
+names(sampleNumberOfTransactionDataFramesList)=sampleSizes
 
 #Short/Sell Long Hit Ratio
 
@@ -205,7 +235,6 @@ names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
 #Plotting
-PLOTTING = TRUE
 
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){

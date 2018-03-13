@@ -32,11 +32,11 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(1300,1301)#,500,750,1000)
+sampleSizes=c(1297,1298,1299)#,500,750,1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=5
-MALag.max=5
+ARLag.max=1
+MALag.max=1
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1

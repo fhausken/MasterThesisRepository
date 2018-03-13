@@ -10,13 +10,13 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 
 
-stocks=stocks[c(114,125,128),] #For testing. Et utvalg av aksjer.
+stocks=stocks[c(5,8,13),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
 from.date <- as.Date("01/02/13", format="%m/%d/%y")
 
-consecutiveZerosCapClose=10
+consecutiveZerosCapClose=20
 
 # VOLUME CONSTRAINTS
 XCapVolume=0
@@ -47,9 +47,10 @@ for (row in 1:stocks.nrow) {
       if(length(consecutiveZerosVector.close>0)){
         
         maxOfconsecutiveZerosVectorClose=max(consecutiveZerosVector.close)
-        #print(fetchName)
-        #print(maxOfconsecutiveZerosVectorClose)
-        #print("")
+        # print(fetchName)
+        # print(maxOfconsecutiveZerosVectorClose)
+        # print(occurences$lengths)
+        # print("")
       }
       else{
         maxOfconsecutiveZerosVectorClose=0

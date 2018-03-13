@@ -29,7 +29,9 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-tradingBound=0.2 #Number of times the standard deviation
+tradingBound=0 #Number of times the standard deviation
+transactionCost.variable=0.0001
+PLOTTING = TRUE
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
@@ -53,11 +55,13 @@ sampleAccumulatedBoundReturnDataFramesList=list()
 sampleAccumulatedBuyAndHoldReturnDataFramesList=list()
 sampleAccumulatedAlphaReturnDataFramesList=list()
 sampleBoundReturnDataFramesList=list()
+sampleNumberOfTransactionsDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   
+  numberOfTransactionsVector=c()
   for (stocksIndex in 1:nrow(stocks)){
     stockName=stocks[stocksIndex,1]
     hitVector=vector()
@@ -68,26 +72,30 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     accumulatedBuyAndHoldReturn=0
     boundReturnVector = c()
     longShortReturn = 0
-  
+    
+    numberOfTransactions=0
     long=0
+    position=0
     for (day in 1:(rollingWindowSize)){
       meanForecast=sampleMeanForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
       volatilityForecast=sampleVolatilityForecastsDataFramesList[[sampleSizesIndex]][day,stocksIndex]
       nextDayReturn=drop(coredata(stockReturns[sampleSize+day,stocksIndex]))
       
-      if(abs(meanForecast)>(volatilityForecast*tradingBound)){
-        if(sign(meanForecast==1)){
-          long=1
-        }
-        else{
-          long=-1
-        }
+      if(abs(meanForecast)>=(volatilityForecast*tradingBound)){
+        long=sign(meanForecast)
       }
       
       if (sign(nextDayReturn)==long){ #Tatt riktig posisjon
-        hitVector[length(hitVector)+1]=1 #Hit
-        accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)
-        boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)
+        if (position==long){
+          hitVector[length(hitVector)+1]=1 #Hit
+          accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)
+          boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)
+        }else{
+          hitVector[length(hitVector)+1]=1 #Hit
+          accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-transactionCost.variable
+          boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
+          numberOfTransactions=numberOfTransactions+1
+        }
         
         
       }else{
@@ -96,15 +104,24 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           accumulatedBoundReturn=accumulatedBoundReturn+0
           boundReturnVector[length(boundReturnVector)+1] = 0
         }else{#Tatt feil posisjon
-          hitVector[length(hitVector)+1]=0 #Miss
-          accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)
-          boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)
+          if (position==long){
+            hitVector[length(hitVector)+1]=0 #Miss
+            accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)
+            boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)
+          }else{
+            hitVector[length(hitVector)+1]=0 #Miss
+            accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-transactionCost.variable
+            boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-transactionCost.variable
+            numberOfTransactions=numberOfTransactions+1
         }
       }
-      accumulatedBoundReturnVector[length(accumulatedBoundReturnVector)+1]=accumulatedBoundReturn
-      accumulatedBuyAndHoldReturn=accumulatedBuyAndHoldReturn+nextDayReturn
-      accumulatedBuyAndHoldReturnVector[length(accumulatedBuyAndHoldReturnVector)+1]=accumulatedBuyAndHoldReturn
+    }
       
+    accumulatedBoundReturnVector[length(accumulatedBoundReturnVector)+1]=accumulatedBoundReturn
+    accumulatedBuyAndHoldReturn=accumulatedBuyAndHoldReturn+nextDayReturn
+    accumulatedBuyAndHoldReturnVector[length(accumulatedBuyAndHoldReturnVector)+1]=accumulatedBuyAndHoldReturn
+    position=long
+    
     }
     
     if (stocksIndex==1){
@@ -121,6 +138,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       accumulatedAlphaReturnDataFrame=cbind(accumulatedAlphaReturnDataFrame,(accumulatedBoundReturnVector-accumulatedBuyAndHoldReturnVector))
       boundReturnDataFrame = cbind(boundReturnDataFrame, boundReturnVector)
     }
+      
+    numberOfTransactionsVector[length(numberOfTransactionsVector)+1]=numberOfTransactions
   }
   
   names(stockHitDataFrame)=stocks[[1]]
@@ -142,13 +161,21 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   names(boundReturnDataFrame)=stocks[[1]]
   row.names(boundReturnDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
   sampleBoundReturnDataFramesList[[length(sampleBoundReturnDataFramesList)+1]]=boundReturnDataFrame
+  
+  numberOfTransactionsDataFrame=data.frame(numberOfTransactionsVector)
+  names(numberOfTransactionsDataFrame)=c("Number of Transactions")
+  row.names(numberOfTransactionsDataFrame)=stocks[[1]]
+  sampleNumberOfTransactionsDataFramesList[length(sampleNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
+  
+  
 }
 names(sampleHitDataFramesList)=sampleSizes
 names(sampleAccumulatedBoundReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleBoundReturnDataFramesList)=sampleSizes
+names(sampleNumberOfTransactionsDataFramesList)=sampleSizes
 
-# CALCULATE TOTAL LONG-SHORT STRATEGY RETURN
+# CALCULATE TOTAL BOUND STRATEGY RETURN
 sampleBoundTotalReturnDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
@@ -208,7 +235,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleBoundHitRatioDataFramesList)=sampleSizes
 
 #Plotting
-PLOTTING = TRUE
 
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
