@@ -35,6 +35,36 @@ load(URL)
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 load(URL)
 
+# CALCULATE MEAN FUNCTION
+getColMeans <- function(dataFrame) {
+  endVector = c()
+  for (i in 1:ncol(dataFrame)) {
+    if (is.numeric(dataFrame[1,i])) {
+      endVector = cbind(endVector,mean(dataFrame[,i]))
+    }
+  }
+  return(data.frame(endVector))
+}
+
+# CALCULATE DISTRIBUTION MEAN FUNCTION
+getDistributionColMeans <- function(dataFrame) {
+  dataFrame = dataFrame[-c(ncol(dataFrame))]
+  endNumVector = c()
+  mostCommonDist = c()
+  for (i in 1:ncol(dataFrame)) {
+    if (is.numeric(as.numeric(levels(distributionsFitResults[2,i])))) {
+      if (is.na(mean(as.numeric(levels(distributionsFitResults[,i]))))){
+        mostCommonDist = cbind(mostCommonDist,names(which.max(table(levels(distributionsFitResults[,i])))))
+      }
+      else {
+        endNumVector = cbind(endNumVector,mean(as.numeric(levels(distributionsFitResults[,i]))))
+      }
+    }
+    
+  }
+  return(data.frame(endNumVector,c(mostCommonDist)))
+}
+ 
 #DESCRIPTIVE STATISTICS
 results=vector()
 numberOfStocks=nrow(stocks)
@@ -57,6 +87,9 @@ for (stock in 1:numberOfStocks){
 
 descriptiveStatisticsResults=data.frame(stocks[,1],matrix(results, ncol=10, byrow=TRUE))
 names(descriptiveStatisticsResults)=c("Stocks","Min","1st Quantile", "Median", "Mean", "Standard Deviation", "Variance", "3rd Quantile", "Max", "Skew", "Kurtosis" )
+
+# CALCULATE MEAN
+descriptiveStatisticsResults.average = as.numeric(as.vector(getColMeans(descriptiveStatisticsResults)[1,]))
 
 URL=paste(URL.repo,"/Data/descriptiveStatisticsResults.Rda",sep="")
 save(descriptiveStatisticsResults,file=URL)
@@ -84,6 +117,9 @@ for (stock in 1:numberOfStocks){
 phillipPerronResults=data.frame(stocks[,1],testStatistic, pValue, testConclusion)
 names(phillipPerronResults)=c("Stock", "Test Statistic", "P-Value", "Test Conlcusion")
 
+# CALCULATE MEAN
+phillipPerronResults.average = as.numeric(as.vector(getColMeans(phillipPerronResults)[1,]))
+
 URL=paste(URL.repo,"/Data/phillipPerronResults.Rda",sep="")
 save(phillipPerronResults,file=URL)
 
@@ -96,11 +132,11 @@ distributions.fullname=c("Normal Distribution","Generalized Error Distribution",
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 save(distributions.fullname,file=URL)
 
-results=list()
+distributionsFitResults = data.frame(stringsAsFactors = FALSE)
 for (stock in 1:numberOfStocks){
   minAIC=100000000 #tilsvarer + infinity
   bestDistributionFit=""
-  resultsForStock=list()
+  resultsForStock=c()
   for (distributions.index in 1:length(distributions)){
     
     vectorizedReturn=drop(coredata(stockReturns[,stock]))
@@ -116,40 +152,98 @@ for (stock in 1:numberOfStocks){
       bestDistributionFit=distributions[distributions.index]
     }
     
-    results[length(results)+1]=AIC
+    resultsForStock=cbind(resultsForStock,round(AIC,digits = 1))
   }
-  results[length(results)+1]=bestDistributionFit.fullname
-  results[length(results)+1]=bestDistributionFit
+  resultsForStock=cbind(resultsForStock,bestDistributionFit.fullname)
+  resultsForStock=cbind(resultsForStock,bestDistributionFit)
+  
+  distributionsFitResults = rbind(distributionsFitResults,resultsForStock)
 }
 
-distributionsFitResults=data.frame(stocks[,1],matrix(results, ncol=length(distributions)+2, byrow=TRUE),stringsAsFactors=FALSE) #Dette er ikke en dataframe. Da m? man legge til unlist(results) rundt results.
+names(distributionsFitResults)=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
 
+
+distributionsFitResults.average = getDistributionColMeans(distributionsFitResults)
+
+distributionsFitResults = cbind(stocks[,1],distributionsFitResults)
 names(distributionsFitResults)=c("Stock","Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
-
+names(distributionsFitResults.average)=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname")
 
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 save(distributionsFitResults,file=URL)
-
 
 # TABLES-TO-LATEX
 bold <- function(x){
   paste0('{\\bfseries ', x, '}')
 }
+
+createAverageLine <- function(x, digits,totCols) {
+  resultString = ""
+  for(i in 1:length(x)) {
+    if (i == 1) {
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ",round(x[i], digits = digits),"}")
+    }
+    else {
+      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = digits),"}")
+    }
+  }
+  diffCols = totCols - length(x) - 1
+  if (diffCols == 0) {
+    return(resultString)
+  }
+  else{
+    for (i in 1:diffCols) {
+      resultString = paste0(resultString, " & ")
+    }
+    return(resultString)
+  }
+}
+
+createAverageLineDistribution <- function(x, digits,totCols) {
+  
+  resultString = ""
+  for(i in 1:length(x)) {
+    if (i == 1) {
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ",round(x[i], digits = digits),"}")
+    }
+    else {
+      if (i==length(x)) {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", levels(x[i][1,1]),"}")
+      }
+      else {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = digits), digits = digits,"}")
+      }
+    }
+  }
+  
+  return(resultString)
+}
+
 # DESCRIPTIVE STATISTICS
 x = descriptiveStatisticsResults
+digits = 4
 # GENERAL LONG-TABLE COMMAND
-add.to.row <- list(pos = list(0), command = NULL)
-command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(descriptiveStatisticsResults.average,digits,(ncol(x))))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 1
+add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
+
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/descriptiveStatisticsResults.txt",sep="")
-print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=c(1,1,4,4,5,5,4,5,4,4,4,4), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Descriptive statistics for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=c(1,1,4,4,5,5,4,5,4,4,4,4), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Descriptive statistics for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 
 # PHILLIP PERRON TEST
 x = phillipPerronResults
+digits = 3
 # GENERAL LONG-TABLE COMMAND
-add.to.row <- list(pos = list(0), command = NULL)
-command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(phillipPerronResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 1
+add.to.row$pos[[2]] = nrow(phillipPerronResults)
+
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
@@ -157,10 +251,15 @@ print(xtable(phillipPerronResults, auto=FALSE, digits=c(1,1,3,3,1), align = c('c
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
+digits = 1
 
 # GENERAL LONG-TABLE COMMAND
-add.to.row <- list(pos = list(0), command = NULL)
-command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 1
+add.to.row$pos[[2]] = nrow(x)
+
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/distributionFitResults.txt", sep="")

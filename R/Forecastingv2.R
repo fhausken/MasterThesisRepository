@@ -49,6 +49,16 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
+# CALCULATE MEAN FUNCTION
+getColMeans <- function(dataFrame) {
+  endVector = c()
+  for (i in 1:ncol(dataFrame)) {
+    if (is.numeric(dataFrame[1,i])) {
+      endVector = cbind(endVector,mean(dataFrame[,i]))
+    }
+  }
+  return(data.frame(endVector))
+}
 
 #DIAGNOSTICS
 sampleRunTimeDiagnosticsList=list()
@@ -300,6 +310,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleRMSEDataFrameList) = sampleSizes
 names(sampleMAEDataFrameList) = sampleSizes
 
+
 # CREATE RMSE, MAE DATAFRAME FOR LATEX
 sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), ncol=(2*length(sampleSizes)), byrow=F),stringsAsFactors=FALSE)
 
@@ -320,24 +331,60 @@ for (stocksIndex in 1:nrow(stocks)){
   stockNameList[[length(stockNameList)+1]]=stocks[stocksIndex,1]
 }
 
+sampleRMSE.MAE.dataFrame = cbind(unlist(stockNameList),sampleRMSE.MAE.dataFrame)
+
 # ASSIGN NAMES TO ROWS AND COLS
-colnames(sampleRMSE.MAE.dataFrame) = sampleSizeNameList
-row.names(sampleRMSE.MAE.dataFrame) = unlist(stockNameList)
+colnames(sampleRMSE.MAE.dataFrame) = c("Stock",unlist(sampleSizeNameList))
+row.names(sampleRMSE.MAE.dataFrame) = NULL
+
+
+sampleRMSE.MAE.dataFrame.average = getColMeans(sampleRMSE.MAE.dataFrame)
+
+names(sampleRMSE.MAE.dataFrame.average) = c("Stock",unlist(sampleSizeNameList))
+
 
 # TABLES-TO-LATEX
 bold <- function(x){
   paste0('{\\bfseries ', x, '}')
 }
 
+createAverageLine <- function(x, digits,totCols) {
+  resultString = ""
+  for(i in 1:length(x)) {
+    if (i == 1) {
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ",round(x[i], digits = digits),"}")
+    }
+    else {
+      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = digits),"}")
+    }
+  }
+  diffCols = totCols - length(x) - 1
+  if (diffCols == 0) {
+    return(resultString)
+  }
+  else{
+    for (i in 1:diffCols) {
+      resultString = paste0(resultString, " & ")
+    }
+    return(resultString)
+  }
+}
+
 # STATISTICAL METRICS
- x = sampleRMSE.MAE.dataFrame
+x = sampleRMSE.MAE.dataFrame
+digits = 3
 # GENERAL LONG-TABLE COMMAND
-add.to.row <- list(pos = list(0), command = NULL)
-command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRMSE.MAE.dataFrame.average,digits,(ncol(x))))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 1
+add.to.row$pos[[2]] = nrow(x)
+
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,3,3,3,3), align = c('l','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,1,3,3,3,3), align = c('l','c','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
 
 #Plotting
 
@@ -413,7 +460,14 @@ if(PLOTTING == TRUE) {
   URL=paste(URL.drop,"/Plot/averageMALags.jpeg",sep="")
   export(MAPlot, file = URL)
 }
+# GENERAL LONG-TABLE COMMAND
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(descriptiveStatisticsResults.average,digits,(ncol(x))))
 
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 1
+add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
+
+add.to.row$command <- command
 
 # SAVE LISTS TO Rda-files
 
@@ -426,7 +480,8 @@ save(standardDevBuyAndHold,file=URL)
 URL=paste(URL.repo,"/Data/sampleBuyAndHoldTotalReturnDataFramesList.Rda",sep="")
 save(sampleBuyAndHoldTotalReturnDataFramesList,file=URL)
 
-
+URL=paste(URL.repo,"/Data/rollingWindowSize.Rda",sep="")
+save(rollingWindowSize,file=URL)
 
 
 
