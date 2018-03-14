@@ -401,7 +401,7 @@ if(PLOTTING == TRUE) {
     GARCHModelDataFrameVector=c()
     for (day in 1:nrow(GARCHModelDataFrame)){
       previous=0
-      for (column in (ncol(GARCHModelDataFrame)-length(sampleSizes)+1):ncol(GARCHModelDataFrame)){
+      for (column in (ncol(GARCHModelDataFrame)-length(garchModels)+1):ncol(GARCHModelDataFrame)){
         GARCHModelDataFrameVector[length(GARCHModelDataFrameVector)+1]=previous+(GARCHModelDataFrame[day,column]/nrow(stocks))
         previous=previous+(GARCHModelDataFrame[day,column]/nrow(stocks))
       }
