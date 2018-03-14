@@ -29,7 +29,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 load(URL)
 
-URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
+URL=paste(URL.repo,"/Data/distributions.Rda",sep="")
+load(URL)
+
+URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
 sampleSizes=c(1297,1298,1299)#,500,750,1000)
@@ -73,7 +76,8 @@ for (stocksIndex in 1:nrow(stocks)){
       individualStockReturnOffset = individualStockRetun[(1+equalStartingPointdjustment+day):(sampleSize+equalStartingPointdjustment+day)]
       
       AIC.final.distribution=1000000 #tilsvarer + infinity
-      bestDistributionFit=""
+      bestDistributionFit.fullname="Normal Distribution"
+      bestDistributionFit="norm"
       for (distributions.index in 1:length(distributions)){
         
         vectorizedReturn=drop(coredata(individualStockReturnOffset))
@@ -81,10 +85,11 @@ for (stocksIndex in 1:nrow(stocks)){
         
         k=length(fit.distribution$pars)
         maxLikelihood=min(fit.distribution$values)
-        AIC=2*k+2*maxLikelihood #Er dette riktig!?
+        AIC=2*k+2*maxLikelihood 
         
         if (AIC.final.distribution>=AIC){
           AIC.final.distribution=AIC
+          bestDistributionFit.fullname=distributions.fullname[distributions.index]
           bestDistributionFit=distributions[distributions.index]
         }
       }
@@ -175,7 +180,7 @@ for (stocksIndex in 1:nrow(stocks)){
         MALag.final=0
         GARCHLagOne.final=0
         GARCHLagTwo.final=0
-        stockDistribution.fullname="Ikke konvergert"
+        stockDistribution.fullname=bestDistributionFit.fullname
       }else{
         if(GARCHLagOne.final==0){
           if(GARCHLagTwo.final==0){
@@ -187,7 +192,7 @@ for (stocksIndex in 1:nrow(stocks)){
 
       cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) 
       
-      results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, stockDistribution.fullname, forecastOneDayAhead.volatility.final) # Merk at man må bruke to brackets for å legge til en liste inni en liste
+      results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man må bruke to brackets for å legge til en liste inni en liste
 
       names(results)=c("AIC", "One-Day-Ahead Mean Forecast",  "Garch Model","AR Lag","MA Lag", "GARCH Lag 1","GARCH Lag 2","Stock Distribution","One-Day-Ahead VOlatility Forecast" )
       #individualStockResults[[length(individualStockResults)+1]]=results

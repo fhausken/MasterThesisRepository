@@ -89,7 +89,12 @@ save(phillipPerronResults,file=URL)
 
 #DISTRIBUTION FITTING
 distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
+URL=paste(URL.repo,"/Data/distributions.Rda",sep="")
+save(distributions,file=URL)
+
 distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
+URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
+save(distributions.fullname,file=URL)
 
 results=list()
 for (stock in 1:numberOfStocks){

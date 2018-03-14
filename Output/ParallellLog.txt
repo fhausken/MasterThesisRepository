@@ -1,67 +1,50 @@
 Output:
 
-2018-03-13 11:19:25	Starting iteration: 1/3. Stock: DNB. Sample size: 1297 
-2018-03-13 11:19:52		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 1/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:52		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:53		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 0/5. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:53		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 2/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:53		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 3/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:53		Iteration: 1/3. Stock: DNB. Sample size: 1297. Day: 4/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:19:53	Starting iteration: 1/3. Stock: DNB. Sample size: 1298 
-2018-03-13 11:20:13		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:13		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 2/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:13		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 3/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:13		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 0/5. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:14		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 4/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:14		Iteration: 1/3. Stock: DNB. Sample size: 1298. Day: 1/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:14	Starting iteration: 1/3. Stock: DNB. Sample size: 1299 
-2018-03-13 11:20:38		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 2/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:38		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:38		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 4/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:39		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 0/5. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:39		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 3/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:39		Iteration: 1/3. Stock: DNB. Sample size: 1299. Day: 1/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:20:39	Starting iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297 
-2018-03-13 11:21:05		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 0/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:06		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 2/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:07		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 4/5. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-13 11:21:07		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 1/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:07		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 3/5. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-13 11:21:07		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1297. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:07	Starting iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298 
-2018-03-13 11:21:31		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 3/5. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-13 11:21:32		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 4/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:33		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 5/5. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-13 11:21:33		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 1/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:21:33		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 2/5. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-13 11:21:34		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1298. Day: 0/5. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-13 11:21:34	Starting iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299 
-2018-03-13 11:22:08		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 0/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:22:10		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 2/5. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-13 11:22:10		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 4/5. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:11		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 3/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:22:11		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 5/5. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:12		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1299. Day: 1/5. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-13 11:22:12	Starting iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297 
-2018-03-13 11:22:37		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 2/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:37		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:22:37		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 1/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:37		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 0/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:37		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 3/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:22:46		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1297. Day: 4/5. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-13 11:22:46	Starting iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298 
-2018-03-13 11:23:07		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 0/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:08		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 4/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:08		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 2/5. Model: sGARCH(1111). Iterasjon fullført!
-2018-03-13 11:23:08		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 3/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:13		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 5/5. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-13 11:23:16		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1298. Day: 1/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:16	Starting iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299 
-2018-03-13 11:23:39		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 3/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:39		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 0/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:39		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 1/5. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-13 11:23:40		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 4/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:44		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 5/5. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-13 11:23:50		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1299. Day: 2/5. Model: gjrGARCH(0011). Iterasjon fullført!
-
-Kjoreretid: 4.44181121587753 
+2018-03-14 15:26:43	Starting iteration: 1/3. Stock: DNB. Sample size: 1290 
+2018-03-14 15:27:57		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 3/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:28:07		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 2/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:28:10		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 1/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:28:14		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 7/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:28:15		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 4/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:28:15		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 5/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:28:16		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 0/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:28:30		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 6/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:29:04		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 8/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:29:15		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 9/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:29:21		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 11/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:29:21		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 14/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:29:22		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 12/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:29:23		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 10/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:29:31		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 13/15. Model: eGARCH(0111). Iterasjon fullført!
+2018-03-14 15:29:35		Iteration: 1/3. Stock: DNB. Sample size: 1290. Day: 15/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:29:35	Starting iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290 
+2018-03-14 15:30:47		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 2/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:47		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 7/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:47		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 3/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:48		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 6/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:48		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 4/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:48		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 0/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:49		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 1/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:30:50		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 5/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:50		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 8/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:50		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 9/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:51		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 10/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:53		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 11/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:54		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 14/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:55		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 15/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:56		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 13/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:31:56		Iteration: 2/3. Stock: Golden Ocean Group. Sample size: 1290. Day: 12/15. Model: eGARCH(1111). Iterasjon fullført!
+2018-03-14 15:31:56	Starting iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290 
+2018-03-14 15:33:17		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 3/15. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-14 15:33:18		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 6/15. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-14 15:33:21		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 7/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:33:24		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 1/15. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-03-14 15:33:26		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 5/15. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-14 15:33:52		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 0/15. Model: sGARCH(0011). Iterasjon fullført!
+2018-03-14 15:34:16		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 2/15. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-14 15:34:17		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 8/15. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-14 15:34:22		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 9/15. Model: sGARCH(0111). Iterasjon fullført!
+2018-03-14 15:34:32		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 12/15. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-14 15:34:35		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 10/15. Model: sGARCH(1011). Iterasjon fullført!
+2018-03-14 15:34:41		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 11/15. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-03-14 15:34:53		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 4/15. Model: eGARCH(1111). Iterasjon fullført!
