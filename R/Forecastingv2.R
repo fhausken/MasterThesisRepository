@@ -339,16 +339,6 @@ add.to.row$command <- command
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
 print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,1,3,3,3,3), align = c('l','c','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
-
-# GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(descriptiveStatisticsResults.average,digits,(ncol(x))))
-
-add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
-add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
-
-add.to.row$command <- command
-
 # SAVE LISTS TO Rda-files
 
 URL=paste(URL.repo,"/Data/meanBuyAndHold.Rda",sep="")
@@ -370,9 +360,14 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
   # STATISTICAL METRICS
   x = sampleRunTimeDiagnosticsList[[sampleSizesIndex]]
+  digits = 3
   # GENERAL LONG-TABLE COMMAND
-  add.to.row <- list(pos = list(0), command = NULL)
-  command <- paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n")
+  command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
+  
+  add.to.row <- list(pos = list(0,0), command = command)
+  add.to.row$pos[[1]] = 1
+  add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
+  
   add.to.row$command <- command
   
   URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
