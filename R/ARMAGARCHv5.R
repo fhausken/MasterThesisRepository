@@ -35,7 +35,7 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
-sampleSizes=c(1297,1298,1299)#,500,750,1000)
+sampleSizes=c(1290)#,500,750,1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 ARLag.max=1
@@ -103,13 +103,18 @@ for (stocksIndex in 1:nrow(stocks)){
       for (garchModelsIndex in 1:length(garchModels)){
         garchModel=garchModels[garchModelsIndex]
         
+        runARCHInMean=FALSE
+        if (garchModel!= "sGARCH"){
+          runARCHInMean=TRUE
+        }
+        
         for (ARLag in 0:ARLag.max){
           for (MALag in 0:MALag.max){
             for (GARCHLagOne in 1:GARCHLagOne.max){
               for (GARCHLagTwo in 1:GARCHLagTwo.max){
                 spec = ugarchspec(
                   variance.model=list(model=garchModel,garchOrder=c(GARCHLagOne,GARCHLagTwo)),
-                  mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T),
+                  mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T,archm=runARCHInMean, archpow=1),
                   distribution.model=bestDistributionFit
                 )
                 fit = tryCatch(
@@ -169,6 +174,8 @@ for (stocksIndex in 1:nrow(stocks)){
         }
 
       }
+      
+      #print(fit)
       
       if (AIC.final==1000000){
         cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize,". Did Not Converge!"," \n",sep=""), file=URL.logging, append=TRUE)

@@ -141,7 +141,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     for (day in 1:(rollingWindowSize+1)){
       meanForecastVector[length(meanForecastVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[2]]
       volatilityForecastVector[length(volatilityForecastVector)+1]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[9]]
-      #print(allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[3]])
+      # print(paste(stockName,": ",day,"/",(rollingWindowSize+1),sep=""))
+      # print(allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[8]])
     }
     if (stocksIndex==1){
       stockMeanForecastDataFrame=data.frame(meanForecastVector)

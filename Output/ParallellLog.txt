@@ -48,3 +48,5 @@ Output:
 2018-03-14 15:34:35		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 10/15. Model: sGARCH(1011). Iterasjon fullført!
 2018-03-14 15:34:41		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 11/15. Model: gjrGARCH(0111). Iterasjon fullført!
 2018-03-14 15:34:53		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 4/15. Model: eGARCH(1111). Iterasjon fullført!
+2018-03-14 15:36:53		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 13/15. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-03-14 15:37:15		Iteration: 3/3. Stock: Norwegian Air Shuttle. Sample size: 1290. Day: 14/15. Model: gjrGARCH(0011). Iterasjon fullført!
