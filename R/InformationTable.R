@@ -68,6 +68,9 @@ load(URL)
 URL=paste(URL.repo,"/Data/sampleAlphaDataFramesList.Rda",sep="")
 load(URL)
 
+URL=paste(URL.repo,"/Data/sampleShortLongNumberOfTransactionsDataFramesList.Rda",sep="")
+load(URL)
+
 # BOUND TRADING
 URL=paste(URL.repo,"/Data/sampleBoundHitRatioDataFramesList.Rda",sep="")
 load(URL)
@@ -82,6 +85,9 @@ URL=paste(URL.repo,"/Data/sampleBoundTotalReturnDataFramesList.Rda",sep="")
 load(URL)
 
 URL=paste(URL.repo,"/Data/sampleBoundAlphaDataFramesList.Rda",sep="")
+load(URL)
+
+URL=paste(URL.repo,"/Data/sampleBoundNumberOfTransactionsDataFramesList.Rda",sep="")
 load(URL)
 
 
@@ -99,6 +105,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   stDev.ls = unlist(standardDevShortLong[[sampleSizesIndex]])
   return.ls = unlist(sampleShortLongTotalReturnDataFramesList[[sampleSizesIndex]]) #Use short-long returns to calculate total accumulated return
   alpha = unlist(sampleAlphaDataFramesList[[sampleSizesIndex]])
+  nTrans.ls = unlist(sampleShortLongNumberOfTransactionsDataFramesList[[sampleSizesIndex]])
   sr.bh = return.bh/stDev.bh
   sr.ls = return.ls/stDev.ls
   
@@ -115,14 +122,13 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alpha = (1+alpha)^(TRADING.DAYS.PER.YEAR/rollingWindowSize)-1
   
   # CREATE DATAFRAME
-  informationShortLongDataFrame = data.frame(stock.names, mean.bh, stDev.bh, return.bh, hitratio, mean.ls, stDev.ls, return.ls, alpha, sr.bh, sr.ls)
+  informationShortLongDataFrame = data.frame(stock.names, mean.bh, stDev.bh, return.bh, hitratio, mean.ls, stDev.ls, return.ls, alpha, nTrans.ls, sr.bh, sr.ls)
   
   # RESET ROWNAMES
   rownames(informationShortLongDataFrame) <- NULL 
   
   # SET COLNAMES
-  colnames(informationShortLongDataFrame) = c("Stock","BH mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Short-long mean", "Short-long std.dev", "Short-long return", "Alpha", "Buy-and-hold SR", "Long-short SR")
-  
+  colnames(informationShortLongDataFrame) = c("Stock","BH mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Short-long mean", "Short-long std.dev", "Short-long return", "Alpha", "N. transactions","Buy-and-hold SR", "Short-long SR")
   
   # CALCULATE AVERAGE OF COLUMNS
   average.mean.bh = mean(informationShortLongDataFrame$`BH mean`)
@@ -134,11 +140,15 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   average.stDev.ls = mean(informationShortLongDataFrame$`Short-long std.dev`)
   average.return.ls = mean(informationShortLongDataFrame$`Short-long return`)
   average.alpha.ls = mean(informationShortLongDataFrame$Alpha)
+  average.nTrans.ls = mean(informationShortLongDataFrame$`N. transactions`)
   
   average.sr.bh = mean(informationShortLongDataFrame$`Buy-and-hold SR`)
-  average.sr.ls = mean(informationShortLongDataFrame$`Long-short SR`)
+  average.sr.ls = mean(informationShortLongDataFrame$`Short-long SR`)
   
-  end.line.ls.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.ls, average.mean.ls, average.stDev.ls, average.return.ls, average.alpha.ls, average.sr.ls, average.sr.ls)
+  end.line.ls.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.ls, average.mean.ls, average.stDev.ls, average.return.ls, average.alpha.ls, average.nTrans.ls, average.sr.ls, average.sr.ls)
+  
+  # SET LATEX COL NAMES
+  colnames(informationShortLongDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{SL}}$", "$\\boldsymbol{\\sigma_{SL}}$", "$\\boldsymbol{r_{SL}}$", "$\\boldsymbol{\\alpha}$", "N. transactions","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{SL}}$")
   
   informationShortLongDataFrameList[[length(informationShortLongDataFrameList)+1]] = informationShortLongDataFrame
   
@@ -161,6 +171,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   stDev.b = unlist(standardDevBound[[sampleSizesIndex]])
   return.b = unlist(sampleBoundTotalReturnDataFramesList[[sampleSizesIndex]]) #Use short-long returns to calculate total accumulated return
   alpha.b = unlist(sampleBoundAlphaDataFramesList[[sampleSizesIndex]])
+  nTrans.b = unlist(sampleBoundNumberOfTransactionsDataFramesList[[sampleSizesIndex]])
   sr.bh = return.bh/stDev.bh
   sr.b = return.b/stDev.b
   
@@ -177,13 +188,13 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alpha.b = (1+alpha.b)^(TRADING.DAYS.PER.YEAR/rollingWindowSize)-1
   
   # CREATE DATAFRAME
-  informationBoundDataFrame = data.frame(stock.names, mean.bh, stDev.bh, return.bh, hitratio.b, mean.b, stDev.b, return.b, alpha.b, sr.bh, sr.b)
+  informationBoundDataFrame = data.frame(stock.names, mean.bh, stDev.bh, return.bh, hitratio.b, mean.b, stDev.b, return.b, alpha.b, nTrans.b, sr.bh, sr.b)
   
   # RESET ROWNAMES
   rownames(informationBoundDataFrame) <- NULL 
   
   # SET COLNAMES
-  colnames(informationBoundDataFrame) = c("Stock","BH mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Bound mean", "Bound std.dev", "Bound return", "Alpha", "Buy-and-hold SR", "Bound SR")
+  colnames(informationBoundDataFrame) = c("Stock","BH mean", "Buy-and-hold std.dev","Buy-and-hold return", "Hit ratio","Bound mean", "Bound std.dev", "Bound return", "Alpha", "N. transactions", "Buy-and-hold SR", "Bound SR")
   
   # CALCULATE AVERAGE OF COLUMNS
   average.mean.bh = mean(informationBoundDataFrame$`BH mean`)
@@ -195,12 +206,15 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   average.stDev.b = mean(informationBoundDataFrame$`Bound std.dev`)
   average.return.b = mean(informationBoundDataFrame$`Bound return`)
   average.alpha.b = mean(informationBoundDataFrame$Alpha)
+  average.nTrans.b = mean(informationBoundDataFrame$`N. transactions`)
   
   average.sr.bh = mean(informationBoundDataFrame$`Buy-and-hold SR`)
   average.sr.b = mean(informationBoundDataFrame$`Bound SR`)
   
-  end.line.bound.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.b, average.mean.b, average.stDev.b, average.return.b, average.alpha.b, average.sr.bh, average.sr.b)
+  end.line.bound.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.b, average.mean.b, average.stDev.b, average.return.b, average.alpha.b, average.nTrans.b,average.sr.bh, average.sr.b)
   
+  # SET LATEX COL NAMES
+  colnames(informationBoundDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{Bound}}$", "$\\boldsymbol{\\sigma_{Bound}}$", "$\\boldsymbol{r_{Bound}}$", "$\\boldsymbol{\\alpha}$", "N. transactions","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{Bound}}$")
   
   informationBoundDataFrameList[[length(informationBoundDataFrameList)+1]] = informationBoundDataFrame
   
@@ -227,42 +241,67 @@ createAverageLine <- function(x) {
   return(resultString)
 }
 
+createDigitsandAlignVectors <- function(dataFrame,digits) {
+  colDim = dim(dataFrame)[2] - 1
+  
+  alignVector = c('c','l')
+  for (i in 1:colDim) {
+    alignVector = c(alignVector,'c')
+  }
+  
+  digitsVector = c(1,1)
+  for (i in 1:colDim) {
+    if(i == 9) {
+      # IN ORDER TO SET 0 DIGITS FOR TRANSACTIONS
+      digitsVector = c(digitsVector,0)
+    }
+    else {
+      digitsVector = c(digitsVector,digits)
+    }
+  }
+  
+  return(list(alignVector,digitsVector))
+}
 
 # SHORT-LONG: RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize=sampleSizes[sampleSizesIndex]
   x = informationShortLongDataFrameList[[sampleSizesIndex]]
-  
+  digits = 3
+  alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
+
   # GENERAL LONG-TABLE COMMAND
   command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.ls.infoTable))
-  
+
   add.to.row <- list(pos = list(0,0), command = command)
   add.to.row$pos[[1]] = 1
   add.to.row$pos[[2]] = nrow(informationShortLongDataFrameList[[sampleSizesIndex]])
-  
+
   add.to.row$command <- command
-  
+
   URL=paste(URL.drop,"/Tables/informationTable_",sampleSize,".txt",sep="")
-  print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=c(1,1,3,3,3,3,3,3,3,3,3,3), align = c('l','c','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = paste("Stock metrics short long trading strategy and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock metrics short long trading strategy and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 }
 
 # BOUND: RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize=sampleSizes[sampleSizesIndex]
   x = informationBoundDataFrameList[[sampleSizesIndex]]
-  
+  digits = 3
+  alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
+
   # GENERAL LONG-TABLE COMMAND
   command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.bound.infoTable))
-  
+
   add.to.row <- list(pos = list(0,0), command = command)
   add.to.row$pos[[1]] = 1
   add.to.row$pos[[2]] = nrow(informationBoundDataFrameList[[sampleSizesIndex]])
-  
+
   add.to.row$command <- command
-  
+
   URL=paste(URL.drop,"/Tables/informationTable_",sampleSize,"tradingBound",tradingBound,".txt",sep="")
-  print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=c(1,1,3,3,3,3,3,3,3,3,3,3), align = c('l','c','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = paste("Stock metrics with trading bound ",tradingBound,"and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
-        
+  print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock metrics with trading bound ",tradingBound,"and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+
 }
 
 

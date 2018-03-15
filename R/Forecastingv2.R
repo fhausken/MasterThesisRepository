@@ -56,6 +56,20 @@ getColMeans <- function(dataFrame) {
     if (is.numeric(dataFrame[1,i])) {
       endVector = cbind(endVector,mean(dataFrame[,i]))
     }
+    
+  }
+  return(data.frame(endVector))
+}
+
+# CALCULATE DIAGNOSTIC MEAN FUNCTION
+getDiagColMeans <- function(dataFrame) {
+  endVector = c()
+  for (i in 1:ncol(dataFrame)) {
+    if (is.numeric(dataFrame[1,i][[1]])) {
+      print(dataFrame[,i])
+      endVector = cbind(endVector,mean(unlist(dataFrame[,i]))) 
+    }
+    
   }
   return(data.frame(endVector))
 }
@@ -137,6 +151,19 @@ names(sampleARLagDataFrameList)=sampleSizes
 names(sampleMALagDataFrameList)=sampleSizes
 names(sampleGARCHModelDataFrameList)=sampleSizes
 
+
+# CREATE DIAGNOSTIC AVERAGE LINE LIST
+sampleRunTimeDiagnosticsList.average = list()
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleRunTimeDiagnosticsList.average.dataFrame = getDiagColMeans(sampleRunTimeDiagnosticsList[[sampleSizesIndex]])
+  names(sampleRunTimeDiagnosticsList.average.dataFrame) = colnames(sampleRunTimeDiagnosticsList[[sampleSizesIndex]][-c(1)])
+  
+  sampleRunTimeDiagnosticsList.average[[length(sampleRunTimeDiagnosticsList.average)+1]] = sampleRunTimeDiagnosticsList.average.dataFrame
+}
+
+names(sampleRunTimeDiagnosticsList.average)=sampleSizes
+
+  
 #FORECASTS
 sampleMeanForecastsDataFramesList=list()
 sampleVolatilityForecastsDataFramesList=list()
@@ -340,7 +367,7 @@ row.names(sampleRMSE.MAE.dataFrame) = NULL
 
 sampleRMSE.MAE.dataFrame.average = getColMeans(sampleRMSE.MAE.dataFrame)
 
-names(sampleRMSE.MAE.dataFrame.average) = c("Stock",unlist(sampleSizeNameList))
+names(sampleRMSE.MAE.dataFrame.average) = c(unlist(sampleSizeNameList))
 
 
 # TABLES-TO-LATEX
@@ -460,39 +487,49 @@ save(sampleBuyAndHoldTotalReturnDataFramesList,file=URL)
 URL=paste(URL.repo,"/Data/rollingWindowSize.Rda",sep="")
 save(rollingWindowSize,file=URL)
 
-# GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(descriptiveStatisticsResults.average,digits,(ncol(x))))
-
-add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
-add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
-
-add.to.row$command <- command
-
-
+# TO LATEX
+createDigitsandAlignVectors <- function(dataFrame,digits) {
+  colDim = dim(dataFrame)[2] - 1
+  
+  alignVector = c('c','l')
+  for (i in 1:colDim) {
+    alignVector = c(alignVector,'c')
+  }
+  
+  digitsVector = c(1,1)
+  for (i in 1:colDim) {
+    digitsVector = c(digitsVector,digits)
+  }
+  
+  return(list(alignVector,digitsVector))
+}
 
 # Diagnostics Metrics (Antar tre forskjellige GARCHer)
+
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = sampleSizes[sampleSizesIndex]
-  # STATISTICAL METRICS
+  
+  # DIAGNOSTIC METRICS
   x = sampleRunTimeDiagnosticsList[[sampleSizesIndex]]
-  digits = 3
+  digits = 2
+  alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
   # GENERAL LONG-TABLE COMMAND
   command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
-  
+
   add.to.row <- list(pos = list(0,0), command = command)
   add.to.row$pos[[1]] = 1
-  add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
-  
+  add.to.row$pos[[2]] = nrow(x)
+
   add.to.row$command <- command
-  
+
   URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
-  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], auto=FALSE, digits=c(1,1,0,0,0,2,2), align = c('l','c','c','c','c','c','c'), type = "latex", caption = "Model Diagnostics"), hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Model Diagnostics"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 }
 
 # STATISTICAL METRICS
 x = sampleRMSE.MAE.dataFrame
 digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
 command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRMSE.MAE.dataFrame.average,digits,(ncol(x))))
 
@@ -503,6 +540,4 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=c(1,1,3,3,3,3), align = c('l','c','c','c','c','c'), type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
-
-
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)

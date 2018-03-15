@@ -57,7 +57,7 @@ sampleAccumulatedBuyAndHoldReturnDataFramesList=list()
 sampleAccumulatedAlphaReturnDataFramesList=list()
 sampleErrorDataFramesList=list()
 sampleShortLongReturnDataFramesList=list()
-sampleNumberOfTransactionsDataFramesList=list()
+sampleShortLongNumberOfTransactionsDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
@@ -166,14 +166,14 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   numberOfTransactionsDataFrame=data.frame(numberOfTransactionsVector)
   names(numberOfTransactionsDataFrame)=c("Number of Transactions")
   row.names(numberOfTransactionsDataFrame)=stocks[[1]]
-  sampleNumberOfTransactionsDataFramesList[length(sampleNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
+  sampleShortLongNumberOfTransactionsDataFramesList[length(sampleShortLongNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
 }
 names(sampleHitDataFramesList)=sampleSizes
 names(sampleErrorDataFramesList)=sampleSizes
 names(sampleAccumulatedShortLongReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleShortLongReturnDataFramesList)=sampleSizes
-names(sampleNumberOfTransactionDataFramesList)=sampleSizes
+names(sampleShortLongNumberOfTransactionsDataFramesList)=sampleSizes
 
 #Short/Sell Long Hit Ratio
 
@@ -235,7 +235,7 @@ names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
 #Plotting
-
+PLOTTING = FALSE
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
@@ -308,4 +308,10 @@ save(sampleShortLongTotalReturnDataFramesList,file=URL)
 # ALPHA
 URL=paste(URL.repo,"/Data/sampleAlphaDataFramesList.Rda",sep="")
 save(sampleAlphaDataFramesList,file=URL)
+
+# Number of transactions
+URL=paste(URL.repo,"/Data/sampleShortLongNumberOfTransactionsDataFramesList.Rda",sep="")
+save(sampleShortLongNumberOfTransactionsDataFramesList,file=URL)
+
+
 

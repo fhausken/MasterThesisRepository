@@ -86,7 +86,7 @@ for (stock in 1:numberOfStocks){
 }
 
 descriptiveStatisticsResults=data.frame(stocks[,1],matrix(results, ncol=10, byrow=TRUE))
-names(descriptiveStatisticsResults)=c("Stocks","Min","1st Quantile", "Median", "Mean", "Standard Deviation", "Variance", "3rd Quantile", "Max", "Skew", "Kurtosis" )
+names(descriptiveStatisticsResults)=c("Stocks","Min","1st Quantile", "Median", "$\\boldsymbol{\\mu}$", "$\\boldsymbol{\\sigma}$", "$\\boldsymbol{\\sigma^2}$", "3rd Quantile", "Max", "Skew", "Kurtosis" )
 
 # CALCULATE MEAN
 descriptiveStatisticsResults.average = as.numeric(as.vector(getColMeans(descriptiveStatisticsResults)[1,]))
@@ -219,9 +219,27 @@ createAverageLineDistribution <- function(x, digits,totCols) {
   return(resultString)
 }
 
+createDigitsandAlignVectors <- function(dataFrame,digits) {
+  colDim = dim(dataFrame)[2] - 1
+  
+  alignVector = c('c','l')
+  for (i in 1:colDim) {
+    alignVector = c(alignVector,'c')
+  }
+  
+  digitsVector = c(1,1)
+  for (i in 1:colDim) {
+    digitsVector = c(digitsVector,digits)
+  }
+
+  return(list(alignVector,digitsVector))
+}
+
+
 # DESCRIPTIVE STATISTICS
 x = descriptiveStatisticsResults
-digits = 4
+digits = 5
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
 command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(descriptiveStatisticsResults.average,digits,(ncol(x))))
 
@@ -232,11 +250,12 @@ add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/descriptiveStatisticsResults.txt",sep="")
-print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=c(1,1,4,4,5,5,4,5,4,4,4,4), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "Descriptive statistics for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Descriptive statistics for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 
 # PHILLIP PERRON TEST
 x = phillipPerronResults
 digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
 command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(phillipPerronResults.average,digits,ncol(x)))
 
@@ -247,12 +266,12 @@ add.to.row$pos[[2]] = nrow(phillipPerronResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
-print(xtable(phillipPerronResults, auto=FALSE, digits=c(1,1,3,3,1), align = c('c','l','c','c','c'), type = "latex", caption = "Phillip Perron test for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(phillipPerronResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Phillip Perron test for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
 digits = 1
-
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
 command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
 
@@ -264,4 +283,4 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/distributionFitResults.txt", sep="")
 names(x)=c("Stock", "NORM","GED","STD","SNORM","SGED","SSTD","GHYP","NIG","GHST","Best Fit")
-print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=c(1,1,1,1,1,1,1,1,1,1,1,1), align = c('l','l','c','c','c','c','c','c','c','c','c','c'), type = "latex", caption = "AIC results for various distributions for OSEAX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "AIC results for various distributions for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
