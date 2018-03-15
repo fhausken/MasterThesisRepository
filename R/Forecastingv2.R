@@ -488,8 +488,8 @@ if(PLOTTING == TRUE) {
   ARPlot=layout(ARPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean AR Lag"), xaxis=list(title="Date"))
   MAPlot=layout(MAPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MA Lag"), xaxis=list(title="Date"))
 
-  # print(ARPlot) #Printer plottet
-  # print(MAPlot)
+  print(ARPlot) #Printer plottet
+  print(MAPlot)
   
   URL=paste(URL.drop,"/Plot/averageARLags.jpeg",sep="")
   export(ARPlot, file = URL)
