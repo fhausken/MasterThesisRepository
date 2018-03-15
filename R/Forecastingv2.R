@@ -84,7 +84,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     for (garchModelsIndex in 1:length(garchModels)){
       garchModel=garchModels[garchModelsIndex]
       occurence=length(which(garchModelVector == garchModel))
-      stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=occurence       
+      stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=occurence/(rollingWindowSize+1)       
     }
     
     stocksRunTimeDiagnosticsList[[length(stocksRunTimeDiagnosticsList)+1]]=mean(ARLagVector)
@@ -283,14 +283,64 @@ names(sampleErrorDataFramesList)=sampleSizes
 
 # STATISTICAL METRICS 
 
+#Average MAE and RMSE for plotting
+sampleAverageMAEPlotDataFrameList=list()
+sampleAverageRMSEPlotDataFrameList=list()
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
+  
+  for (stocksIndex in 1:nrow(stocks)){
+    stockName=stocks[stocksIndex,1]
+    
+    MAEVector=vector()
+    RMSEVector=vector()
+    
+    for (day in 1:(rollingWindowSize)){
+      error=sampleErrorDataFramesList[[sampleSizesIndex]][day,stocksIndex]
+      MAEVector[length(MAEVector)+1]=abs(error)
+      RMSEVector[length(RMSEVector)+1]=sqrt(error^2)
+      print(paste(stockName,": ",day,"/",rollingWindowSize,sep=""))
+      print(abs(error))
+      print(sqrt(error^2))
+      
+    }
+    
+    if (stocksIndex==1){
+      MAEDataFrame=data.frame(MAEVector)
+      RMSEDataFrame=data.frame(RMSEVector)
+    }else{
+      MAEDataFrame=cbind(MAEDataFrame, MAEVector)
+      RMSEDataFrame=cbind(RMSEDataFrame, RMSEVector)
+    }
+  }
+  names(MAEDataFrame)=stocks[[1]]
+  names(RMSEDataFrame)=stocks[[1]]
+  row.names(MAEDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  row.names(RMSEDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  
+  MAEDates=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  RMSEDates=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  MAEPlotDataFrame=data.frame(dates=MAEDates,MAEMean=rowMeans(MAEDataFrame))
+  RMSEPlotDataFrame=data.frame(dates=RMSEDates,RMSEMean=rowMeans(RMSEDataFrame))
+  
+
+  sampleAverageMAEPlotDataFrameList[[length(sampleAverageMAEPlotDataFrameList)+1]]=MAEPlotDataFrame
+  sampleAverageRMSEPlotDataFrameList[[length(sampleAverageRMSEPlotDataFrameList)+1]]=RMSEPlotDataFrame
+
+}
+
+names(sampleAverageMAEPlotDataFrameList)=sampleSizes
+names(sampleAverageRMSEPlotDataFrameList)=sampleSizes
+
 # RMSE function
 RMSE <- function(errorListStock) {
-  return(sqrt(colMeans(errorListStock^2)))
+  return(sqrt(colMeans(errorListStock^2))) 
 }
 
 # MAE function
 MAE <- function(errorListStock) {
-  return(colMeans(abs(errorListStock)))
+  return(colMeans(abs(errorListStock)))  
 }
 
 sampleRMSEDataFrameList=list()
@@ -300,8 +350,8 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   RMSEDataFrame = data.frame(RMSE(sampleErrorDataFramesList[[sampleSizesIndex]]))
   MAEDataFrame = data.frame(MAE(sampleErrorDataFramesList[[sampleSizesIndex]]))
   
-  colnames(RMSEDataFrame) = "RMSE"
-  colnames(MAEDataFrame) = "MAE"
+  names(RMSEDataFrame) = "RMSE"
+  names(MAEDataFrame) = "MAE"
   
   sampleRMSEDataFrameList[[length(sampleRMSEDataFrameList)+1]] = RMSEDataFrame
   sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAEDataFrame
@@ -373,6 +423,7 @@ createAverageLine <- function(x, digits,totCols) {
 
 #Plotting
 
+#Model Plots
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
@@ -444,8 +495,32 @@ if(PLOTTING == TRUE) {
   export(ARPlot, file = URL)
   URL=paste(URL.drop,"/Plot/averageMALags.jpeg",sep="")
   export(MAPlot, file = URL)
-}
 
+}
+  
+#Statistical Plots
+if(PLOTTING == TRUE) {
+  
+  MAEPlot=plot_ly(data=sampleAverageMAEPlotDataFrameList[[1]], x=~dates)
+  RMSEPlot=plot_ly(data=sampleAverageRMSEPlotDataFrameList[[1]], x=~dates)
+  for (sampleSizesIndex in 1:length(sampleSizes)){
+    sampleSize = sampleSizes[sampleSizesIndex]
+    MAEPlot=add_trace(MAEPlot, y = sampleAverageMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
+    RMSEPlot=add_trace(RMSEPlot, y = sampleAverageRMSEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
+  }
+  MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MAE"), xaxis=list(title="Date"))
+  RMSEPlot=layout(RMSEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean RMSE"), xaxis=list(title="Date"))
+  
+  print(MAEPlot)
+  print(RMSEPlot)
+    
+  stockName=stocks[stocksIndex,1]
+  URL=paste(URL.drop,"/Plot/averageMAE.jpeg",sep="")
+  export(MAEPlot, file = URL)
+  URL=paste(URL.drop,"/Plot/averageRMSELags.jpeg",sep="")
+  export(RMSEPlot, file = URL) 
+  
+}
 # SAVE LISTS TO Rda-files
 
 URL=paste(URL.repo,"/Data/meanBuyAndHold.Rda",sep="")

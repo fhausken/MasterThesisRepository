@@ -35,7 +35,7 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
-sampleSizes=c(1290)#,500,750,1000)
+sampleSizes=c(1301,1302)#,500,750,1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 ARLag.max=1
