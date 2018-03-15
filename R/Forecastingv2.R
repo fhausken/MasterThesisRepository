@@ -300,9 +300,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       error=sampleErrorDataFramesList[[sampleSizesIndex]][day,stocksIndex]
       MAEVector[length(MAEVector)+1]=abs(error)
       RMSEVector[length(RMSEVector)+1]=sqrt(error^2)
-      print(paste(stockName,": ",day,"/",rollingWindowSize,sep=""))
-      print(abs(error))
-      print(sqrt(error^2))
+      
+      
+      # print(paste(stockName,": ",day,"/",rollingWindowSize,sep=""))
+      # print(abs(error))
+      # print(sqrt(error^2))
       
     }
     
