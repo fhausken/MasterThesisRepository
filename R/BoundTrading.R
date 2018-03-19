@@ -55,7 +55,7 @@ sampleAccumulatedBoundReturnDataFramesList=list()
 sampleAccumulatedBuyAndHoldReturnDataFramesList=list()
 sampleAccumulatedAlphaReturnDataFramesList=list()
 sampleBoundReturnDataFramesList=list()
-sampleNumberOfTransactionsDataFramesList=list()
+sampleBoundNumberOfTransactionsDataFramesList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
@@ -165,7 +165,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   numberOfTransactionsDataFrame=data.frame(numberOfTransactionsVector)
   names(numberOfTransactionsDataFrame)=c("Number of Transactions")
   row.names(numberOfTransactionsDataFrame)=stocks[[1]]
-  sampleNumberOfTransactionsDataFramesList[length(sampleNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
+  sampleBoundNumberOfTransactionsDataFramesList[length(sampleBoundNumberOfTransactionsDataFramesList)+1]=numberOfTransactionsDataFrame
   
   
 }
@@ -173,7 +173,7 @@ names(sampleHitDataFramesList)=sampleSizes
 names(sampleAccumulatedBoundReturnDataFramesList)=sampleSizes
 names(sampleAccumulatedBuyAndHoldReturnDataFramesList)=sampleSizes
 names(sampleBoundReturnDataFramesList)=sampleSizes
-names(sampleNumberOfTransactionsDataFramesList)=sampleSizes
+names(sampleBoundNumberOfTransactionsDataFramesList)=sampleSizes
 
 # CALCULATE TOTAL BOUND STRATEGY RETURN
 sampleBoundTotalReturnDataFramesList=list()
@@ -235,7 +235,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleBoundHitRatioDataFramesList)=sampleSizes
 
 #Plotting
-
+PLOTTING = FALSE
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
@@ -311,3 +311,8 @@ save(sampleBoundTotalReturnDataFramesList,file=URL)
 # ALPHA
 URL=paste(URL.repo,"/Data/sampleBoundAlphaDataFramesList.Rda",sep="")
 save(sampleBoundAlphaDataFramesList,file=URL)
+
+# Number of transactions
+URL=paste(URL.repo,"/Data/sampleBoundNumberOfTransactionsDataFramesList.Rda",sep="")
+save(sampleBoundNumberOfTransactionsDataFramesList,file=URL)
+
