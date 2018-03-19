@@ -10,7 +10,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 
 
-#stocks=stocks[c(5,8,13),] #For testing. Et utvalg av aksjer.
+stocks=stocks[c(5,8,13),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE

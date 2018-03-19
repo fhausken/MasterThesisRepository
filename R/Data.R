@@ -162,7 +162,6 @@ for (stock in 1:numberOfStocks){
 
 names(distributionsFitResults)=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution", "Best Fit Fullname", "Best Fit Shortname")
 
-
 distributionsFitResults.average = getDistributionColMeans(distributionsFitResults)
 
 distributionsFitResults = cbind(stocks[,1],distributionsFitResults)

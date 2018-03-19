@@ -363,9 +363,9 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleAverageMAEPlotDataFrameList)=sampleSizes
 names(sampleAverageRMSEPlotDataFrameList)=sampleSizes
 
-# RMSE function
+# VARIANCE OF ABS ERROR function
 RMSE <- function(errorListStock) {
-  return(sqrt(colMeans(errorListStock^2))) 
+  return(colSds(abs(errorListStock)))
 }
 
 # MAE function
@@ -397,12 +397,12 @@ sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),
 # ADD RMSE COL NAME
 sampleSizeNameList = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("RMSE with ","sample size ",sampleSizes[[sampleSizesIndex]]," days")
+  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("$\\boldsymbol{\\sigma_{",sampleSizes[[sampleSizesIndex]],"}}$")
 }
 
 # ADD MAE COL NAME
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("MAE with ","sample size ",sampleSizes[[sampleSizesIndex]]," days")
+  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("$\\boldsymbol{MAE_{",sampleSizes[[sampleSizesIndex]],"}}$")
 }
 
 # ADD STOCK TICKER NAMES
@@ -618,4 +618,4 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Statistical metrics "), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "MAE metric and standard deviation of mean error"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
