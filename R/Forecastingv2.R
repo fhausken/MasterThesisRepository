@@ -312,9 +312,9 @@ names(sampleErrorDataFramesList)=sampleSizes
 
 # STATISTICAL METRICS 
 
-#Average MAE and RMSE for plotting
+#Average MAE and StdMAE for plotting
 sampleAverageMAEPlotDataFrameList=list()
-sampleAverageRMSEPlotDataFrameList=list()
+sampleAverageStdMAEPlotDataFrameList=list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
@@ -323,7 +323,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     stockName=stocks[stocksIndex,1]
     
     MAEVector=vector()
-    RMSEVector=vector()
+    StdMAEVector=vector()
     
     for (day in 1:(rollingWindowSize)){
       error=sampleErrorDataFramesList[[sampleSizesIndex]][day,stocksIndex]
@@ -332,7 +332,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       MAE=mean(abs(errorVector))
       
       MAEVector[length(MAEVector)+1]=abs(error)
-      RMSEVector[length(RMSEVector)+1]=sqrt((abs(error)-MAE)^2)
+      StdMAEVector[length(StdMAEVector)+1]=sqrt((abs(error)-MAE)^2)
       
       
       # print(paste(stockName,": ",day,"/",rollingWindowSize,sep=""))
@@ -343,33 +343,33 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     if (stocksIndex==1){
       MAEDataFrame=data.frame(MAEVector)
-      RMSEDataFrame=data.frame(RMSEVector)
+      StdMAEDataFrame=data.frame(StdMAEVector)
     }else{
       MAEDataFrame=cbind(MAEDataFrame, MAEVector)
-      RMSEDataFrame=cbind(RMSEDataFrame, RMSEVector)
+      StdMAEDataFrame=cbind(StdMAEDataFrame, StdMAEVector)
     }
   }
   names(MAEDataFrame)=stocks[[1]]
-  names(RMSEDataFrame)=stocks[[1]]
+  names(StdMAEDataFrame)=stocks[[1]]
   row.names(MAEDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
-  row.names(RMSEDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  row.names(StdMAEDataFrame)=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
   
   MAEDates=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
-  RMSEDates=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
+  StdMAEDates=index(stockReturns)[(sampleSize+1):nrow(stockReturns)]
   MAEPlotDataFrame=data.frame(dates=MAEDates,MAEMean=rowMeans(MAEDataFrame))
-  RMSEPlotDataFrame=data.frame(dates=RMSEDates,RMSEMean=rowMeans(RMSEDataFrame))
+  StdMAEPlotDataFrame=data.frame(dates=StdMAEDates,StdMAEMean=rowMeans(StdMAEDataFrame))
   
 
   sampleAverageMAEPlotDataFrameList[[length(sampleAverageMAEPlotDataFrameList)+1]]=MAEPlotDataFrame
-  sampleAverageRMSEPlotDataFrameList[[length(sampleAverageRMSEPlotDataFrameList)+1]]=RMSEPlotDataFrame
+  sampleAverageStdMAEPlotDataFrameList[[length(sampleAverageStdMAEPlotDataFrameList)+1]]=StdMAEPlotDataFrame
 
 }
 
 names(sampleAverageMAEPlotDataFrameList)=sampleSizes
-names(sampleAverageRMSEPlotDataFrameList)=sampleSizes
+names(sampleAverageStdMAEPlotDataFrameList)=sampleSizes
 
 # VARIANCE OF ABS ERROR function
-RMSE <- function(errorListStock) {
+StdMAE <- function(errorListStock) {
   return(colSds(abs(errorListStock)))
 }
 
@@ -378,28 +378,28 @@ MAE <- function(errorListStock) {
   return(colMeans(abs(errorListStock)))  
 }
 
-sampleRMSEDataFrameList=list()
+sampleStdMAEDataFrameList=list()
 sampleMAEDataFrameList=list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  RMSEDataFrame = data.frame(RMSE(sampleErrorDataFramesList[[sampleSizesIndex]]))
+  StdMAEDataFrame = data.frame(StdMAE(sampleErrorDataFramesList[[sampleSizesIndex]]))
   MAEDataFrame = data.frame(MAE(sampleErrorDataFramesList[[sampleSizesIndex]]))
   
-  names(RMSEDataFrame) = "RMSE"
+  names(StdMAEDataFrame) = "StdMAE"
   names(MAEDataFrame) = "MAE"
   
-  sampleRMSEDataFrameList[[length(sampleRMSEDataFrameList)+1]] = RMSEDataFrame
+  sampleStdMAEDataFrameList[[length(sampleStdMAEDataFrameList)+1]] = StdMAEDataFrame
   sampleMAEDataFrameList[[length(sampleMAEDataFrameList)+1]] = MAEDataFrame
 }
 
-names(sampleRMSEDataFrameList) = sampleSizes
+names(sampleStdMAEDataFrameList) = sampleSizes
 names(sampleMAEDataFrameList) = sampleSizes
 
 
-# CREATE RMSE, MAE DATAFRAME FOR LATEX
-sampleRMSE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleRMSEDataFrameList),unlist(sampleMAEDataFrameList)), ncol=(2*length(sampleSizes)), byrow=F),stringsAsFactors=FALSE)
+# CREATE StdMAE, MAE DATAFRAME FOR LATEX
+sampleStdMAE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleStdMAEDataFrameList),unlist(sampleMAEDataFrameList)), ncol=(2*length(sampleSizes)), byrow=F),stringsAsFactors=FALSE)
 
-# ADD RMSE COL NAME
+# ADD StdMAE COL NAME
 sampleSizeNameList = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("$\\boldsymbol{\\sigma_{",sampleSizes[[sampleSizesIndex]],"}}$")
@@ -416,16 +416,16 @@ for (stocksIndex in 1:nrow(stocks)){
   stockNameList[[length(stockNameList)+1]]=stocks[stocksIndex,1]
 }
 
-sampleRMSE.MAE.dataFrame = cbind(unlist(stockNameList),sampleRMSE.MAE.dataFrame)
+sampleStdMAE.MAE.dataFrame = cbind(unlist(stockNameList),sampleStdMAE.MAE.dataFrame)
 
 # ASSIGN NAMES TO ROWS AND COLS
-colnames(sampleRMSE.MAE.dataFrame) = c("Stock",unlist(sampleSizeNameList))
-row.names(sampleRMSE.MAE.dataFrame) = NULL
+colnames(sampleStdMAE.MAE.dataFrame) = c("Stock",unlist(sampleSizeNameList))
+row.names(sampleStdMAE.MAE.dataFrame) = NULL
 
 
-sampleRMSE.MAE.dataFrame.average = getColMeans(sampleRMSE.MAE.dataFrame)
+sampleStdMAE.MAE.dataFrame.average = getColMeans(sampleStdMAE.MAE.dataFrame)
 
-names(sampleRMSE.MAE.dataFrame.average) = c(unlist(sampleSizeNameList))
+names(sampleStdMAE.MAE.dataFrame.average) = c(unlist(sampleSizeNameList))
 
 
 # TABLES-TO-LATEX
@@ -560,34 +560,34 @@ if(PLOTTING == TRUE) {
 if(PLOTTING == TRUE) {
   
   MAEPlot=plot_ly(data=sampleAverageMAEPlotDataFrameList[[1]], x=~dates)
-  RMSEPlot=plot_ly(data=sampleAverageRMSEPlotDataFrameList[[1]], x=~dates)
+  StdMAEPlot=plot_ly(data=sampleAverageStdMAEPlotDataFrameList[[1]], x=~dates)
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
     MAEPlot=add_trace(MAEPlot, y = sampleAverageMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
-    RMSEPlot=add_trace(RMSEPlot, y = sampleAverageRMSEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
+    StdMAEPlot=add_trace(StdMAEPlot, y = sampleAverageStdMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
   }
   MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MAE"), xaxis=list(title="Date"))
-  RMSEPlot=layout(RMSEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean RMSE"), xaxis=list(title="Date"))
+  StdMAEPlot=layout(StdMAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Standard Deviation of MAE"), xaxis=list(title="Date"))
   
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   vectorizedOSEBXReturn=drop(coredata(OSEBX.close.return))
   OSEBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize+1):length(vectorizedOSEBXReturn)]
   
-  OSEBXPlot=plot_ly(data=sampleAverageRMSEPlotDataFrameList[[1]], x=~dates) %>%
+  OSEBXPlot=plot_ly(data=sampleAverageStdMAEPlotDataFrameList[[1]], x=~dates) %>%
     add_trace(y = OSEBX.close.return.plotVector, name = "OSEBX Return",type='scatter',mode = 'lines')%>%
     layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
   
   MAEPlot=subplot(nrows=2,MAEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
   print(MAEPlot) #Printer plottet
   
-  RMSEPlot=subplot(nrows=2,RMSEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
-  print(RMSEPlot) #Printer plottet
+  StdMAEPlot=subplot(nrows=2,StdMAEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+  print(StdMAEPlot) #Printer plottet
     
   stockName=stocks[stocksIndex,1]
   URL=paste(URL.drop,"/Plot/averageMAE.jpeg",sep="")
   export(MAEPlot, file = URL)
-  URL=paste(URL.drop,"/Plot/averageRMSELags.jpeg",sep="")
-  export(RMSEPlot, file = URL) 
+  URL=paste(URL.drop,"/Plot/averageStdMAELags.jpeg",sep="")
+  export(StdMAEPlot, file = URL) 
   
 }
 
@@ -645,11 +645,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 }
 
 # STATISTICAL METRICS
-x = sampleRMSE.MAE.dataFrame
+x = sampleStdMAE.MAE.dataFrame
 digits = 3
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRMSE.MAE.dataFrame.average,digits,(ncol(x))))
+command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleStdMAE.MAE.dataFrame.average,digits,(ncol(x))))
 
 add.to.row <- list(pos = list(0,0), command = command)
 add.to.row$pos[[1]] = 1
@@ -658,4 +658,4 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleRMSE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "MAE metric and standard deviation of mean error"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(sampleStdMAE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "MAE metric and standard deviation of mean error"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)

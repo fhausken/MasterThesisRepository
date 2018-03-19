@@ -38,11 +38,11 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
-sampleSizes=c(125,250,500)
+sampleSizes=c(1294,1295)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=5
-MALag.max=5
+ARLag.max=1
+MALag.max=1
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1

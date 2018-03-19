@@ -1,75 +1,20 @@
 Output:
 
-2018-03-19 14:35:02	Starting iteration: 1/2. Stock: DNB. Sample size: 1270 
-2018-03-19 14:35:15		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 25/27. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:35:37			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 1/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0100). Error i fit!
-2018-03-19 14:35:39			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 3/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0100). Error i fit!
-2018-03-19 14:36:08			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 1/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(1100). Error i fit!
-2018-03-19 14:37:21			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 6/27. Distribution: Generalized Error Distribution. Model: eGARCH(1101). Error i fit!
-2018-03-19 14:37:29		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 6/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:37:33		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 0/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:37:38		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 4/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:37:46		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 2/27. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:37:47		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 5/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:37:47		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 1/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:38:02		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 3/27. Distribution: Generalized Error Distribution. Model: eGARCH(0001). Iterasjon fullført!
-2018-03-19 14:38:08			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 11/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0000). Error i fit!
-2018-03-19 14:38:08			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 12/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0000). Error i fit!
-2018-03-19 14:38:10			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 13/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0000). Error i fit!
-2018-03-19 14:39:57		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 7/27. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:40:01		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 9/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:40:05		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 8/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:40:08		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 10/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:40:19		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 11/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:40:19		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 13/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:40:20		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 12/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:40:35		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 14/27. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:40:36			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 17/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0100). Error i fit!
-2018-03-19 14:40:47			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 18/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(1000). Error i fit!
-2018-03-19 14:40:52			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 21/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(1000). Error i fit!
-2018-03-19 14:41:52		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 15/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:41:55		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 18/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:41:59		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 21/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:41:59		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 17/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:41:59		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 16/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:42:05		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 19/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:42:06		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 20/27. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-19 14:42:13		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 22/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:42:17			Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 27/27. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(0000). Error i fit!
-2018-03-19 14:42:57		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 23/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:43:03		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 24/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:43:08		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 26/27. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:43:59		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 25/27. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:44:04		Iteration: 1/2. Stock: DNB. Sample size: 1270. Day: 27/27. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-19 14:44:04	Starting iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270 
-2018-03-19 14:46:03		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 5/27. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
-2018-03-19 14:46:06		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 4/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:46:10		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 7/27. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
-2018-03-19 14:46:12		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 0/27. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:46:13		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 1/27. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
-2018-03-19 14:46:22		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 2/27. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
-2018-03-19 14:47:40		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 8/27. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
-2018-03-19 14:48:04		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 9/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-19 14:48:13		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 12/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
-2018-03-19 14:48:15		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 13/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
-2018-03-19 14:48:16		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 11/27. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
-2018-03-19 14:48:40		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 3/27. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
-2018-03-19 14:48:56		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 6/27. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:49:37		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 14/27. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
-2018-03-19 14:50:00		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 17/27. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
-2018-03-19 14:50:01		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 15/27. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
-2018-03-19 14:50:13		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 16/27. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
-2018-03-19 14:50:19		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 10/27. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-19 14:50:31		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 19/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-19 14:50:33			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 23/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(0110). Error i fit!
-2018-03-19 14:51:33		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 21/27. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
-2018-03-19 14:52:10		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 23/27. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
-2018-03-19 14:52:19		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 22/27. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
-2018-03-19 14:52:43		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 24/27. Distribution: Generalized Error Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
-2018-03-19 14:52:44		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 26/27. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
-2018-03-19 14:56:06		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 20/27. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
-2018-03-19 14:56:07		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 25/27. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
-2018-03-19 14:56:16		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 18/27. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
-2018-03-19 14:56:36		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1270. Day: 27/27. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-03-19 15:26:03	Starting iteration: 1/2. Stock: DNB. Sample size: 1294 
+2018-03-19 15:26:38		Iteration: 1/2. Stock: DNB. Sample size: 1294. Day: 0/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:26:48		Iteration: 1/2. Stock: DNB. Sample size: 1294. Day: 1/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:26:49		Iteration: 1/2. Stock: DNB. Sample size: 1294. Day: 2/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:26:49	Starting iteration: 1/2. Stock: DNB. Sample size: 1295 
+2018-03-19 15:27:33		Iteration: 1/2. Stock: DNB. Sample size: 1295. Day: 1/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:27:33		Iteration: 1/2. Stock: DNB. Sample size: 1295. Day: 0/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:27:34		Iteration: 1/2. Stock: DNB. Sample size: 1295. Day: 2/2. Distribution: Normal Inverse Gaussian Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-03-19 15:27:34	Starting iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1294 
+2018-03-19 15:28:03		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1294. Day: 2/2. Distribution: Skewed Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-03-19 15:28:05		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1294. Day: 0/2. Distribution: Skewed Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-03-19 15:28:07		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1294. Day: 1/2. Distribution: Skewed Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-03-19 15:28:07	Starting iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1295 
+2018-03-19 15:28:32		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1295. Day: 0/2. Distribution: Skewed Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-03-19 15:28:35		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1295. Day: 1/2. Distribution: Skewed Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-03-19 15:28:35		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 1295. Day: 2/2. Distribution: Skewed Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
 
-Kjoreretid: 21.5821109493574 
+Kjoreretid: 2.54534910122553 
