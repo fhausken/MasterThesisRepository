@@ -20,6 +20,9 @@ URL.repo=getwd()
 URL.logging=paste(URL.repo,"/Output/ParallellLog.txt", sep="")
 cat("Output:\n\n", file=URL.logging, append=FALSE) #Clears log
 
+URL.kritisk=paste(URL.repo,"/Output/KritiskFeil.txt", sep="")
+cat("Output:\n\n", file=URL.kritisk, append=FALSE) #Clears log
+
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
 load(URL)
 
@@ -35,11 +38,11 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
-sampleSizes=c(1301,1302)#,500,750,1000)
+sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=1
-MALag.max=1
+ARLag.max=5
+MALag.max=5
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -126,30 +129,18 @@ for (stocksIndex in 1:nrow(stocks)){
                   AIC=1000000
                   #cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,ARLag,MALag,GARCHLagOne,GARCHLagTwo,". Warning i fit!","\n",sep=""), file=URL.logging, append=TRUE)
                   
-                } else if(is(fit," error")){
+                } else if(is(fit,"error")){
                   
                   AIC=1000000
-                  cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i fit!","\n",sep=""), file=URL.logging, append=TRUE)
+                  cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i fit!","\n",sep=""), file=URL.logging, append=TRUE)
                   
                 }else{
                   
-                  tryCatch({
-                    AIC=infocriteria(fit)[1]
-                    forecast=ugarchforecast(fit,n.ahead=1)
-                    forecastOneDayAhead.mean=drop(forecast@forecast$seriesFor) #Drop fjerner kolonne og radnavn}
-                    forecastOneDayAhead.volatility=drop(forecast@forecast$sigmaFor) #Drop fjerner kolonne og radnavn}
-                    }, error = function(e) { 
-
-                      cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error in infocriteria!","\n",sep=""), file=URL.logging, append=TRUE) #Skjønner ikke hvorfor denne feilen ikke blir fanget over...
-
-                      URL=paste(URL.repo,"/Data/ErroriFit.Rda",sep="")
-                      save(fit,file=URL)
-                      URL=paste(URL.repo,"/Data/ErroriSpec.Rda",sep="")
-                      save(spec,file=URL)
-                      
-                      AIC=1000000
-                    })
-
+                  AIC=infocriteria(fit)[1]
+                  forecast=ugarchforecast(fit,n.ahead=1)
+                  forecastOneDayAhead.mean=drop(forecast@forecast$seriesFor) #Drop fjerner kolonne og radnavn}
+                  forecastOneDayAhead.volatility=drop(forecast@forecast$sigmaFor) #Drop fjerner kolonne og radnavn}
+                     
                 }
                 
                 if (AIC<AIC.final){
@@ -178,7 +169,8 @@ for (stocksIndex in 1:nrow(stocks)){
       #print(fit)
       
       if (AIC.final==1000000){
-        cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize,". Did Not Converge!"," \n",sep=""), file=URL.logging, append=TRUE)
+        cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize, ". Did Not Converge!"," \n",sep=""), file=URL.logging, append=TRUE)
+        cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize, ". Did Not Converge!"," \n",sep=""), file=URL.Kritisk, append=TRUE)
         AIC.final=1000000
         forecastOneDayAhead.mean.final=0
         forecastOneDayAhead.volatility.final=0
@@ -197,7 +189,7 @@ for (stocksIndex in 1:nrow(stocks)){
       }
       
 
-      cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) 
+      cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) 
       
       results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man må bruke to brackets for å legge til en liste inni en liste
 

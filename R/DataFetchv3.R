@@ -10,11 +10,14 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 
 
-#stocks=stocks[c(5,8,13),] #For testing. Et utvalg av aksjer.
+#stocks=stocks[c(5,8),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
 from.date <- as.Date("01/02/13", format="%m/%d/%y")
+
+# SET TO DATE
+to.date <- as.Date("03/01/18", format="%m/%d/%y")
 
 consecutiveZerosCapClose=20
 
@@ -36,7 +39,7 @@ for (row in 1:stocks.nrow) {
   tryCatch({
     
     fetchName=paste(stocks$Ticker[row],".OL",sep="")
-    stock.data=getSymbols(fetchName,from=from.date,auto.assign = FALSE)
+    stock.data=getSymbols(fetchName,from=from.date,to=to.date,auto.assign = FALSE)
     
     if(index(stock.data)[1]==(from.date)){
       
@@ -75,7 +78,7 @@ for (row in 1:stocks.nrow) {
       
       if(maxOfconsecutiveZerosVectorClose<=consecutiveZerosCapClose){
         if(maxOfconsecutiveZerosVectorVolume<=consecutiveXCapVolume){
-          getSymbols(fetchName,from=from.date,auto.assign =TRUE,env=stockData)
+          getSymbols(fetchName,from=from.date,to=to.date,auto.assign =TRUE,env=stockData)
         }
         else{
           stocksRemoved.index[length(stocksRemoved.index)+1]=row
@@ -140,6 +143,17 @@ stockVolumes <- do.call(merge, stockVolumesList)
 #stockVolumes[is.na(stockVolumes)] <- 0 # Setter NA elementer til 0.
 names(stockVolumes)=stocks$Ticker #Endrer navn p? kolonner
 
+#Index fetch
+OSEBX.close.price=getSymbols("OSEBX.OL",from=from.date,to=to.date,auto.assign =FALSE)[,4]
+OSEBX.close.price=do.call(merge,list(OSEBX.close.price,stockPrices))[,1] #For å sørge for at OSEBX har like mange datapunkter som akjsene.
+
+
+OSEBX.close.return=diff(log(OSEBX.close.price))
+OSEBX.close.return=OSEBX.close.return[-c(1),]
+
+OSEBX.close.price[is.na(OSEBX.close.price)] = 0 #NA fylles inn der den forrige linjen gir NA. Det vil si når OSEBX har færre datapunkter enn aksjene. 
+OSEBX.close.return[is.na(OSEBX.close.return)] = 0
+
 #Lagring
 URL=paste(URL.repo,"/Data/stockPrices.Rda",sep="")
 save(stockPrices,file=URL)
@@ -151,3 +165,5 @@ URL=paste(URL.repo,"/Data/stocks.Rda",sep="")
 save(stocks,file=URL)
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 save(stocksRemoved,file=URL)
+URL=paste(URL.repo,"/Data/OSEBXReturn.Rda",sep="")
+save(OSEBX.close.return,file=URL)

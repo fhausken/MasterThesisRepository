@@ -49,6 +49,9 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
+URL=paste(URL.repo,"/Data/OSEBXReturn.Rda",sep="")
+load(URL)
+
 
 #DIAGNOSTICS
 sampleRunTimeDiagnosticsList=list()
@@ -144,7 +147,7 @@ getDiagColMeans <- function(dataFrame) {
   endVector = c()
   for (i in 1:ncol(dataFrame)) {
     if (is.numeric(dataFrame[1,i][[1]])) {
-      print(dataFrame[,i])
+      #print(dataFrame[,i])
       endVector = cbind(endVector,mean(unlist(dataFrame[,i]))) 
     }
     
@@ -307,8 +310,6 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleErrorDataFramesList)=sampleSizes
 
 
-
-
 # STATISTICAL METRICS 
 
 #Average MAE and RMSE for plotting
@@ -326,8 +327,12 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
     
     for (day in 1:(rollingWindowSize)){
       error=sampleErrorDataFramesList[[sampleSizesIndex]][day,stocksIndex]
+      
+      errorVector=sampleErrorDataFramesList[[sampleSizesIndex]][,stocksIndex]
+      MAE=mean(abs(errorVector))
+      
       MAEVector[length(MAEVector)+1]=abs(error)
-      RMSEVector[length(RMSEVector)+1]=sqrt(error^2)
+      RMSEVector[length(RMSEVector)+1]=sqrt((abs(error)-MAE)^2)
       
       
       # print(paste(stockName,": ",day,"/",rollingWindowSize,sep=""))
@@ -499,6 +504,15 @@ if(PLOTTING == TRUE) {
     }
     GARCHPlot=layout(GARCHPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Percentage of Stocks"), xaxis=list(title="Date"))
 
+    rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
+    vectorizedOSEBXReturn=drop(coredata(OSEBX.close.return))
+    OSEBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
+    
+    OSEBXPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates) %>%
+      add_trace(y = OSEBX.close.return.plotVector, name = "OSEBX Return",type='scatter',mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+    
+    GARCHPlot=subplot(nrows=2,GARCHPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
     print(GARCHPlot) #Printer plottet
 
     URL=paste(URL.drop,"/Plot/GARCHPlot_",sampleSize,".jpeg",sep="")
@@ -517,9 +531,22 @@ if(PLOTTING == TRUE) {
   }
   ARPlot=layout(ARPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean AR Lag"), xaxis=list(title="Date"))
   MAPlot=layout(MAPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MA Lag"), xaxis=list(title="Date"))
-
+  
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
+  vectorizedOSEBXReturn=drop(coredata(OSEBX.close.return))
+  OSEBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
+  
+  OSEBXPlot=plot_ly(data=ARPlotDataFrame, x=~dates) %>%
+    add_trace(y = OSEBX.close.return.plotVector, name = "OSEBX Return",type='scatter',mode = 'lines')%>%
+    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+  
+  
+  ARPlot=subplot(nrows=2,ARPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
   print(ARPlot) #Printer plottet
-  print(MAPlot)
+  
+  MAPlot=subplot(nrows=2,MAPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+  print(MAPlot) #Printer plottet
+
   
   URL=paste(URL.drop,"/Plot/averageARLags.jpeg",sep="")
   export(ARPlot, file = URL)
@@ -527,6 +554,7 @@ if(PLOTTING == TRUE) {
   export(MAPlot, file = URL)
 
 }
+
   
 #Statistical Plots
 if(PLOTTING == TRUE) {
@@ -541,8 +569,19 @@ if(PLOTTING == TRUE) {
   MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MAE"), xaxis=list(title="Date"))
   RMSEPlot=layout(RMSEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean RMSE"), xaxis=list(title="Date"))
   
-  print(MAEPlot)
-  print(RMSEPlot)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
+  vectorizedOSEBXReturn=drop(coredata(OSEBX.close.return))
+  OSEBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize+1):length(vectorizedOSEBXReturn)]
+  
+  OSEBXPlot=plot_ly(data=sampleAverageRMSEPlotDataFrameList[[1]], x=~dates) %>%
+    add_trace(y = OSEBX.close.return.plotVector, name = "OSEBX Return",type='scatter',mode = 'lines')%>%
+    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+  
+  MAEPlot=subplot(nrows=2,MAEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+  print(MAEPlot) #Printer plottet
+  
+  RMSEPlot=subplot(nrows=2,RMSEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
+  print(RMSEPlot) #Printer plottet
     
   stockName=stocks[stocksIndex,1]
   URL=paste(URL.drop,"/Plot/averageMAE.jpeg",sep="")
@@ -551,6 +590,7 @@ if(PLOTTING == TRUE) {
   export(RMSEPlot, file = URL) 
   
 }
+
 # SAVE LISTS TO Rda-files
 
 URL=paste(URL.repo,"/Data/meanBuyAndHold.Rda",sep="")
