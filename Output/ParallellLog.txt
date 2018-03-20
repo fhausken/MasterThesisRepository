@@ -440,3 +440,42 @@ sjon fullført!
 2018-03-20 15:26:34		Iteration: 1/2. Stock: DNB. Sample size: 1250. Day: 46/47. Distribution: Skewed Generalized Error Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
 2018-03-20 15:26:34	Starting iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250 
 2018-03-20 15:26:35			Iteration: 1/2. Stock: DNB. Sample size: 250. Day: 6/547. Distribution: Generalized Error Distribution. Model: gjrGARCH4211. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 3/47. Distribution: Normal Distribution. Model: sGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 7/47. Distribution: Normal Distribution. Model: sGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 0/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 5/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 4/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 0/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 5/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 4/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:38		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 0/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 1/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:38		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 5/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 1/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:38			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 2/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:38		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 4/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:39		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 1/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 6/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 6/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:39		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 6/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 2/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:39		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 2/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 7/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 7/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:39			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 7/47. Did Not Converge! 
+2018-03-20 15:26:39		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 7/47. Distribution: Normal Distribution. Model: Ikke konvergert(0000). Iterasjon fullført!
+2018-03-20 15:26:40			Iteration: 1/2. Stock: DNB. Sample size: 250. Day: 5/547. Distribution: Generalized Error Distribution. Model: gjrGARCH5511. Warning i fit!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 10/47. Distribution: Normal Distribution. Model: sGARCH0000. Warning i fit!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 11/47. Distribution: Normal Distribution. Model: sGARCH0000. Warning i fit!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 13/47. Distribution: Normal Distribution. Model: sGARCH0000. Warning i fit!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 12/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 12/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:42		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 12/47. Distribution: Normal Distribution. Model: Plain Vanilla ARMA(0000). Iterasjon fullført!
+2018-03-20 15:26:42			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 3/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:43			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 3/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:43			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 3/47. Did Not Converge! 
+2018-03-20 15:26:43		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 3/47. Distribution: Normal Distribution. Model: Ikke konvergert(0000). Iterasjon fullført!
+2018-03-20 15:26:43			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 13/47. Distribution: Normal Distribution. Model: gjrGARCH0000. Warning i fit!
+2018-03-20 15:26:43			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 13/47. Distribution: Normal Distribution. Model: eGARCH0000. Warning i fit!
+2018-03-20 15:26:44			Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 13/47. Did Not Converge! 
+2018-03-20 15:26:44		Iteration: 2/2. Stock: Golden Ocean Group. Sample size: 250. Day: 13/47. Distribution: Normal Distribution. Model: Ikke konvergert(0000). Iterasjon fullført!
