@@ -566,8 +566,8 @@ if(PLOTTING == TRUE) {
     MAEPlot=add_trace(MAEPlot, y = sampleAverageMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
     StdMAEPlot=add_trace(StdMAEPlot, y = sampleAverageStdMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
   }
-  MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MAE"), xaxis=list(title="Date"))
-  StdMAEPlot=layout(StdMAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Standard Deviation of MAE"), xaxis=list(title="Date"))
+  MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean Daily Absolute Error"), xaxis=list(title="Date"))
+  StdMAEPlot=layout(StdMAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean Daily St. Dev. from MAE"), xaxis=list(title="Date"))
   
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   vectorizedOSEBXReturn=drop(coredata(OSEBX.close.return))

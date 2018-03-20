@@ -29,7 +29,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-transactionCost.variable=0.0001
+transactionCost.variable=0
 PLOTTING = TRUE
 
 
@@ -235,7 +235,7 @@ names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
 #Plotting
-PLOTTING = FALSE
+PLOTTING = T
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
