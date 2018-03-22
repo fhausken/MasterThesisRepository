@@ -29,8 +29,8 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-transactionCost.variable=0
-PLOTTING = T
+transactionCost.variable=0.0001
+PLOTTING = F
 
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
@@ -235,7 +235,7 @@ names(standardDevShortLong) = sampleSizes
 names(meanLongShort) = sampleSizes
 
 #Plotting
-PLOTTING = T
+
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]

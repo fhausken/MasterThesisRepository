@@ -29,9 +29,10 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-tradingBound=0.5 #Number of times the standard deviation
+tradingBound = 0.5 #Number of times the standard deviation
+#transactionCost.variable=0.0001
 transactionCost.variable=0.0001
-PLOTTING = TRUE
+PLOTTING = F
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
@@ -88,27 +89,27 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
       }
       
       if (sign(nextDayReturn)==long){ #Bound trade, predikerer riktig posisjon 
-        if (position==long){#Hadde predikert posisjon fra før av, slipper transaksjon
+        if (position==long){#Hadde predikert posisjon fra f?r av, slipper transaksjon
           hitVector[length(hitVector)+1]=1 #Hit
           accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)
           boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)
-        }else{#Hadde ikke predikert posisjon fra før av, må gjøre en transaksjon
+        }else{#Hadde ikke predikert posisjon fra f?r av, m? gj?re en transaksjon
           hitVector[length(hitVector)+1]=1 #Hit
           accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-transactionCost.variable
           boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
           numberOfTransactions=numberOfTransactions+1
         }
-        
+
         
       }else{ 
         if(long==0){ #Ikke bound trade, predikerer selg posisjon
-          if(position==0){ #Hadde ikke noen posisjon fra før, slipper å gjøre noe
+          if(position==0){ #Hadde ikke noen posisjon fra f?r, slipper ? gj?re noe
             #hitVector[length(hitVector)+1]=0 #Miss
             hitVector[length(hitVector)+1]=NA
             accumulatedBoundReturn=accumulatedBoundReturn+0
             boundReturnVector[length(boundReturnVector)+1] = 0
-          }else{ #Hadde posisjon fra før
-            if(position==sign(meanForecast)){ #Har posisjon fra før som samsvarer med prediksjon, hold posisjon
+          }else{ #Hadde posisjon fra f?r
+            if(position==sign(meanForecast)){ #Har posisjon fra f?r som samsvarer med prediksjon, hold posisjon
               if(position==sign(nextDayReturn)){ #Holder riktig posisjon
                 hitVector[length(hitVector)+1]=1 #Hit
                 accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)
@@ -119,7 +120,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
                 boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)
               }
               long=position
-            }else{ #Har posisjon fra før som ikke samsvarer med prediksjon, selg posisjon
+            }else{ #Har posisjon fra f?r som ikke samsvarer med prediksjon, selg posisjon
               hitVector[length(hitVector)+1]=NA
               accumulatedBoundReturn=accumulatedBoundReturn-transactionCost.variable
               boundReturnVector[length(boundReturnVector)+1] = -transactionCost.variable
@@ -129,11 +130,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           }
           
         }else{# Bound trade, predikerer feil posisjon
-          if (position==long){ #Hadde predikert posisjon fra før av, slipper transaksjon
+          if (position==long){ #Hadde predikert posisjon fra f?r av, slipper transaksjon
             hitVector[length(hitVector)+1]=0 #Miss
             accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)
             boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)
-          }else{#Hadde ikke predikert posisjon fra før av, må gjøre en transaksjon
+          }else{#Hadde ikke predikert posisjon fra f?r av, m? gj?re en transaksjon
             hitVector[length(hitVector)+1]=0 #Miss 
             accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-transactionCost.variable
             boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-transactionCost.variable
@@ -276,7 +277,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 names(sampleBoundHitRatioDataFramesList)=sampleSizes
 
 #Plotting
-PLOTTING = T
+
 if(PLOTTING == TRUE) {
   for (sampleSizesIndex in 1:length(sampleSizes)){
     sampleSize = sampleSizes[sampleSizesIndex]
