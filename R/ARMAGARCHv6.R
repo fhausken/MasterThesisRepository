@@ -10,9 +10,6 @@ library(xts)
 library(tseries)
 
 
-no_cores=detectCores() #Beholder en logisk kjerne til operativsystem operasjoner
-c1=makeCluster(no_cores)
-registerDoParallel(c1)
 
 
 URL.repo=getwd()
@@ -38,14 +35,19 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
 load(URL)
 
-sampleSizes=c(250,500,1250)
+sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=1
-MALag.max=1
+ARLag.max=5
+MALag.max=5
 
-GARCHLagOne.max=0
-GARCHLagTwo.max=0
+GARCHLagOne.max=1
+GARCHLagTwo.max=1
+
+runARCHInMean.switch=F
+archpow.switch=1
+
+timeOutCounter=15
 
 
 start_time <- Sys.time()
@@ -65,7 +67,13 @@ for (stocksIndex in 1:nrow(stocks)){
     print(paste(Sys.time(), "\t","Starting iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize," \n",sep=""))
     #individualStockResults=list()
     #for (day in 0:rollingWindowSize){
-    individualStockResults=foreach(day=0:rollingWindowSize) %dopar%{ #
+    
+    
+    no_cores=detectCores() -2 #Beholder to logisk kjerne til operativsystem operasjoner
+    c1=makeCluster(no_cores)
+    registerDoParallel(c1)
+    
+    individualStockResults=foreach(day=0:rollingWindowSize) %dopar%{ 
       library(parallel)
       library(doParallel)
       library(quantmod)
@@ -75,29 +83,60 @@ for (stocksIndex in 1:nrow(stocks)){
       library(xts)
       library(tseries)
       
+      URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
+      load(URL)
+      
+      URL=paste(URL.repo,"/Data/stocks.Rda",sep="")
+      load(URL)
+      
+      URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
+      load(URL)
+      
+      URL=paste(URL.repo,"/Data/distributions.Rda",sep="")
+      load(URL)
+      
+      URL=paste(URL.repo,"/Data/distributionsFullname.Rda",sep="")
+      load(URL)
+      
+      
       equalStartingPointdjustment=(max(sampleSizes)-sampleSize)
       individualStockReturnOffset = individualStockRetun[(1+equalStartingPointdjustment+day):(sampleSize+equalStartingPointdjustment+day)]
+      
       
       AIC.final.distribution=1000000 #tilsvarer + infinity
       bestDistributionFit.fullname="Normal Distribution"
       bestDistributionFit="norm"
       for (distributions.index in 1:length(distributions)){
         AIC=1000000
-        
+
         vectorizedReturn=drop(coredata(individualStockReturnOffset))
-        tryCatch({fit.distribution <- fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())
+        fit.distribution=tryCatch({
+          setTimeLimit(60, transient = TRUE)
+          fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())}, error=function(e) e, warning=function(w) w)
+
+        if(is(fit.distribution,"warning")){
+          setTimeLimit(transient = TRUE) #Clears time limit
+          
+        } else if(is(fit.distribution,"error")){
+          setTimeLimit(transient = TRUE) #Clears time limit
+          
+          cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)
+          
+        }else{
+          setTimeLimit(transient = TRUE) #Clears time limit
+          
+          k=length(fit.distribution$pars)
+          maxLikelihood=min(fit.distribution$values)
+          AIC=2*k+2*maxLikelihood
+        }
         
-        k=length(fit.distribution$pars)
-        maxLikelihood=min(fit.distribution$values)
-        AIC=2*k+2*maxLikelihood}) 
-        
+
         if (AIC.final.distribution>AIC){
           AIC.final.distribution=AIC
           bestDistributionFit.fullname=distributions.fullname[distributions.index]
           bestDistributionFit=distributions[distributions.index]
         }
       }
-        
       
       
       
@@ -109,7 +148,7 @@ for (stocksIndex in 1:nrow(stocks)){
         
         runARCHInMean=FALSE
         if (garchModel!= "sGARCH"){
-          runARCHInMean=TRUE
+          runARCHInMean=runARCHInMean.switch
         }
         
         for (ARLag in 0:ARLag.max){
@@ -118,29 +157,33 @@ for (stocksIndex in 1:nrow(stocks)){
               for (GARCHLagTwo in 1:GARCHLagTwo.max){
                 spec = ugarchspec(
                   variance.model=list(model=garchModel,garchOrder=c(GARCHLagOne,GARCHLagTwo)),
-                  mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T,archm=runARCHInMean, archpow=1),
+                  mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T,archm=runARCHInMean, archpow=archpow.switch),
                   distribution.model=bestDistributionFit
                 )
-                fit = tryCatch(
-                  ugarchfit(spec, individualStockReturnOffset, solver = 'hybrid'), error=function(e) e, warning=function(w) w
+                AIC=1000000
+                fit = tryCatch({
+                  setTimeLimit(timeOutCounter, transient = TRUE)
+                  ugarchfit(spec, individualStockReturnOffset, solver = 'hybrid')}, error=function(e) e, warning=function(w) w
                 )
                 
                 if(is(fit,"warning")){
+                  setTimeLimit(transient = TRUE) #Clears time limit
                   
-                  AIC=1000000
-                  cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,ARLag,MALag,GARCHLagOne,GARCHLagTwo,". Warning i fit!","\n",sep=""), file=URL.logging, append=TRUE)
+                  #cat(paste(Sys.time(), "\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Warning i fit!","\n",sep=""), file=URL.logging, append=TRUE)
       
                 } else if(is(fit,"error")){
+                  setTimeLimit(transient = TRUE) #Clears time limit
                   
-                  AIC=1000000
-                  cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i fit!","\n",sep=""), file=URL.logging, append=TRUE)
+                  cat(paste(Sys.time(), "\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i ARMA GARCH fit!","\n",sep=""), file=URL.logging, append=TRUE)
                   
                 }else{
+                  setTimeLimit(transient = TRUE) #Clears time limit
                   
-                  AIC=infocriteria(fit)[1]
+                  tryCatch({AIC=infocriteria(fit)[1]
                   forecast=ugarchforecast(fit,n.ahead=1)
                   forecastOneDayAhead.mean=drop(forecast@forecast$seriesFor) #Drop fjerner kolonne og radnavn}
-                  forecastOneDayAhead.volatility=drop(forecast@forecast$sigmaFor) #Drop fjerner kolonne og radnavn}
+                  forecastOneDayAhead.volatility=drop(forecast@forecast$sigmaFor)}, error=function(e) {
+                    cat(paste(Sys.time(), "\t\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast variable fetch!","\n",sep=""), file=URL.logging, append=TRUE)}, warning=function(w) w) #Drop fjerner kolonne og radnavn}
                      
                 }
                 
@@ -170,12 +213,12 @@ for (stocksIndex in 1:nrow(stocks)){
       #print(fit)
       
       if (AIC.final==1000000){
-        cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize, ". Did Not Converge!"," \n",sep=""), file=URL.logging, append=TRUE)
+        cat(paste(Sys.time(), "\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize, ". Did Not Converge!"," \n",sep=""), file=URL.logging, append=TRUE)
         cat(paste(Sys.time(), "\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1],". Sample size: ",sampleSize ,". Day: ",day,"/" , rollingWindowSize, ". Did Not Converge!"," \n",sep=""), file=URL.kritisk, append=TRUE)
         AIC.final=1000000
         forecastOneDayAhead.mean.final=0
         forecastOneDayAhead.volatility.final=0
-        garchModel.final="Ikke konvergert"
+        garchModel.final="Ikke Konvergert"
         ARLag.final=0
         MALag.final=0
         GARCHLagOne.final=0
@@ -199,6 +242,8 @@ for (stocksIndex in 1:nrow(stocks)){
       return(results)
       
     }
+    stopCluster(c1)
+    
     names(individualStockResults)=index(individualStockRetun)[max(sampleSizes):nrow(individualStockRetun)]
     sampleSizeResults[[length(sampleSizeResults)+1]]=individualStockResults
     
@@ -224,5 +269,3 @@ save(garchModels,file=URL)
 end_time <- Sys.time()
 run_time=end_time-start_time
 cat(paste("\nKjoreretid:",run_time, "\n"), file=URL.logging, append=TRUE)
-
-stopCluster(c1)

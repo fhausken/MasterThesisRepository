@@ -32,10 +32,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 load(URL)
 
-sampleSizes=c(1296,1298)#,500,750,1000)
+sampleSizes=c(125,250,500)#,500,750,1000)
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=3
-MALag.max=3
+ARLag.max=2
+MALag.max=2
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -49,8 +49,8 @@ for (stocksIndex in 1:nrow(stocks)){
   individualStockRetun=stockReturns[,stocksIndex]
   individualStockRetunTotalDays=length(individualStockRetun)
   
-  stockDistribution=distributionsFitResults[stocksIndex,12][[1]] 
-  stockDistribution.fullname=distributionsFitResults[stocksIndex,11][[1]] 
+  stockDistribution=levels(distributionsFitResults[stocksIndex,12][[1]]) 
+  stockDistribution.fullname=levels(distributionsFitResults[stocksIndex,11][[1]]) 
   
   sampleSizeResults=list()
   for (sampleSizesIndex in 1:length(sampleSizes)){

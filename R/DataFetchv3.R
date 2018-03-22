@@ -20,7 +20,7 @@ from.date <- as.Date("01/02/13", format="%m/%d/%y")
 # SET TO DATE
 to.date <- as.Date("03/01/18", format="%m/%d/%y")
 
-consecutiveZerosCapClose=20
+consecutiveZerosCapClose=10
 
 # VOLUME CONSTRAINTS
 XCapVolume=0
