@@ -38,8 +38,8 @@ load(URL)
 sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=5
-MALag.max=5
+ARLag.max=1
+MALag.max=1
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -47,7 +47,7 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=F
 archpow.switch=1
 
-timeOutCounter=15
+timeOutCounter=1
 
 
 start_time <- Sys.time()
@@ -112,7 +112,9 @@ for (stocksIndex in 1:nrow(stocks)){
         vectorizedReturn=drop(coredata(individualStockReturnOffset))
         fit.distribution=tryCatch({
           setTimeLimit(60, transient = TRUE)
-          fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())}, error=function(e) e, warning=function(w) w)
+          fitDistribution=fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())
+          setTimeLimit(transient = TRUE) #Clears time limit
+          fitDistribution}, error=function(e) e, warning=function(w) w)
 
         if(is(fit.distribution,"warning")){
           setTimeLimit(transient = TRUE) #Clears time limit
@@ -123,7 +125,6 @@ for (stocksIndex in 1:nrow(stocks)){
           cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)
           
         }else{
-          setTimeLimit(transient = TRUE) #Clears time limit
           
           k=length(fit.distribution$pars)
           maxLikelihood=min(fit.distribution$values)
@@ -163,21 +164,24 @@ for (stocksIndex in 1:nrow(stocks)){
                 AIC=1000000
                 fit = tryCatch({
                   setTimeLimit(timeOutCounter, transient = TRUE)
-                  ugarchfit(spec, individualStockReturnOffset, solver = 'hybrid')}, error=function(e) e, warning=function(w) w
+                  fitGARCH=ugarchfit(spec, individualStockReturnOffset, solver = 'hybrid')
+                  setTimeLimit(transient = TRUE) #Clears time limit
+                  fitGARCH}, error=function(e) e, warning=function(w) w
                 )
                 
                 if(is(fit,"warning")){
+                  
                   setTimeLimit(transient = TRUE) #Clears time limit
                   
                   #cat(paste(Sys.time(), "\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Warning i fit!","\n",sep=""), file=URL.logging, append=TRUE)
       
                 } else if(is(fit,"error")){
+                  
                   setTimeLimit(transient = TRUE) #Clears time limit
                   
                   cat(paste(Sys.time(), "\t\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i ARMA GARCH fit!","\n",sep=""), file=URL.logging, append=TRUE)
                   
                 }else{
-                  setTimeLimit(transient = TRUE) #Clears time limit
                   
                   tryCatch({AIC=infocriteria(fit)[1]
                   forecast=ugarchforecast(fit,n.ahead=1)

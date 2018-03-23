@@ -3,6 +3,7 @@ rm(list=ls()) #Clears environment
 rfunction1 <- function(){
   setTimeLimit(3, transient = T)
   pikk=2
+  setTimeLimit(transient = T)
 }
 
 rfunction2 <- function(){
@@ -10,6 +11,7 @@ rfunction2 <- function(){
   repeat{
     x <- rnorm(100);
   }
+  setTimeLimit(transient = T)
 }
 
 
@@ -28,7 +30,6 @@ for (i in 1:10){
     message(fit)
     
   }else{
-    setTimeLimit()
     print("no error")
 
   }
