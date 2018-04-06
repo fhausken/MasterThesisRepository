@@ -312,6 +312,3 @@ save(sampleAlphaDataFramesList,file=URL)
 # Number of transactions
 URL=paste(URL.repo,"/Data/sampleShortLongNumberOfTransactionsDataFramesList.Rda",sep="")
 save(sampleShortLongNumberOfTransactionsDataFramesList,file=URL)
-
-
-
