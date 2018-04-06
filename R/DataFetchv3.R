@@ -11,11 +11,11 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 
 
-stocks=stocks[c(5,8),] #For testing. Et utvalg av aksjer.
+#stocks=stocks[c(5,8),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
 
 # SET FROM DATE
-from.date <- as.Date("01/02/13", format="%m/%d/%y")
+from.date <- as.Date("01/04/10", format="%m/%d/%y")
 
 # SET TO DATE
 to.date <- as.Date("03/01/18", format="%m/%d/%y")

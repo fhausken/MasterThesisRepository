@@ -47,7 +47,7 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=T
 archpow.switch=1
 
-timeOutCounter=15
+timeOutCounter=20
 
 
 start_time <- Sys.time()

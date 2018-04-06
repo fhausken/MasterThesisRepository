@@ -1,10 +1,3 @@
 Output:
 
-2018-03-22 12:31:00	Starting iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125 
-2018-03-22 12:31:18		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 1/47. Distribution: Skewed Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-22 12:31:18		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 0/47. Distribution: Skewed Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-22 12:31:20		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 4/47. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-22 12:31:20		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 3/47. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-22 12:31:20		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 2/47. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
-2018-03-22 12:31:25		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 7/47. Distribution: Skewed Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
-2018-03-22 12:31:25		Iteration: 1/1. Stock: Golden Ocean Group. Sample size: 125. Day: 6/47. Distribution: Skewed Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-04 19:29:17	Starting iteration: 1/19. Stock: Aker Solutions. Sample size: 125 
