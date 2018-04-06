@@ -5,9 +5,6 @@ library(rugarch)
 library(psych)
 library(quantmod)
 library(xtable)
-library(het.test)
-library(lmtest)
-library(vars)
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -37,6 +34,10 @@ load(URL)
 
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 load(URL)
+
+#Slice Rows in Stock Returns
+
+stockReturns=stockReturns[(biggestSampleSize+1):nrow(stockReturns),1:ncol(stockReturns)]
 
 # CALCULATE MEAN FUNCTION
 getColMeans <- function(dataFrame) {
@@ -75,6 +76,7 @@ numberOfStocks=nrow(stocks)
 for (stock in 1:numberOfStocks){
   vectorizedReturn=drop(coredata(stockReturns[,stock]))
   descriptiveStatistics=summary(vectorizedReturn)
+  results[length(results)+1]=length(vectorizedReturn)
   results[length(results)+1]=min(vectorizedReturn)
   results[length(results)+1]=descriptiveStatistics[2] # 1. kvantil
   results[length(results)+1]=median(vectorizedReturn)
@@ -88,8 +90,8 @@ for (stock in 1:numberOfStocks){
 
 }
 
-descriptiveStatisticsResults=data.frame(stocks[,1],matrix(results, ncol=10, byrow=TRUE))
-names(descriptiveStatisticsResults)=c("Stocks","Min","1st Quantile", "Median", "$\\boldsymbol{\\mu}$", "$\\boldsymbol{\\sigma}$", "$\\boldsymbol{\\sigma^2}$", "3rd Quantile", "Max", "Skew", "Kurtosis" )
+descriptiveStatisticsResults=data.frame(stocks[,1],matrix(results, ncol=11, byrow=TRUE))
+names(descriptiveStatisticsResults)=c("Stocks","n","Min","1st Quantile", "Median", "$\\boldsymbol{\\mu}$", "$\\boldsymbol{\\sigma}$", "$\\boldsymbol{\\sigma^2}$", "3rd Quantile", "Max", "Skew", "Kurtosis" )
 
 # CALCULATE MEAN
 descriptiveStatisticsResults.average = as.numeric(as.vector(getColMeans(descriptiveStatisticsResults)[1,]))
