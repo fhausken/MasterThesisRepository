@@ -1,4 +1,6 @@
 *.Rhistory
 *.txt
 *.jpeg
-\Data\*
+/Data/*
+Data/*
+
