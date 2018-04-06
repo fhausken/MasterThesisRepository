@@ -25,6 +25,9 @@ if (grepl("Fredrik", URL.repo)){
   URL.drop="Does not find"
 }
 
+#Input
+biggestSampleSize=500
+
 # RETRIEVE DATA SETS 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
 load(URL)
