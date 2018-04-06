@@ -3,4 +3,5 @@
 *.jpeg
 /Data/*
 Data/*
-
+\Data\*
+Data\*
