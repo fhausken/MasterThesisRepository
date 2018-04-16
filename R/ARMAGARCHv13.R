@@ -41,6 +41,8 @@ load(URL)
 # URL=paste(URL.repo,"/Data/data.desc",sep="")
 # remove=file.remove(URL)
 
+debugging=TRUE
+
 sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
@@ -115,6 +117,11 @@ for (stocksIndex in 1:nrow(stocks)){
           URL=paste(URL.repo,"/Data/data.desc",sep="")
           daysLeft=attach.big.matrix(URL)
           
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_1",sep="")
+            save.image(file=URL)
+          }
+          
           equalStartingPointdjustment=(max(sampleSizes)-sampleSize)
           individualStockReturnOffset = individualStockRetun[(1+equalStartingPointdjustment+day):(sampleSize+equalStartingPointdjustment+day)]
           
@@ -156,7 +163,10 @@ for (stocksIndex in 1:nrow(stocks)){
             }
           }
           
-          
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_2",sep="")
+            save.image(file=URL)
+          }
           
           AIC.final=1000000 # tilsvarer + infinity
           
@@ -178,6 +188,10 @@ for (stocksIndex in 1:nrow(stocks)){
                       mean.model=list(armaOrder=c(ARLag, MALag), include.mean=T,archm=runARCHInMean, archpow=archpow.switch),
                       distribution.model=bestDistributionFit
                     )
+                    if (debugging==TRUE){
+                      URL=paste(URL.repo,"/Debugging/",day,"_3",sep="")
+                      save.image(file=URL)
+                    }
                     AIC=1000000
                     fit = tryCatch({
                       fitGARCH= withTimeout({ugarchfit(spec, individualStockReturnOffset, solver = 'hybrid')},timeout=timeOutCounter,onTimeout="error")}, error=function(e) e, warning=function(w) w)
@@ -221,6 +235,8 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                     }
                     
+                    }
+                    
                     if (AIC<AIC.final){
                       AIC.final=AIC
                       forecastOneDayAhead.mean.final=forecastOneDayAhead.mean
@@ -233,6 +249,9 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                       
                     }
+                    if (debugging==TRUE){
+                      URL=paste(URL.repo,"/Debugging/",day,"_4",sep="")
+                      save.image(file=URL)
                     
                   } 
                   
@@ -281,7 +300,10 @@ for (stocksIndex in 1:nrow(stocks)){
           writeFile=tryCatch({withTimeout({cat(daysLeftAsVector, file=URL.progress, append=TRUE) },timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
           
           
-          
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_5",sep="")
+            save.image(file=URL)
+          }
           
         },timeout = dayTimeOutCounter,elapsed=dayTimeOutCounter,onTimeout = "error"), error=function(e) e)
           
@@ -303,6 +325,7 @@ for (stocksIndex in 1:nrow(stocks)){
         }
         
       }
+      
       return(results)
     }
     
