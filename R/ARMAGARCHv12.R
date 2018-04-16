@@ -44,8 +44,8 @@ load(URL)
 sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
-ARLag.max=6
-MALag.max=6
+ARLag.max=1
+MALag.max=1
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -53,7 +53,9 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=F
 archpow.switch=1
 
-timeOutCounter=4
+timeOutCounter=1
+forecastTimeOut=10
+distributionFitTimOut=10
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*2)
 
 start_time <- Sys.time()
@@ -121,10 +123,9 @@ for (stocksIndex in 1:nrow(stocks)){
           bestDistributionFit="norm"
           for (distributions.index in 1:length(distributions)){
             AIC=1000000
-            
             vectorizedReturn=drop(coredata(individualStockReturnOffset))
             fit.distribution=tryCatch({
-              fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = 60,elapsed=60,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+              fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
             
             if(is(fit.distribution,"warning")){
     
@@ -197,11 +198,19 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                       
                     } else{
-                      tryCatch({
-                      withTimeout({forecast = ugarchforecast(fit, n.ahead = 1)},timeout = 10,elapsed=10,onTimeout = "error")
+                      forecastFitting=tryCatch({
+                      withTimeout({forecast = ugarchforecast(fit, n.ahead = 1)},timeout = forecastTimeOut,elapsed=forecastTimeOut,onTimeout = "error")
                       AIC = infocriteria(fit)[1]
                       forecastOneDayAhead.mean = drop(fitted(forecast))
-                      forecastOneDayAhead.volatility = drop(sigma(forecast))},warning=function(w) w,error=function(e) e)
+                      forecastOneDayAhead.volatility = drop(sigma(forecast))},warning=function(w) w,error=function(e) {
+                        if (class(forecastFitting)[1]=="TimeoutException"){
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Timeout i forecast fitting!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Timeout i forecast fitting!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                        }else{
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast fitting!!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast fitting!!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                        }
+                      })
                       
                     }
                     
