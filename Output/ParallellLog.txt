@@ -10,3 +10,14 @@ Output:
 2018-04-16 16:43:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 0/1573. Distribution: Normal Distribution. Model: gjrGARCH(1511). Timeout i ARMA GARCH fit!
 2018-04-16 16:43:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 2/1573. Distribution: Normal Distribution. Model: sGARCH(5511). Timeout i ARMA GARCH fit!
 2018-04-16 16:43:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 5/1573. Distribution: Normal Distribution. Model: sGARCH(5411). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 4/1573. Distribution: Normal Distribution. Model: gjrGARCH(1611). Timeout i ARMA GARCH fit!
+2018-04-16 16:43:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 0/1573. Distribution: Normal Distribution. Model: gjrGARCH(1611). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 5/1573. Distribution: Normal Distribution. Model: sGARCH(6311). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 2/1573. Distribution: Normal Distribution. Model: gjrGARCH(0611). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: gjrGARCH(0311). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: gjrGARCH(0411). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: gjrGARCH(0511). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: gjrGARCH(0611). Timeout i ARMA GARCH fit!
+2018-04-16 16:44:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 2/1573. Distribution: Normal Distribution. Model: gjrGARCH(1611). Timeout i ARMA GARCH fit!
+2018-04-16 16:45:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 3/1573. Distribution: Normal Distribution. Model: gjrGARCH(1611). Timeout i ARMA GARCH fit!
+2018-04-16 16:45:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 3/1573. Distribution: Normal Distribution. Model: gjrGARCH(2111). Timeout i ARMA GARCH fit!
