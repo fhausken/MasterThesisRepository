@@ -5,6 +5,9 @@ library(rugarch)
 library(psych)
 library(quantmod)
 library(xtable)
+library(plotly)
+library(parallel)
+library(doParallel)
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -24,6 +27,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #Input
 biggestSampleSize=500
+PLOTTING=T
 
 # RETRIEVE DATA SETS 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
@@ -35,9 +39,14 @@ load(URL)
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 load(URL)
 
+URL=paste(URL.repo,"/Data/OBXReturn.Rda",sep="")
+load(URL)
+
+
 #Slice Rows in Stock Returns
 
 stockReturns=stockReturns[(biggestSampleSize+1):nrow(stockReturns),1:ncol(stockReturns)]
+OBX.close.return=OBX.close.return[(biggestSampleSize+1):nrow(OBX.close.return)]
 
 # CALCULATE MEAN FUNCTION
 getColMeans <- function(dataFrame) {
@@ -176,6 +185,127 @@ names(distributionsFitResults.average)=c("Normal Distribution","Generalized Erro
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 save(distributionsFitResults,file=URL)
 
+#Plotting
+
+
+if (PLOTTING==T){
+  
+  no_cores=detectCores() -2 #Beholder to logisk kjerne til operativsystem operasjoner
+  c1=makeCluster(no_cores)
+  registerDoParallel(c1)
+  
+  individualStockPlot=foreach(stock=1:numberOfStocks) %dopar%{
+    library(tseries)
+    library(rugarch)
+    library(psych)
+    library(quantmod)
+    library(xtable)
+    library(plotly)
+  
+    returnPlot=plot_ly(x=index(stockReturns),y=drop(coredata(stockReturns[,stock])),type="scatter",mode="lines")
+    returnPlot=layout(returnPlot,yaxis=list(title="Return"), xaxis=list(title="Date"))
+    
+    stockName=stocks[stock,1]
+    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockName,"_ReturnPlot.jpeg",sep="")
+    export(returnPlot, file = URL)
+    
+    print(returnPlot)
+    
+    
+    
+    ACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 40)
+    confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+    plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
+    negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
+    
+    
+    ACF=plot_ly(x=drop(ACF$lag)[-1]) %>%
+      add_trace(y =drop(ACF$acf)[-1],type="bar")%>%
+      add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
+    
+    URL=paste(URL.drop,"/Plot/ACF/",stockName,"_ACF.jpeg",sep="")
+    export(ACF, file = URL)
+    
+    print(ACF)
+    
+    ACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 40)
+    confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+    plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
+    negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
+    
+    
+    squaredACF=plot_ly(x=drop(ACF$lag)[-1]) %>%
+      add_trace(y =drop(ACF$acf)[-1],type="bar")%>%
+      add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
+    
+    URL=paste(URL.drop,"/Plot/ACF/",stockName,"_SquaredACF.jpeg",sep="")
+    export(squaredACF, file = URL)
+    
+    print(squaredACF)
+    
+    
+    
+  }
+  
+  stopCluster(c1)
+  
+  returnPlot=plot_ly(x=index(OBX.close.return),y=drop(coredata(OBX.close.return)),type="scatter",mode="lines")
+  returnPlot=layout(returnPlot,yaxis=list(title="OBX Total Return Index Return"), xaxis=list(title="Date"))
+
+  URL=paste(URL.drop,"/Plot/ConstituentsReturn/OBXTotalReturnIndex_ReturnPlot.jpeg",sep="")
+  export(returnPlot, file = URL)
+  
+  print(returnPlot)
+  
+  returnPlot=plot_ly(x=index(OBX.close.return),y=(drop(coredata(OBX.close.return)))^2,type="scatter",mode="lines")
+  returnPlot=layout(returnPlot,yaxis=list(title="OBX Total Return Index Squared Return"), xaxis=list(title="Date"))
+  
+  URL=paste(URL.drop,"/Plot/ConstituentsReturn/OBXTotalReturnIndex_SquaredReturnPlot.jpeg",sep="")
+  export(returnPlot, file = URL)
+  
+  print(returnPlot)
+  
+  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 40)
+  confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+  plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
+  negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
+  
+  
+  ACF=plot_ly(x=drop(ACF$lag)[-1]) %>%
+    add_trace(y =drop(ACF$acf)[-1],type="bar")%>%
+    add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
+  
+  URL=paste(URL.drop,"/Plot/ACF/OBXTotalReturnIndex_ACF.jpeg",sep="")
+  export(ACF, file = URL)
+  
+  print(ACF)
+  
+  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 40)
+  confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+  plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
+  negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
+  
+  
+  squaredACF=plot_ly(x=drop(ACF$lag)[-1]) %>%
+    add_trace(y =drop(ACF$acf)[-1],type="bar")%>%
+    add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
+  
+  URL=paste(URL.drop,"/Plot/ACF/OBXTotalReturnIndex_SquaredACF.jpeg",sep="")
+  export(squaredACF, file = URL)
+  
+  print(squaredACF)
+  
+  
+}
+
 # TABLES-TO-LATEX
 bold <- function(x){
   paste0('{\\bfseries ', x, '}')
@@ -254,7 +384,7 @@ add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/descriptiveStatisticsResults.txt",sep="")
-print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Descriptive statistics for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Descriptive Statistics for OBX Constituents",label="DescriptiveStats"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 
 # PHILLIP PERRON TEST
 x = phillipPerronResults
@@ -270,7 +400,7 @@ add.to.row$pos[[2]] = nrow(phillipPerronResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
-print(xtable(phillipPerronResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Phillip Perron test for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(phillipPerronResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Phillips-Perron Test for OBX Constituents", label="StationarityTest"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
@@ -287,4 +417,4 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/distributionFitResults.txt", sep="")
 names(x)=c("Stock", "NORM","GED","STD","SNORM","SGED","SSTD","GHYP","NIG","GHST","Best Fit")
-print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "AIC results for various distributions for OBX stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "AIC Results for Various Distributions for OBX Constituents", label="DistributionFits"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)

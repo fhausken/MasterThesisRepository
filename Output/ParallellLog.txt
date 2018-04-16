@@ -1,3 +1,1153 @@
 Output:
 
-2018-04-04 19:29:17	Starting iteration: 1/19. Stock: Aker Solutions. Sample size: 125 
+2018-04-16 15:28:16	Starting iteration: 1/18. Stock: DNB. Sample size: 125 
+2018-04-16 15:28:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 709/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:28:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 712/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:28:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 707/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:28:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 0/1573. Distribution: Normal Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 5/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 4/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 2/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:28:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 1/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 5/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:29:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 2/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:29:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 3/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:29:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 6/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 6/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 4/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:29:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 0/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:29:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 9/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 710/1573. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 9/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 8/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 10/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 11/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 7/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 10/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 10/1573. Distribution: Normal Distribution. Model: gjrGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 10/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 8/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 12/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 6/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:29:24				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 11/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 11/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 10/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:29:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 13/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 8/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:29:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 14/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 12/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 12/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 9/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:29:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 16/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 14/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 17/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 14/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 14/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 15/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 13/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 13/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 15/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 16/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 16/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 18/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 17/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 19/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 21/1573. Distribution: Normal Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 18/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 18/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 17/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 17/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:29:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 20/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 22/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 22/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 24/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 23/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:29:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 20/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 23/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 24/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 25/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 25/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 22/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:30:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 21/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:30:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 26/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 23/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 28/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 26/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 27/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 19/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 25/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 28/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 28/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 29/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 30/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 27/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:20				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 30/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 28/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:20				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 31/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 29/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 31/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 29/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:23				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 31/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:23				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 30/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:30:24				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 29/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 29/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 27/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 26/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 30/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 30/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:26				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 32/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 34/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 32/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 33/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 33/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 36/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 33/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 33/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 34/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 34/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:30:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 35/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:30:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 36/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:30:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 35/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 38/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 35/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:30:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 38/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 37/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 37/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 38/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 41/1573. Distribution: Normal Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 37/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:30:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 39/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 40/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 41/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 39/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:30:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 40/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:30:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 39/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:30:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 31/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:30:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 41/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 41/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 41/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:31:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 42/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 47/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:31:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 44/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 42/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 43/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 44/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:31:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 43/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 43/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 47/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 44/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 44/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 44/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:31:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 45/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:31:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 51/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 51/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 50/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:31:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 49/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:31:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 47/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 46/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 48/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 54/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 53/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 55/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 51/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 57/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 56/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 52/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 56/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 53/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:31:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 58/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 54/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:31:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 58/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 58/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 59/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 60/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:31:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 55/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 56/1573. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 59/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 59/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 60/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 57/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:32:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 62/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 58/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:32:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 61/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 62/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 64/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 63/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 65/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 64/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 63/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:32:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 68/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Error i ARMA GARCH fit!
+2018-04-16 15:32:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 69/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 71/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 67/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 66/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:32:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 68/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 74/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 69/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:32:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 74/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 74/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:32:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 75/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:33:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 71/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 73/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:33:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 74/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 78/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:33:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 78/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:33:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 70/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:33:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 75/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:33:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 72/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 81/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:33:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 78/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 77/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 76/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 79/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:33:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 80/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:33:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 82/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:33:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 84/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:34:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 86/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:34:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 83/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:34:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 81/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:34:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 89/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:34:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 87/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:34:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 90/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:34:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 89/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:34:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 88/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:34:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 90/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:34:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 92/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:34:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 91/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:34:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 93/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:34:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 94/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:34:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 95/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:34:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 100/1573. Distribution: Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:34:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 100/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:34:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 97/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:34:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 99/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:34:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 100/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:34:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 98/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:34:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 100/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:34:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 101/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:35:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 105/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 103/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 85/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 102/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:35:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 107/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 105/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 104/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 107/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:35:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 106/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:35:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 110/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 110/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 108/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 113/1573. Distribution: Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:35:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 112/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 109/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 113/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 112/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 113/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 111/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 110/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 112/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 114/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 115/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:35:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 121/1573. Distribution: Student Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:35:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 119/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:35:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 116/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:35:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 121/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:35:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 118/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:35:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 120/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:35:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 117/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 126/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:36:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 122/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 123/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 124/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 127/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:36:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 129/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:36:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 128/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:36:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 119/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:36:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 130/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 131/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 132/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:36:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 133/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:36:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 134/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:36:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 139/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:37:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 139/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 135/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:37:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 137/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 138/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 136/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 140/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:37:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 135/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:37:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 140/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 141/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 143/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:37:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 144/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 125/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:37:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 145/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 146/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:37:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 149/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Error i ARMA GARCH fit!
+2018-04-16 15:37:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 150/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:37:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 147/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:37:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 148/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:37:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 142/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 150/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:37:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 149/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:37:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 151/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:37:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 152/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:38:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 156/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 153/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:38:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 155/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 157/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:38:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 158/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 160/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 162/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 163/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:38:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 159/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:20				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 164/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 161/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 165/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 165/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 160/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:38:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 162/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:38:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 166/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 166/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 167/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 166/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 163/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:38:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 167/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 167/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 168/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 168/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 168/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:38:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 165/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:38:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 154/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 164/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 169/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 170/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 169/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 171/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 168/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:39:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 172/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 167/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 166/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 173/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 173/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 174/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 171/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 175/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 169/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:39:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 176/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Error i ARMA GARCH fit!
+2018-04-16 15:39:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 172/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 176/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 174/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:39:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 177/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 177/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:39:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 170/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:39:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 178/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 178/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 173/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:39:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 179/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 180/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 180/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:39:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 180/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 175/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 181/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 176/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:40:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 180/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 183/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 183/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 182/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 179/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:40:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 177/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:40:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 184/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 184/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 185/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 184/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 178/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 181/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:40:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 185/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 182/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 187/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 188/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 189/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 183/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:40:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 189/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 190/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 190/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 190/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 187/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:40:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 184/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:40:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 191/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 191/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:40:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 192/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 188/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:41:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 190/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:41:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 193/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 189/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:41:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 194/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 195/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 194/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:41:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 186/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:41:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 191/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:41:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 192/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:41:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 198/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 199/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 199/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 193/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:41:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 200/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 196/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:41:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 201/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 195/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:41:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 201/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 197/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:41:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 201/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:41:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 202/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:41:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 202/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:41:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 203/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 200/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 198/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 204/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 204/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 204/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 199/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:42:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 205/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 201/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 204/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:42:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 205/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 202/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:42:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 206/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 207/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:17				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 207/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:42:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 203/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 206/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 209/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 209/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 210/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 208/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 207/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 204/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 15:42:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 211/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 213/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 213/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 211/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 213/1573. Distribution: Normal Distribution. Model: gjrGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 205/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 209/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:42:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 211/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:42:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 214/1573. Distribution: Normal Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:42:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 214/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 214/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 215/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:42:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 212/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:42:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 215/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 216/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 215/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 213/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:43:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 215/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 215/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:43:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 217/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 217/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 218/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 216/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 218/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 217/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 216/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 219/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 217/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 217/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 219/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 216/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 218/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 219/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 220/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 221/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 220/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 221/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:23				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 220/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:23				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 222/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 222/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 210/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 220/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:27				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 221/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 214/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 221/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 224/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 225/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 223/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 222/1573. Distribution: Normal Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:43:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 227/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 229/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 224/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 225/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 224/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 226/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 225/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 226/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:43:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 227/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 228/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 224/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:43:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 229/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 226/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:43:48				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 232/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 231/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 229/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 228/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:43:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 231/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 234/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 233/1573. Distribution: Normal Distribution. Model: gjrGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 234/1573. Distribution: Normal Distribution. Model: gjrGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:43:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 230/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:43:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 231/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:43:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 232/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 233/1573. Distribution: Normal Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 235/1573. Distribution: Normal Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 234/1573. Distribution: Normal Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:44:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 236/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 238/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:44:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 237/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:44:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 240/1573. Distribution: Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:44:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 239/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:44:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 245/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:44:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 241/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:44:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 243/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:44:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 248/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:44:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 244/1573. Distribution: Student Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 15:44:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 246/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 245/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:44:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 251/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:44:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 247/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:44:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 248/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:44:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 249/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:44:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 253/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:44:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 251/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:44:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 252/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:45:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 253/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:45:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 254/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 255/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:45:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 250/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 242/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 256/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:45:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 258/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:45:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 262/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 259/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 263/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 257/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:45:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 264/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 264/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 260/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:45:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 265/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 266/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 262/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:45:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 261/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 266/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:45:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 265/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:45:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 267/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:45:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 269/1573. Distribution: Student Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:46:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 263/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:46:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 269/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:46:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 264/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 270/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:46:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 267/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 268/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:46:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 271/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 274/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:46:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 269/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 272/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:46:33		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 273/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:46:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 276/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:46:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 277/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 275/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:46:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 278/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:46:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 279/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 280/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:46:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 281/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:46:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 282/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 283/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 288/1573. Distribution: Student Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:47:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 274/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 284/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:47:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 285/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 286/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 287/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 288/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 291/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 289/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:47:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 290/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 292/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 296/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 295/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 294/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 297/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:47:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 293/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:47:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 298/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 300/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 301/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:47:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 303/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:47:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 299/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:47:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 302/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 304/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 303/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 307/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 308/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:48:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 306/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:48:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 309/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 308/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:48:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 305/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 311/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:48:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 314/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:48:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 310/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 313/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 317/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:48:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 312/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 315/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 316/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:48:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 317/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 318/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:48:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 322/1573. Distribution: Student Distribution. Model: sGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:48:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 324/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:48:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 319/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:49:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 320/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:49:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 323/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:49:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 321/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:49:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 323/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:49:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 327/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:49:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 324/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 322/1573. Distribution: Student Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 15:49:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 325/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 326/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:20				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 329/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:49:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 330/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 328/1573. Distribution: Student Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 329/1573. Distribution: Student Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 15:49:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 334/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:49:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 331/1573. Distribution: Student Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 15:49:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 334/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:49:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 332/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 334/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 327/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 333/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 336/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 335/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:49:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 337/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:50:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 338/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:50:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 343/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:50:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 341/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:50:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 339/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:50:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 342/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:50:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 343/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:50:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 341/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:50:27				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 347/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:50:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 347/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:50:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 344/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:50:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 347/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:50:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 349/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:50:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 346/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:50:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 348/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:50:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 351/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:51:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 349/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:51:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 350/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:51:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 352/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:51:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 345/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:51:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 340/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:51:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 357/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 356/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 358/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 353/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:51:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 356/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:51:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 358/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 359/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 354/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:51:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 360/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 359/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:51:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 355/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:51:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 360/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:51:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 361/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 362/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 363/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:51:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 364/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 362/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 364/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 366/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 366/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 361/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 358/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:52:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 367/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 367/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 363/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 367/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:52:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 368/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:52:33				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 369/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 369/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 365/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 367/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 371/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:52:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 366/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:52:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 368/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 357/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 15:53:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 369/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:17				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 375/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:53:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 370/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:53:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 374/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:53:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 373/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:53:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 372/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 376/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 378/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:53:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 377/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 379/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 382/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:53:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 371/1573. Distribution: Generalized Hyperbolic Skew Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 380/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 384/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:53:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 381/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 375/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:53:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 383/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 382/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 384/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 385/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 386/1573. Distribution: Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:54:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 390/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 387/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 390/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 390/1573. Distribution: Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:54:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 388/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:54:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 389/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 391/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:54:30		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 392/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:54:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 393/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:54:33				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 395/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 395/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 397/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 394/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:54:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 397/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 398/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:45				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 402/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 403/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 401/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 400/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 401/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 401/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:54:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 403/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:54:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 403/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 403/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 402/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 399/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 406/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 404/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 405/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 396/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:17				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 409/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 405/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:17				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 410/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 406/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 407/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 409/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 408/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 409/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 411/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 413/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 410/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 412/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 411/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 416/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 415/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 413/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 418/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 415/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:55:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 419/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:49				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 420/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:55:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 420/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:55:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 414/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 416/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:55:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 418/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 419/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:56:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 420/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 424/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:56:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 419/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:56:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 417/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 422/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 423/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:56:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 421/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:56:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 425/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 424/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:56:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 426/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 427/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:56:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 428/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:56:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 429/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:56:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 431/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:56:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 430/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:56:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 432/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:56:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 434/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 433/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:57:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 436/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 440/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:57:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 435/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:57:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 438/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 440/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:57:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 440/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:57:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 439/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:24				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 443/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:57:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 441/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 437/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 446/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:57:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 443/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:57:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 442/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 15:57:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 448/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 15:57:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 444/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 445/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 450/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:57:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 447/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 446/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 448/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:57:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 449/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 450/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 453/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 451/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 452/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 453/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 453/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 454/1573. Distribution: Student Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:58:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 455/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 454/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 459/1573. Distribution: Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 454/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 459/1573. Distribution: Student Distribution. Model: sGARCH(1011). Error i ARMA GARCH fit!
+2018-04-16 15:58:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 455/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 456/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:23				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 457/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:24				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 457/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 461/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 457/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 459/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:27				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 460/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 457/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 460/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 460/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 461/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 465/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 458/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 464/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 463/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 463/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 463/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 464/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 458/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 461/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 15:58:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 463/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:58:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 465/1573. Distribution: Student Distribution. Model: eGARCH(1011). Error i ARMA GARCH fit!
+2018-04-16 15:58:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 465/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 462/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:58:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 466/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 468/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:58:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 466/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:58:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 467/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 470/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 468/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 467/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 467/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 467/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:59:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 470/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 469/1573. Distribution: Student Distribution. Model: eGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 15:59:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 469/1573. Distribution: Student Distribution. Model: eGARCH(1011). Error i ARMA GARCH fit!
+2018-04-16 15:59:06		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 470/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 474/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:11				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 471/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 469/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 471/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 472/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 473/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 472/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 473/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 471/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 474/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 472/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:20				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 477/1573. Distribution: Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 475/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 475/1573. Distribution: Student Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 15:59:27				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 476/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 476/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 480/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 480/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 476/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 480/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:33				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 477/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:34				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 477/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 480/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 482/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 481/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 477/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 478/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 479/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 481/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:42				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 482/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 482/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 479/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 482/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:59:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 483/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:50				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 485/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 486/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 484/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 483/1573. Distribution: Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 15:59:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 485/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 15:59:54		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 484/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 15:59:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 485/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 15:59:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 486/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:00:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 487/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:01				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 488/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 487/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 487/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 488/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 489/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 488/1573. Distribution: Student Distribution. Model: eGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 488/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 489/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:08				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 492/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 490/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 489/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:00:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 491/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:14		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 492/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:00:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 490/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 494/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:18				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 493/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:19				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 497/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 494/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:21		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 493/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:24				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 499/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:26				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 500/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 497/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 496/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 495/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 498/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 500/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 503/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:41		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 497/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:00:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 504/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 505/1573. Distribution: Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 504/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 501/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 504/1573. Distribution: Student Distribution. Model: eGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:54				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 503/1573. Distribution: Student Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:00:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 503/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 504/1573. Distribution: Student Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 16:00:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 505/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:00:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 499/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:00:59				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 507/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 508/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 502/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:01:02				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 510/1573. Distribution: Student Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 509/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 510/1573. Distribution: Student Distribution. Model: sGARCH(1011). Error i ARMA GARCH fit!
+2018-04-16 16:01:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 510/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 506/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:10				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 510/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 509/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 507/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 509/1573. Distribution: Student Distribution. Model: sGARCH(0111). Iterasjon fullført!
+2018-04-16 16:01:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 508/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 510/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:01:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 511/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:01:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 514/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 512/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 513/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 516/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:01:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 520/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 515/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 517/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:01:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 520/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 522/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 518/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:01:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 523/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 520/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:01:48		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 519/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:01:50		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 521/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:01:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 527/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:01:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 522/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:02:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 523/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 525/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:02:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 524/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:02:07				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 530/1573. Distribution: Student Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:02:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 526/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:02:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 527/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 529/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:02:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 531/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 530/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:02:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 528/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 534/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 535/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 532/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 537/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:02:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 538/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:02:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 539/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:02:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 540/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 541/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:00				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 542/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:03:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 542/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:07		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 536/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:03:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 544/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 543/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 545/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:22				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 550/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:03:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 546/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 548/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 547/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 533/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 552/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:03:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 553/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:45		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 550/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 554/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:03:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 558/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:03:53		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 555/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:03:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 557/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:03:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 549/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:04:02		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 556/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 558/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:10		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 559/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:15		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 560/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:18		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 561/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 551/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:04:25		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 563/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:04:28				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 568/1573. Distribution: Skewed Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:04:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 566/1573. Distribution: Student Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 16:04:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 564/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:04:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 569/1573. Distribution: Skewed Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:04:43		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 568/1573. Distribution: Skewed Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:04:44		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 567/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:04:44				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 570/1573. Distribution: Skewed Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:04:47				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 571/1573. Distribution: Skewed Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:04:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 565/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:04:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 562/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:04:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 573/1573. Distribution: Skewed Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:04:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 570/1573. Distribution: Skewed Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:05:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 572/1573. Distribution: Skewed Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:05:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 571/1573. Distribution: Skewed Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:05:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 576/1573. Distribution: Student Distribution. Model: eGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:05:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 569/1573. Distribution: Skewed Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:23		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 576/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:05:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 575/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 573/1573. Distribution: Skewed Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:29		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 578/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 574/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:05:40		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 579/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:05:42		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 580/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:46				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 585/1573. Distribution: Normal Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:05:49		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 582/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:05:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 583/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:05:55				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 587/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:05:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 585/1573. Distribution: Normal Distribution. Model: eGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:05:57		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 585/1573. Distribution: Normal Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:05:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 584/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:06:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 586/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:06:13		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 588/1573. Distribution: Student Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:06:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 589/1573. Distribution: Student Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 16:06:16		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 587/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:06:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 590/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:06:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 581/1573. Distribution: Student Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:06:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 591/1573. Distribution: Student Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:06:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 592/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:06:31		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 594/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:06:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 597/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:06:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 595/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:06:39		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 596/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:06:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 601/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:06:55		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 599/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:06:56		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 593/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:06:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 600/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:06:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 601/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:07:01		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 598/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:07:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 605/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 607/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:20		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 602/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:07:22		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 603/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:07:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 608/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:26				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 608/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 607/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:07:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 605/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:07:36				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 611/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:38		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 606/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:07:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 612/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:47		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 604/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:07:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 608/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 16:07:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 613/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:07:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 609/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:08:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 610/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:08:04		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 611/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:08:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 616/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:12		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 613/1573. Distribution: Student Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:08:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 618/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:24		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 612/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:08:32				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 619/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:32		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 614/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:08:34		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 617/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:08:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 616/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:08:37				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 620/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 620/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:39				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 620/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 621/1573. Distribution: Student Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 621/1573. Distribution: Student Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:41				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 622/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 618/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 16:08:56				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 623/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:08:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 623/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:05		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 621/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:09:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 620/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:09:12				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 625/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:13				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 625/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:14				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 625/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:19		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 622/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:09:25				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 626/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 615/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 16:09:30				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 627/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:09:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 623/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:09:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 624/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:09:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 629/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 16:10:00		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 619/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-16 16:10:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 626/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:10:08		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 627/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:10:09				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 631/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:17		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 625/1573. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 16:10:21				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 633/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 628/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Iterasjon fullført!
+2018-04-16 16:10:28		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 629/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 16:10:29				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 634/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:31				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 634/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:46		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 632/1573. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-16 16:10:51				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 636/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:52				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 636/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:10:53				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 636/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1111). Error i ARMA GARCH fit!
+2018-04-16 16:10:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 635/1573. Distribution: Student Distribution. Model: gjrGARCH(0111). Iterasjon fullført!
+2018-04-16 16:11:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 637/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:04				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 637/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:05				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 637/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:09		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 634/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Iterasjon fullført!
+2018-04-16 16:11:11		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 630/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:11:15				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 638/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 639/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:16				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 638/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:37		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 638/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:11:43				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 640/1573. Distribution: Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:11:58		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 637/1573. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(1011). Iterasjon fullført!
+2018-04-16 16:12:03		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 640/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0011). Iterasjon fullført!
+2018-04-16 16:12:06				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 642/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:12:26		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 641/1573. Distribution: Student Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:12:27		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 631/1573. Distribution: Skewed Generalized Error Distribution. Model: gjrGARCH(1111). Iterasjon fullført!
+2018-04-16 16:12:35				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 644/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:12:36		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 639/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-16 16:12:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 645/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0111). Timeout i ARMA GARCH fit!
+2018-04-16 16:12:51		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 642/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:12:58				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 646/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1111). Timeout i ARMA GARCH fit!
+2018-04-16 16:12:59		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 643/1573. Distribution: Generalized Error Distribution. Model: gjrGARCH(0011). Iterasjon fullført!
+2018-04-16 16:13:03				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 647/1573. Distribution: Generalized Error Distribution. Model: sGARCH(0111). Error i ARMA GARCH fit!
+2018-04-16 16:13:35		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 647/1573. Distribution: Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:13:38				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 648/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
+2018-04-16 16:13:40				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 648/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(1011). Timeout i ARMA GARCH fit!
+2018-04-16 16:13:52		Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 644/1573. Distribution: Skewed Generalized Error Distribution. Model: eGARCH(0011). Iterasjon fullført!
+2018-04-16 16:13:57				Iteration: 1/18. Stock: DNB. Sample size: 125. Day: 649/1573. Distribution: Skewed Generalized Error Distribution. Model: sGARCH(0011). Timeout i ARMA GARCH fit!
