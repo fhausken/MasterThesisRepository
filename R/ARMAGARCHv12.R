@@ -197,8 +197,9 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                       
                     } else{
-                      tryCatch({AIC = infocriteria(fit)[1]
-                      forecast = ugarchforecast(fit, n.ahead = 1)
+                      tryCatch({
+                      withTimeout({forecast = ugarchforecast(fit, n.ahead = 1)},timeout = 10,elapsed=10,onTimeout = "error")
+                      AIC = infocriteria(fit)[1]
                       forecastOneDayAhead.mean = drop(fitted(forecast))
                       forecastOneDayAhead.volatility = drop(sigma(forecast))},warning=function(w) w,error=function(e) e)
                       
