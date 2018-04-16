@@ -2,6 +2,7 @@ library(readxl)
 library(quantmod)
 library(xts)
 
+
 rm(list=ls()) #Clears environment
 
 URL.repo=getwd()
@@ -9,25 +10,27 @@ URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
-
-
-#stocks=stocks[c(5,8),] #For testing. Et utvalg av aksjer.
+#stocks=stocks[c(5,7,8),] #For testing. Et utvalg av aksjer.
 #stocks=stocks[c(10,114),]
+
+#DISCARDED STOCKS
+
+discardedStocksVector=c("Aker Solutions", "Golden Ocean Group")
 
 # SET FROM DATE
 from.date <- as.Date("01/04/10", format="%m/%d/%y")
 
 # SET TO DATE
-to.date <- as.Date("03/01/18", format="%m/%d/%y")
+to.date <- as.Date("03/31/18", format="%m/%d/%y")
 
-consecutiveZerosCapClose=10
+consecutiveZerosCapClose=15
 
 # VOLUME CONSTRAINTS
 XCapVolume=0
-consecutiveXCapVolume=10
+consecutiveXCapVolume=20
 
 
-# INIT LISTS AND LENGTH OF DESIRED OSEAX STOCKS
+# INIT LISTS AND LENGTH OF DESIRED OBX STOCKS
 stocks.nrow=nrow(stocks)
   
 stocksRemoved.index=vector()
@@ -36,6 +39,18 @@ stocksRemoved.reason=vector()
 stockData=new.env()
 
 for (row in 1:stocks.nrow) {
+  discard=FALSE  
+  for (discardedStocksIndex in 1:length(discardedStocksVector)){
+    if(stocks[row,1]==discardedStocksVector[discardedStocksIndex]){
+      discard=TRUE
+    }
+  }
+  if (discard==TRUE){
+    stocksRemoved.index[length(stocksRemoved.index)+1]=row
+    stocksRemoved.reason[length(stocksRemoved.reason)+1]="Data Missing/Not Continously Listed"
+    next
+  }
+
   
   tryCatch({
     
@@ -111,6 +126,8 @@ if (length(stocksRemoved.index)>0){
   stocksRemoved$Reason=stocksRemoved.reason
   stocks=stocks[-stocksRemoved.index,]
 }
+
+stocks=stocks[order(stocks$Ticker),] #Sorterer stocks removed etter index
   
 
 #Prices and Returns
@@ -129,6 +146,9 @@ stockReturns=stockReturns[-c(1),] #Fjerner f?rste rad siden den er NA
 stockPrices[is.na(stockPrices)] <- 0 # Setter NA elementer til 0.
 stockReturns[is.na(stockReturns)] <- 0 # Setter NA elementer til 0.
 
+stockPrices=stockPrices[,order(names(stockPrices))] #Sorter kolonner alfabetisk etter ticker
+stockReturns=stockReturns[,order(names(stockReturns))] #Sorter kolonner alfabetisk etter ticker
+
 names(stockPrices)=stocks$Stock #Endrer navn p? kolonner
 names(stockReturns)=stocks$Stock
 
@@ -137,23 +157,23 @@ names(stockReturns)=stocks$Stock
 stockVolumesList <- eapply(stockData, Vo)
 stockVolumes <- do.call(merge, stockVolumesList)
 
+stockVolumes=stockVolumes[,order(names(stockVolumes))]
 #raderFor=nrow(stockPrices)
 #stockPrices=na.omit(stockPrices) #Tar bort rader med na
 #raderEtter=nrow(stockPrices)
 
 #stockVolumes[is.na(stockVolumes)] <- 0 # Setter NA elementer til 0.
-names(stockVolumes)=stocks$Ticker #Endrer navn p? kolonner
+names(stockVolumes)=stocks$Stock #Endrer navn p? kolonner
 
 #Index fetch
-OSEBX.close.price=getSymbols("OSEBX.OL",from=from.date,to=to.date,auto.assign =FALSE)[,4]
-OSEBX.close.price=do.call(merge,list(OSEBX.close.price,stockPrices))[,1] #For å sørge for at OSEBX har like mange datapunkter som akjsene.
+OBX.close.price=getSymbols("OSEBX.OL",from=from.date,to=to.date,auto.assign =FALSE)[,4] #Bruker OBX Price Index som bare er Cap gain
+OBX.close.price=do.call(merge,list(OBX.close.price,stockPrices))[,1] #For å sørge for at OBX har like mange datapunkter som aksjene.
 
+OBX.close.return=diff(log(OBX.close.price))
+OBX.close.return=OBX.close.return[-c(1),]
 
-OSEBX.close.return=diff(log(OSEBX.close.price))
-OSEBX.close.return=OSEBX.close.return[-c(1),]
-
-OSEBX.close.price[is.na(OSEBX.close.price)] = 0 #NA fylles inn der den forrige linjen gir NA. Det vil si når OSEBX har færre datapunkter enn aksjene. 
-OSEBX.close.return[is.na(OSEBX.close.return)] = 0
+OBX.close.price[is.na(OBX.close.price)] = 0 #NA fylles inn der den forrige linjen gir NA. Det vil si når OBX har færre datapunkter enn aksjene. 
+OBX.close.return[is.na(OBX.close.return)] = 0
 
 #Lagring
 URL=paste(URL.repo,"/Data/stockPrices.Rda",sep="")
@@ -166,5 +186,5 @@ URL=paste(URL.repo,"/Data/stocks.Rda",sep="")
 save(stocks,file=URL)
 URL=paste(URL.repo,"/Data/stocksRemoved.Rda",sep="")
 save(stocksRemoved,file=URL)
-URL=paste(URL.repo,"/Data/OSEBXReturn.Rda",sep="")
-save(OSEBX.close.return,file=URL)
+URL=paste(URL.repo,"/Data/OBXReturn.Rda",sep="")
+save(OBX.close.return,file=URL)
