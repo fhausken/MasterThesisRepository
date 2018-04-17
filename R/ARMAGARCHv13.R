@@ -55,9 +55,9 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=F
 archpow.switch=1
 
-timeOutCounter=1
-forecastTimeOut=10
-distributionFitTimOut=10
+timeOutCounter=2
+forecastTimeOut=2
+distributionFitTimOut=2
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*2)
 
 start_time <- Sys.time()
@@ -118,7 +118,7 @@ for (stocksIndex in 1:nrow(stocks)){
           daysLeft=attach.big.matrix(URL)
           
           if (debugging==TRUE){
-            URL=paste(URL.repo,"/Debugging/",day,"_1",sep="")
+            URL=paste(URL.repo,"/Debugging/",day,"_1.RData",sep="")
             save.image(file=URL)
           }
           
@@ -133,41 +133,41 @@ for (stocksIndex in 1:nrow(stocks)){
             vectorizedReturn=drop(coredata(individualStockReturnOffset))
             fit.distribution=tryCatch({
               fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-            
+
             if(is(fit.distribution,"warning")){
-    
-              
+
+
             } else if(is(fit.distribution,"error")){
               URL=paste(URL.repo,"/Data/ErrorInDistributionFitting.Rda", sep="")
               save(fit.distribution,file=URL)
-              
+
               if (class(fit.distribution)[1]=="TimeoutException"){
                 writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Timeout i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-              
+
               } else{
                 writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-                
+
               }
-              
+
             }else{
-              
+
               k=length(fit.distribution$pars)
               maxLikelihood=min(fit.distribution$values)
               AIC=2*k+2*maxLikelihood
             }
-            
+
             if (AIC.final.distribution>AIC){
               AIC.final.distribution=AIC
               bestDistributionFit.fullname=distributions.fullname[distributions.index]
               bestDistributionFit=distributions[distributions.index]
             }
           }
-          
+
           if (debugging==TRUE){
-            URL=paste(URL.repo,"/Debugging/",day,"_2",sep="")
-            save.image(file=URL)
+            URL=paste(URL.repo,"/Debugging/",day,"_2.RData",sep="")
+            save(bestDistributionFit.fullname,fit.distribution,file=URL)
           }
-          
+
           AIC.final=1000000 # tilsvarer + infinity
           
           
@@ -189,8 +189,8 @@ for (stocksIndex in 1:nrow(stocks)){
                       distribution.model=bestDistributionFit
                     )
                     if (debugging==TRUE){
-                      URL=paste(URL.repo,"/Debugging/",day,"_3",sep="")
-                      save.image(file=URL)
+                      URL=paste(URL.repo,"/Debugging/",day,"_3.RData",sep="")
+                      save(garchModel,ARLag,MALag,file=URL)
                     }
                     AIC=1000000
                     fit = tryCatch({
@@ -250,16 +250,40 @@ for (stocksIndex in 1:nrow(stocks)){
                       
                     }
                     if (debugging==TRUE){
-                      URL=paste(URL.repo,"/Debugging/",day,"_4",sep="")
-                      save.image(file=URL)
+                      URL=paste(URL.repo,"/Debugging/",day,"_4.RData",sep="")
+                      save(garchModel,ARLag,MALag,fit, AIC,file=URL)
                     
-                  } 
+                    } 
+                  
+                }
+                
+                if (debugging==TRUE){
+                  URL=paste(URL.repo,"/Debugging/",day,"_5.RData",sep="")
+                  save(garchModel,ARLag,MALag,fit, AIC,file=URL)
                   
                 }
                 
               }
               
+              if (debugging==TRUE){
+                URL=paste(URL.repo,"/Debugging/",day,"_6.RData",sep="")
+                save(garchModel,ARLag,MALag,fit, AIC,file=URL)
+                
+              }
+              
             }
+            
+            if (debugging==TRUE){
+              URL=paste(URL.repo,"/Debugging/",day,"_7.RData",sep="")
+              save(garchModel,ARLag,MALag,fit, AIC,file=URL)
+              
+            }
+            
+          }
+          
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_8.RData",sep="")
+            save(garchModel,ARLag,MALag,fit, AIC,file=URL)
             
           }
           
@@ -301,8 +325,8 @@ for (stocksIndex in 1:nrow(stocks)){
           
           
           if (debugging==TRUE){
-            URL=paste(URL.repo,"/Debugging/",day,"_5",sep="")
-            save.image(file=URL)
+            URL=paste(URL.repo,"/Debugging/",day,"_9.RData",sep="")
+            save(results,file=URL)
           }
           
         },timeout = dayTimeOutCounter,elapsed=dayTimeOutCounter,onTimeout = "error"), error=function(e) e)
@@ -324,6 +348,16 @@ for (stocksIndex in 1:nrow(stocks)){
           finished=TRUE
         }
         
+        if (debugging==TRUE){
+          URL=paste(URL.repo,"/Debugging/",day,"_10.RData",sep="")
+          save(dayFinished,finished,file=URL)
+        }
+        
+      }
+      
+      if (debugging==TRUE){
+        URL=paste(URL.repo,"/Debugging/",day,"_11.RData",sep="")
+        save(dayFinished,results,file=URL)
       }
       
       return(results)
