@@ -128,46 +128,46 @@ for (stocksIndex in 1:nrow(stocks)){
           AIC.final.distribution=1000000 #tilsvarer + infinity
           bestDistributionFit.fullname="Normal Distribution"
           bestDistributionFit="norm"
-          # for (distributions.index in 1:length(distributions)){
-          #   AIC=1000000
-          #   vectorizedReturn=drop(coredata(individualStockReturnOffset))
-          #   fit.distribution=tryCatch({
-          #     fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-          # 
-          #   if(is(fit.distribution,"warning")){
-          # 
-          # 
-          #   } else if(is(fit.distribution,"error")){
-          #     URL=paste(URL.repo,"/Data/ErrorInDistributionFitting.Rda", sep="")
-          #     save(fit.distribution,file=URL)
-          # 
-          #     if (class(fit.distribution)[1]=="TimeoutException"){
-          #       writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Timeout i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-          # 
-          #     } else{
-          #       writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-          # 
-          #     }
-          # 
-          #   }else{
-          # 
-          #     k=length(fit.distribution$pars)
-          #     maxLikelihood=min(fit.distribution$values)
-          #     AIC=2*k+2*maxLikelihood
-          #   }
-          # 
-          #   if (AIC.final.distribution>AIC){
-          #     AIC.final.distribution=AIC
-          #     bestDistributionFit.fullname=distributions.fullname[distributions.index]
-          #     bestDistributionFit=distributions[distributions.index]
-          #   }
-          # }
-          # 
-          # if (debugging==TRUE){
-          #   URL=paste(URL.repo,"/Debugging/",day,"_2.RData",sep="")
-          #   save(bestDistributionFit.fullname,fit.distribution,file=URL)
-          # }
-          
+          for (distributions.index in 1:length(distributions)){
+            AIC=1000000
+            vectorizedReturn=drop(coredata(individualStockReturnOffset))
+            fit.distribution=tryCatch({
+              fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+
+            if(is(fit.distribution,"warning")){
+
+
+            } else if(is(fit.distribution,"error")){
+              URL=paste(URL.repo,"/Data/ErrorInDistributionFitting.Rda", sep="")
+              save(fit.distribution,file=URL)
+
+              if (class(fit.distribution)[1]=="TimeoutException"){
+                writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Timeout i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+
+              } else{
+                writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+
+              }
+
+            }else{
+
+              k=length(fit.distribution$pars)
+              maxLikelihood=min(fit.distribution$values)
+              AIC=2*k+2*maxLikelihood
+            }
+
+            if (AIC.final.distribution>AIC){
+              AIC.final.distribution=AIC
+              bestDistributionFit.fullname=distributions.fullname[distributions.index]
+              bestDistributionFit=distributions[distributions.index]
+            }
+          }
+
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_2.RData",sep="")
+            save(bestDistributionFit.fullname,fit.distribution,file=URL)
+          }
+
           AIC.final=1000000 # tilsvarer + infinity
           
           
