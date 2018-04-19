@@ -37,6 +37,8 @@ load(URL)
 URL=paste(URL.repo,"/Data/garchModels.Rda",sep="")
 load(URL)
 
+#garchModels=c(garchModels,"Not Converged")
+
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
 load(URL)
 

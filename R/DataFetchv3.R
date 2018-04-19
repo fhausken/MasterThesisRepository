@@ -15,15 +15,15 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 #DISCARDED STOCKS
 
-discardedStocksVector=c("Aker Solutions", "Golden Ocean Group")
+discardedStocksVector=c()
 
 # SET FROM DATE
-from.date <- as.Date("01/04/10", format="%m/%d/%y")
+from.date <- as.Date("01/02/09", format="%m/%d/%y")
 
 # SET TO DATE
 to.date <- as.Date("03/31/18", format="%m/%d/%y")
 
-consecutiveZerosCapClose=15
+consecutiveZerosCapClose=20
 
 # VOLUME CONSTRAINTS
 XCapVolume=0
@@ -39,18 +39,19 @@ stocksRemoved.reason=vector()
 stockData=new.env()
 
 for (row in 1:stocks.nrow) {
-  discard=FALSE  
-  for (discardedStocksIndex in 1:length(discardedStocksVector)){
-    if(stocks[row,1]==discardedStocksVector[discardedStocksIndex]){
-      discard=TRUE
+  if (length(discardedStocksVector)>0){
+    discard=FALSE  
+    for (discardedStocksIndex in 1:length(discardedStocksVector)){
+      if(stocks[row,1]==discardedStocksVector[discardedStocksIndex]){
+        discard=TRUE
+      }
+    }
+    if (discard==TRUE){
+      stocksRemoved.index[length(stocksRemoved.index)+1]=row
+      stocksRemoved.reason[length(stocksRemoved.reason)+1]="Data Missing/Not Continously Listed"
+      next
     }
   }
-  if (discard==TRUE){
-    stocksRemoved.index[length(stocksRemoved.index)+1]=row
-    stocksRemoved.reason[length(stocksRemoved.reason)+1]="Data Missing/Not Continously Listed"
-    next
-  }
-
   
   tryCatch({
     
@@ -167,12 +168,12 @@ names(stockVolumes)=stocks$Stock #Endrer navn p? kolonner
 
 #Index fetch
 OBX.close.price=getSymbols("OSEBX.OL",from=from.date,to=to.date,auto.assign =FALSE)[,4] #Bruker OBX Price Index som bare er Cap gain
-OBX.close.price=do.call(merge,list(OBX.close.price,stockPrices))[,1] #For å sørge for at OBX har like mange datapunkter som aksjene.
+OBX.close.price=do.call(merge,list(OBX.close.price,stockPrices))[,1] #For ? s?rge for at OBX har like mange datapunkter som aksjene.
 
 OBX.close.return=diff(log(OBX.close.price))
 OBX.close.return=OBX.close.return[-c(1),]
 
-OBX.close.price[is.na(OBX.close.price)] = 0 #NA fylles inn der den forrige linjen gir NA. Det vil si når OBX har færre datapunkter enn aksjene. 
+OBX.close.price[is.na(OBX.close.price)] = 0 #NA fylles inn der den forrige linjen gir NA. Det vil si n?r OBX har f?rre datapunkter enn aksjene. 
 OBX.close.return[is.na(OBX.close.return)] = 0
 
 #Lagring

@@ -26,7 +26,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-tradingBound=0.2 #Number of times the standard deviation
+#tradingBound=0.2 #Number of times the standard deviation
 
 # GENERAL
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")

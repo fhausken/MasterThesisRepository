@@ -8,6 +8,7 @@ library(xtable)
 library(plotly)
 library(parallel)
 library(doParallel)
+library(stats)
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -26,7 +27,7 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #Input
-biggestSampleSize=500
+biggestSampleSize=1500
 PLOTTING=T
 
 # RETRIEVE DATA SETS 
@@ -201,6 +202,7 @@ if (PLOTTING==T){
     library(quantmod)
     library(xtable)
     library(plotly)
+    library(stats)
   
     returnPlot=plot_ly(x=index(stockReturns),y=drop(coredata(stockReturns[,stock])),type="scatter",mode="lines")
     returnPlot=layout(returnPlot,yaxis=list(title="Return"), xaxis=list(title="Date"))
@@ -211,10 +213,18 @@ if (PLOTTING==T){
     
     print(returnPlot)
     
+    squaredReturnPlot=plot_ly(x=index(stockReturns),y=(drop(coredata(stockReturns[,stock])))^2,type="scatter",mode="lines")
+    squaredReturnPlot=layout(squaredReturnPlot,yaxis=list(title="Squared Return"), xaxis=list(title="Date"))
+    
+    stockName=stocks[stock,1]
+    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockName,"_SquaredReturnPlot.jpeg",sep="")
+    export(squaredReturnPlot, file = URL)
+    
+    print(squaredReturnPlot)
     
     
-    ACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 40)
-    confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+    ACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 30)
+    confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
     plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
     negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
     
@@ -230,8 +240,8 @@ if (PLOTTING==T){
     
     print(ACF)
     
-    ACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 40)
-    confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+    ACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 30)
+    confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
     plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
     negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
     
@@ -269,8 +279,8 @@ if (PLOTTING==T){
   
   print(returnPlot)
   
-  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 40)
-  confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 30)
+  confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
   
@@ -286,8 +296,8 @@ if (PLOTTING==T){
   
   print(ACF)
   
-  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 40)
-  confidenceInterval=qnorm(0.025,mean=mean(abs(drop(ACF$acf)[-1])),sd=(sd(abs(drop(ACF$acf)[-1]))/length(drop(ACF$acf)[-1])))
+  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 30)
+  confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
   
