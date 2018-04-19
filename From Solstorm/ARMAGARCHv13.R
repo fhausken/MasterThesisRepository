@@ -43,16 +43,12 @@ load(URL)
 
 debugging=T
 
-sampleSizes=c(125,500)
+sampleSizes=c(125,250,500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
-#distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
-#distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
-
 distributions=c("norm","std","snorm")
-distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
-
+distributions.fullname=c("Normal Distribution", "Student Distribution","Skewed Normal Distribution")
 
 ARLag.max=1
 MALag.max=1
@@ -233,10 +229,10 @@ for (stocksIndex in 1:nrow(stocks)){
                         save(forecastFitting,file=URL)
                         if (class(forecastFitting)[1]=="TimeoutException"){
                           writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Timeout i forecast fitting!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-                          #writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Timeout i forecast fitting!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Timeout i forecast fitting!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
                         }else{
                           writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast fitting!!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-                          #writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast fitting!!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+                          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: ",garchModel,"(",ARLag,MALag,GARCHLagOne,GARCHLagTwo,"). Error i forecast fitting!!","\n",sep=""), file=URL.kritisk, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
                         }
                         
                       }

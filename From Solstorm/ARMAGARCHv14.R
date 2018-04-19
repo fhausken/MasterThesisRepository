@@ -43,19 +43,19 @@ load(URL)
 
 debugging=T
 
-sampleSizes=c(125,500)
+sampleSizes=c(500,1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
-#distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
-#distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
+distributions=c("norm","std","snorm","sstd")
+distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution","Skewed Student Distribution")
 
-distributions=c("norm","std","snorm")
-distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
+#distributions=c("norm","std","snorm")
+#distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
 
 
-ARLag.max=1
-MALag.max=1
+ARLag.max=6
+MALag.max=6
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -63,7 +63,7 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=T
 archpow.switch=1
 
-timeOutCounter=1
+timeOutCounter=15
 forecastTimeOut=2
 distributionFitTimOut=2
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*2)

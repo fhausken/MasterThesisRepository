@@ -29,8 +29,8 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-transactionCost.variable=0.0001
-PLOTTING = F
+transactionCost.variable=0.001
+PLOTTING = T
 
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
