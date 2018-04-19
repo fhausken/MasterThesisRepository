@@ -18,11 +18,8 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 discardedStocksVector=c()
 
 # SET FROM DATE
-<<<<<<< HEAD
-from.date <- as.Date("01/04/08", format="%m/%d/%y")
-=======
 from.date <- as.Date("01/02/09", format="%m/%d/%y")
->>>>>>> master
+
 
 # SET TO DATE
 to.date <- as.Date("03/31/18", format="%m/%d/%y")
@@ -43,11 +40,7 @@ stocksRemoved.reason=vector()
 stockData=new.env()
 
 for (row in 1:stocks.nrow) {
-<<<<<<< HEAD
-  if(length(discardedStocksVector)>0) {
-=======
   if (length(discardedStocksVector)>0){
->>>>>>> master
     discard=FALSE  
     for (discardedStocksIndex in 1:length(discardedStocksVector)){
       if(stocks[row,1]==discardedStocksVector[discardedStocksIndex]){
@@ -60,10 +53,6 @@ for (row in 1:stocks.nrow) {
       next
     }
   }
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
   
   tryCatch({
     

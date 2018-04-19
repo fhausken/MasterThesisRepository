@@ -28,12 +28,7 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-
-<<<<<<< HEAD
-transactionCost.variable=0.0001
-=======
 transactionCost.variable=0.001
->>>>>>> master
 PLOTTING = T
 
 

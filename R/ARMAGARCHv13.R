@@ -41,22 +41,9 @@ load(URL)
 # URL=paste(URL.repo,"/Data/data.desc",sep="")
 # remove=file.remove(URL)
 
-<<<<<<< HEAD
-debugging=F
-
-sampleSizes=c(500,1000)
-
-garchModels=c('sGARCH','gjrGARCH','eGARCH') #'gjrGARCH'
-
-distributions=c("norm","std","snorm") #,"sged","sstd","ghyp","nig","ghst")
-distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution") #,"Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
-
-ARLag.max=6
-MALag.max=6
-=======
 debugging=T
 
-sampleSizes=c(125,500)
+sampleSizes=c(500,1000,1500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
@@ -69,7 +56,6 @@ distributions.fullname=c("Normal Distribution","Student Distribution","Skewed No
 
 ARLag.max=1
 MALag.max=1
->>>>>>> master
 
 GARCHLagOne.max=1
 GARCHLagTwo.max=1
@@ -77,11 +63,7 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=T
 archpow.switch=1
 
-<<<<<<< HEAD
-timeOutCounter=15
-=======
 timeOutCounter=1
->>>>>>> master
 forecastTimeOut=2
 distributionFitTimOut=2
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*2)
@@ -151,19 +133,11 @@ for (stocksIndex in 1:nrow(stocks)){
           bestDistributionFit.fullname="Normal Distribution"
           bestDistributionFit="norm"
           for (distributions.index in 1:length(distributions)){
-<<<<<<< HEAD
-            currentDistribution = distributions[distributions.index]
-            if (debugging==TRUE){
-              URL=paste(URL.repo,"/Debugging/",day,"_1.RData",sep="")
-              save(currentDistribution, bestDistributionFit.fullname,file=URL)
-           }
-=======
             currentDistribution=distributions[distributions.index]
             if (debugging==TRUE){
               URL=paste(URL.repo,"/Debugging/",day,"_1.RData",sep="")
               save(currentDistribution,bestDistributionFit.fullname,file=URL)
             }
->>>>>>> master
             AIC=1000000
             vectorizedReturn=drop(coredata(individualStockReturnOffset))
             fit.distribution=tryCatch({
@@ -200,11 +174,8 @@ for (stocksIndex in 1:nrow(stocks)){
 
           if (debugging==TRUE){
             URL=paste(URL.repo,"/Debugging/",day,"_2.RData",sep="")
-<<<<<<< HEAD
-            save(bestDistributionFit.fullname,fit.distribution,file=URL)
-=======
+
             save(bestDistributionFit.fullname,file=URL)
->>>>>>> master
           }
 
           AIC.final=1000000 # tilsvarer + infinity
@@ -293,15 +264,6 @@ for (stocksIndex in 1:nrow(stocks)){
                       save(garchModel,ARLag,MALag,fit, AIC,file=URL)
                     
                     } 
-<<<<<<< HEAD
-                  
-                }
-                
-                if (debugging==TRUE){
-                  URL=paste(URL.repo,"/Debugging/",day,"_5.RData",sep="")
-                  save(garchModel,ARLag,MALag,fit, AIC,file=URL)
-=======
->>>>>>> master
                   
                 }
                 

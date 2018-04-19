@@ -28,16 +28,9 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-
-<<<<<<< HEAD
-tradingBound=0.5 #Number of times the standard deviation
-transactionCost.variable=0.0001
-PLOTTING = F
-=======
 tradingBound=0.15 #Number of times the standard deviation
 transactionCost.variable=0.001
 PLOTTING = TRUE
->>>>>>> master
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
