@@ -3,3 +3,4 @@
 *.jpeg
 /Data/*
 Data/*
+.RData
