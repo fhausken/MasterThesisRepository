@@ -1,16 +1,9 @@
 new("big.matrix.descriptor"
     , description = structure(list(sharedType = "FileBacked", filename = "data.bin", 
-<<<<<<< HEAD
-    dirname = "/Users/andersronold/MasterThesis/MasterThesisRepository/Data/", 
-    totalRows = 1574L, totalCols = 1L, rowOffset = c(0, 1574), 
-    colOffset = c(0, 1), nrow = 1574, ncol = 1, rowNames = NULL, 
-    colNames = NULL, type = "double", separated = FALSE), .Names = c("sharedType", 
-=======
     dirname = "/home/fohauske/MasterThesis/R2/Data/", totalRows = 316L, 
     totalCols = 1L, rowOffset = c(0, 316), colOffset = c(0, 1
     ), nrow = 316, ncol = 1, rowNames = NULL, colNames = NULL, 
     type = "double", separated = FALSE), .Names = c("sharedType", 
->>>>>>> master
 "filename", "dirname", "totalRows", "totalCols", "rowOffset", 
 "colOffset", "nrow", "ncol", "rowNames", "colNames", "type", 
 "separated"))
