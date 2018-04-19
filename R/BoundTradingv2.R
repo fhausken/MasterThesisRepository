@@ -29,8 +29,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-tradingBound = 0.5 #Number of times the standard deviation
-#transactionCost.variable=0.0001
+tradingBound=0.5 #Number of times the standard deviation
 transactionCost.variable=0.0001
 PLOTTING = F
 
@@ -99,7 +98,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
           numberOfTransactions=numberOfTransactions+1
         }
-
+        
         
       }else{ 
         if(long==0){ #Ikke bound trade, predikerer selg posisjon
@@ -283,7 +282,7 @@ if(PLOTTING == TRUE) {
     sampleSize = sampleSizes[sampleSizesIndex]
     
     
-    individualStockPlotting=foreach(stocksIndex=1:nrow(stocks)) %dopar%{
+    individualStockPlotting=foreach(stocksIndex=1:1) %dopar%{
       library(parallel)
       library(doParallel)
       library(quantmod)
