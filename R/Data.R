@@ -27,8 +27,8 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #Input
-biggestSampleSize=1500
-PLOTTING=F
+biggestSampleSize=1000
+PLOTTING=T
 
 # RETRIEVE DATA SETS 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
@@ -223,7 +223,7 @@ if (PLOTTING==T){
     print(squaredReturnPlot)
     
     
-    ACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 30)
+    ACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 30,plot = F)
     confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
     plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
     negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
@@ -240,7 +240,7 @@ if (PLOTTING==T){
     
     print(ACF)
     
-    ACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 30)
+    ACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 30, plot = F)
     confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
     plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
     negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
@@ -279,7 +279,7 @@ if (PLOTTING==T){
   
   print(returnPlot)
   
-  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 30)
+  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 30, plot = F)
   confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
@@ -296,7 +296,7 @@ if (PLOTTING==T){
   
   print(ACF)
   
-  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 30)
+  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 30, plot = F)
   confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)

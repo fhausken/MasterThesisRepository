@@ -28,7 +28,7 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-tradingBound=0.15 #Number of times the standard deviation
+tradingBound=0.1 #Number of times the standard deviation
 transactionCost.variable=0.001
 PLOTTING = TRUE
 
@@ -281,7 +281,7 @@ if(PLOTTING == TRUE) {
     sampleSize = sampleSizes[sampleSizesIndex]
     
     
-    individualStockPlotting=foreach(stocksIndex=1:1) %dopar%{
+    individualStockPlotting=foreach(stocksIndex=1:nrow(stocks)) %dopar%{
       library(parallel)
       library(doParallel)
       library(quantmod)
@@ -314,7 +314,7 @@ if(PLOTTING == TRUE) {
       fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
       
       
-      URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
+      URL=paste(URL.drop,"/Plot/BoundTrading/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
       export(fullPlot, file = URL)
       return(fullPlot)
     }

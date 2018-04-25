@@ -1,4 +1,5 @@
 rm(list=ls()) #Clears environment
+library(sys)
 
 rfunction1 <- function(){
   setTimeLimit(3, transient = T)
@@ -48,3 +49,5 @@ for (i in 1:10){
   print("Pikk")
   
 }
+
+eval_safe(2+2)

@@ -517,7 +517,7 @@ if(PLOTTING == TRUE) {
     GARCHPlot=subplot(nrows=2,GARCHPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
     print(GARCHPlot) #Printer plottet
 
-    URL=paste(URL.drop,"/Plot/GARCHPlot_",sampleSize,".jpeg",sep="")
+    URL=paste(URL.drop,"/Plot/StatisticalMetrics/GARCHPlot_",sampleSize,".jpeg",sep="")
     export(GARCHPlot, file = URL)
 
   }
@@ -550,9 +550,9 @@ if(PLOTTING == TRUE) {
   print(MAPlot) #Printer plottet
 
   
-  URL=paste(URL.drop,"/Plot/averageARLags.jpeg",sep="")
+  URL=paste(URL.drop,"/Plot/StatisticalMetrics/averageARLags.jpeg",sep="")
   export(ARPlot, file = URL)
-  URL=paste(URL.drop,"/Plot/averageMALags.jpeg",sep="")
+  URL=paste(URL.drop,"/Plot/StatisticalMetrics/averageMALags.jpeg",sep="")
   export(MAPlot, file = URL)
 
 }
@@ -586,9 +586,9 @@ if(PLOTTING == TRUE) {
   print(StdMAEPlot) #Printer plottet
     
   stockName=stocks[stocksIndex,1]
-  URL=paste(URL.drop,"/Plot/averageMAE.jpeg",sep="")
+  URL=paste(URL.drop,"/Plot/StatisticalMetrics/averageMAE.jpeg",sep="")
   export(MAEPlot, file = URL)
-  URL=paste(URL.drop,"/Plot/averageStdMAELags.jpeg",sep="")
+  URL=paste(URL.drop,"/Plot/StatisticalMetrics/averageStdMAELags.jpeg",sep="")
   export(StdMAEPlot, file = URL) 
   
 }
