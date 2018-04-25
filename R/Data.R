@@ -27,7 +27,7 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #Input
-biggestSampleSize=1500
+biggestSampleSize=1750
 PLOTTING=F
 
 # RETRIEVE DATA SETS 
@@ -101,6 +101,10 @@ for (stock in 1:numberOfStocks){
 }
 
 descriptiveStatisticsResults=data.frame(stocks[,1],matrix(results, ncol=11, byrow=TRUE))
+
+# SORT BY VOL
+#descriptiveStatisticsResults[order(descriptiveStatisticsResults$X6),]
+
 names(descriptiveStatisticsResults)=c("Stocks","n","Min","1st Quantile", "Median", "$\\boldsymbol{\\mu}$", "$\\boldsymbol{\\sigma}$", "$\\boldsymbol{\\sigma^2}$", "3rd Quantile", "Max", "Skew", "Kurtosis" )
 
 # CALCULATE MEAN

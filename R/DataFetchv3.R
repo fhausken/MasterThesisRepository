@@ -6,7 +6,7 @@ library(xts)
 rm(list=ls()) #Clears environment
 
 URL.repo=getwd()
-URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
+URL=paste(URL.repo,"/Data/StocksOBX.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
@@ -18,7 +18,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 discardedStocksVector=c()
 
 # SET FROM DATE
-from.date <- as.Date("01/02/09", format="%m/%d/%y")
+from.date <- as.Date("01/04/10", format="%m/%d/%y")
 
 
 # SET TO DATE

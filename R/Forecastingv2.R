@@ -404,7 +404,7 @@ sampleStdMAE.MAE.dataFrame <- data.frame(matrix(c(unlist(sampleStdMAEDataFrameLi
 # ADD StdMAE COL NAME
 sampleSizeNameList = list()
 for (sampleSizesIndex in 1:length(sampleSizes)){
-  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("$\\boldsymbol{\\sigma_{",sampleSizes[[sampleSizesIndex]],"}}$")
+  sampleSizeNameList[[length(sampleSizeNameList)+1]] = paste("$\\boldsymbol{\\sigma_{AE, ",sampleSizes[[sampleSizesIndex]],"}}$")
 }
 
 # ADD MAE COL NAME
