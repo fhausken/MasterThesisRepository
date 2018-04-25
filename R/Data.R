@@ -27,13 +27,8 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #Input
-<<<<<<< HEAD
-biggestSampleSize=1750
-PLOTTING=F
-=======
 biggestSampleSize=1000
 PLOTTING=T
->>>>>>> master
 
 # RETRIEVE DATA SETS 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
