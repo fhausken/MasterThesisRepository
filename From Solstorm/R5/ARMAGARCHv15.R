@@ -41,17 +41,17 @@ load(URL)
 # URL=paste(URL.repo,"/Data/data.desc",sep="")
 # remove=file.remove(URL)
 
-debugging=F
+debugging=T
 
-sampleSizes=c(500,1000)
+sampleSizes=c(500,1000,1500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
-#distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
-#distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
+distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
+distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
 
-distributions=c("norm","std","snorm")
-distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
+#distributions=c("norm","std","snorm")
+#distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
 
 
 ARLag.max=6
@@ -65,7 +65,7 @@ archpow.switch=1
 
 timeOutCounter=15
 forecastTimeOut=2
-distributionFitTimOut=2
+distributionFitTimOut=15
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*2)
 
 start_time <- Sys.time()
@@ -89,6 +89,46 @@ for (stocksIndex in 1:nrow(stocks)){
     #individualStockResults=list()
     #for (day in 0:rollingWindowSize){
     
+    if (sampleSizesIndex<2){
+      AIC.final.distribution=1000000 #tilsvarer + infinity
+      bestDistributionFit.fullname="Normal Distribution"
+      bestDistributionFit="norm"
+      for (distributions.index in 1:length(distributions)){
+        
+        AIC=1000000
+        vectorizedReturn=drop(coredata(individualStockRetun[1:max(sampleSizes)]))
+        fit.distribution=tryCatch({
+          fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+        
+        if(is(fit.distribution,"warning")){
+          
+          
+        } else if(is(fit.distribution,"error")){
+          URL=paste(URL.repo,"/Data/ErrorInDistributionFitting.Rda", sep="")
+          save(fit.distribution,file=URL)
+          
+          if (class(fit.distribution)[1]=="TimeoutException"){
+            writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Timeout i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+            
+          } else{
+            writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+            
+          }
+          
+        }else{
+          
+          k=length(fit.distribution$pars)
+          maxLikelihood=min(fit.distribution$values)
+          AIC=2*k+2*maxLikelihood
+        }
+        
+        if (AIC.final.distribution>AIC){
+          AIC.final.distribution=AIC
+          bestDistributionFit.fullname=distributions.fullname[distributions.index]
+          bestDistributionFit=distributions[distributions.index]
+        }
+      }
+    }
     
     daysLeft=seq(from = 0, to = rollingWindowSize, by = 1)
     URL.progress=paste(URL.repo,"/Output/Progress.txt", sep="")
@@ -129,48 +169,12 @@ for (stocksIndex in 1:nrow(stocks)){
           equalStartingPointdjustment=(max(sampleSizes)-sampleSize)
           individualStockReturnOffset = individualStockRetun[(1+equalStartingPointdjustment+day):(sampleSize+equalStartingPointdjustment+day)]
           
-          AIC.final.distribution=1000000 #tilsvarer + infinity
-          bestDistributionFit.fullname="Normal Distribution"
-          bestDistributionFit="norm"
-          for (distributions.index in 1:length(distributions)){
-            currentDistribution=distributions[distributions.index]
-            if (debugging==TRUE){
-              URL=paste(URL.repo,"/Debugging/",day,"_1.RData",sep="")
-              save(currentDistribution,bestDistributionFit.fullname,file=URL)
-            }
-            AIC=1000000
-            vectorizedReturn=drop(coredata(individualStockReturnOffset))
-            fit.distribution=tryCatch({
-              fitDistribution=withTimeout({fitdist(distribution = distributions[distributions.index], vectorizedReturn, control = list())},timeout = distributionFitTimOut,elapsed=distributionFitTimOut,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-
-            if(is(fit.distribution,"warning")){
-
-
-            } else if(is(fit.distribution,"error")){
-              URL=paste(URL.repo,"/Data/ErrorInDistributionFitting.Rda", sep="")
-              save(fit.distribution,file=URL)
-
-              if (class(fit.distribution)[1]=="TimeoutException"){
-                writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Timeout i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-
-              } else{
-                writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Error i distribution fit!","\n",sep=""), file=URL.logging, append=TRUE)},timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
-
-              }
-
-            }else{
-
-              k=length(fit.distribution$pars)
-              maxLikelihood=min(fit.distribution$values)
-              AIC=2*k+2*maxLikelihood
-            }
-
-            if (AIC.final.distribution>AIC){
-              AIC.final.distribution=AIC
-              bestDistributionFit.fullname=distributions.fullname[distributions.index]
-              bestDistributionFit=distributions[distributions.index]
-            }
+          if (debugging==TRUE){
+            URL=paste(URL.repo,"/Debugging/",day,"_1.RData",sep="")
+            save(bestDistributionFit.fullname,file=URL)
           }
+          
+          
 
           if (debugging==TRUE){
             URL=paste(URL.repo,"/Debugging/",day,"_2.RData",sep="")
@@ -241,7 +245,7 @@ for (stocksIndex in 1:nrow(stocks)){
                         
                       }
                       
-     
+                      
                     }
                     
                     }
@@ -318,9 +322,9 @@ for (stocksIndex in 1:nrow(stocks)){
             }
           }
           
-          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullf??rt!","\n",sep=""), file=URL.logging, append=TRUE) },timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) },timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
     
-          results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man m?? bruke to brackets for ?? legge til en liste inni en liste
+          results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man må bruke to brackets for å legge til en liste inni en liste
           
           names(results)=c("AIC", "One-Day-Ahead Mean Forecast",  "Garch Model","AR Lag","MA Lag", "GARCH Lag 1","GARCH Lag 2","Stock Distribution","One-Day-Ahead VOlatility Forecast" )
           #individualStockResults[[length(individualStockResults)+1]]=results

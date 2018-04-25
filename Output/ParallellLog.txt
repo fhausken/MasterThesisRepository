@@ -1,5 +1,26 @@
 Output:
 
+<<<<<<< HEAD
 2018-04-22 22:07:13	Starting iteration: 1/10. Stock: DNB. Sample size: 500 
 2018-04-22 22:12:56		Iteration: 1/10. Stock: DNB. Sample size: 500. Day: 0/1572. Distribution: Student Distribution. Model: gjrGARCH(6411). Iterasjon fullf??rt!
 2018-04-22 22:12:57		Iteration: 1/10. Stock: DNB. Sample size: 500. Day: 1/1572. Distribution: Student Distribution. Model: gjrGARCH(6411). Iterasjon fullf??rt!
+=======
+2018-04-21 15:10:09	Starting iteration: 1/5. Stock: DNB. Sample size: 1500 
+2018-04-21 15:10:29		Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 0/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-21 15:10:30				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 1/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:10:30				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 1/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:10:47		Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 1/823. Distribution: Generalized Error Distribution. Model: eGARCH(0111). Iterasjon fullført!
+2018-04-21 15:10:48				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 2/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:10:48				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 2/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:10		Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 2/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-21 15:11:11				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 3/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:11				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 3/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:30		Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 3/823. Distribution: Generalized Error Distribution. Model: eGARCH(1011). Iterasjon fullført!
+2018-04-21 15:11:30				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 4/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:30				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 4/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:31				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 4/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:50		Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 4/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Iterasjon fullført!
+2018-04-21 15:11:51				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 5/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:51				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 5/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+2018-04-21 15:11:51				Iteration: 1/5. Stock: DNB. Sample size: 1500. Day: 5/823. Distribution: Generalized Error Distribution. Model: eGARCH(1111). Ikke konvergert i distribution fit!
+>>>>>>> master

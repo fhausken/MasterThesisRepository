@@ -272,7 +272,7 @@ if(PLOTTING == TRUE) {
       fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
       print(fullPlot) #Printer plottet
       
-      URL=paste(URL.drop,"/Plot/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
+      URL=paste(URL.drop,"/Plot/ShortLongTrading/",stockName,"_",sampleSize,"_ShortLongStrategy",".jpeg",sep="")
       export(fullPlot, file = URL)
       return(fullPlot)
     }
