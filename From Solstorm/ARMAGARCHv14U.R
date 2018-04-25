@@ -12,6 +12,10 @@ library(bigmemory,warn.conflicts = FALSE)
 library(R.utils,warn.conflicts = FALSE)
 library(sys,warn.conflicts = FALSE)
 
+no_cores=detectCores() #Beholder to logisk kjerne til operativsystem operasjoner
+c1=makeCluster(no_cores,type = "FORK") #Bruker fork
+registerDoParallel(c1)
+
 URL.repo=getwd()
 
 URL.kritisk=paste(URL.repo,"/Output/KritiskFeil.txt", sep="")
@@ -38,10 +42,9 @@ load(URL)
 # URL=paste(URL.repo,"/Data/data.desc",sep="")
 # remove=file.remove(URL)
 
-typeCluster="PSOCK"
-debugging=T
+debugging=F
 
-sampleSizes=c(2000)
+sampleSizes=c(500)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
@@ -61,7 +64,7 @@ GARCHLagTwo.max=1
 runARCHInMean.switch=T
 archpow.switch=1
 
-timeOutCounter=100
+timeOutCounter=80
 forecastTimeOut=2
 distributionFitTimOut=20
 dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*10) #satt til + inf
@@ -101,10 +104,6 @@ for (stocksIndex in 1:nrow(stocks)){
       for (i in 0:(length(daysLeft)-1)){
         daysLeft[i+1]=i
       }})
-    
-    no_cores=detectCores() #Beholder to logisk kjerne til operativsystem operasjoner
-    c1=makeCluster(no_cores,type = typeCluster) #Bruker fork
-    registerDoParallel(c1)
 
     individualStockResults=foreach(day=0:rollingWindowSize) %dopar%{
       library(R.utils)
@@ -374,8 +373,6 @@ for (stocksIndex in 1:nrow(stocks)){
       return(results)
     }
     
-    stopCluster(c1)
-    
     names(individualStockResults)=index(individualStockRetun)[max(sampleSizes):nrow(individualStockRetun)]
     sampleSizeResults[[length(sampleSizeResults)+1]]=individualStockResults
     
@@ -386,6 +383,7 @@ for (stocksIndex in 1:nrow(stocks)){
   #return(sampleSizeResults)
 }
 
+stopCluster(c1)
 
 names(allStocksResults)=stocks[[1]]
 

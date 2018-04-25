@@ -38,7 +38,7 @@ load(URL)
 # URL=paste(URL.repo,"/Data/data.desc",sep="")
 # remove=file.remove(URL)
 
-typeCluster="PSOCK"
+typeCluster="FORK"
 debugging=T
 
 sampleSizes=c(2000)

@@ -20,7 +20,7 @@ load(URL)
 
 rm(list=ls()) #Clears environment
 URL.repo=getwd()
-URL=paste(URL.repo,"/From Solstorm/test.Rdata", sep="")
+URL=paste(URL.repo,"/From Solstorm/ErrorInForecastFitting.Rda", sep="")
 load(URL)
 
 rm(list=ls()) #Clears environment

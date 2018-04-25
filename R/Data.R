@@ -211,8 +211,8 @@ if (PLOTTING==T){
     returnPlot=plot_ly(x=index(stockReturns),y=drop(coredata(stockReturns[,stock])),type="scatter",mode="lines")
     returnPlot=layout(returnPlot,yaxis=list(title="Return"), xaxis=list(title="Date"))
     
-    stockName=stocks[stock,1]
-    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockName,"_ReturnPlot.jpeg",sep="")
+    stockTicker=stocks[stock,2]
+    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockTicker,"_ReturnPlot.jpeg",sep="")
     export(returnPlot, file = URL)
     
     print(returnPlot)
@@ -220,8 +220,8 @@ if (PLOTTING==T){
     squaredReturnPlot=plot_ly(x=index(stockReturns),y=(drop(coredata(stockReturns[,stock])))^2,type="scatter",mode="lines")
     squaredReturnPlot=layout(squaredReturnPlot,yaxis=list(title="Squared Return"), xaxis=list(title="Date"))
     
-    stockName=stocks[stock,1]
-    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockName,"_SquaredReturnPlot.jpeg",sep="")
+    stockTicker=stocks[stock,2]
+    URL=paste(URL.drop,"/Plot/ConstituentsReturn/",stockTicker,"_SquaredReturnPlot.jpeg",sep="")
     export(squaredReturnPlot, file = URL)
     
     print(squaredReturnPlot)
@@ -239,7 +239,7 @@ if (PLOTTING==T){
       add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
       layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
     
-    URL=paste(URL.drop,"/Plot/ACF/",stockName,"_ACF.jpeg",sep="")
+    URL=paste(URL.drop,"/Plot/ACF/",stockTicker,"_ACF.jpeg",sep="")
     export(ACF, file = URL)
     
     print(ACF)
@@ -256,10 +256,46 @@ if (PLOTTING==T){
       add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
       layout(yaxis=list(title="ACF"),xaxis=list(title="Lag"),showlegend=F)
     
-    URL=paste(URL.drop,"/Plot/ACF/",stockName,"_SquaredACF.jpeg",sep="")
+    URL=paste(URL.drop,"/Plot/ACF/",stockTicker,"_SquaredACF.jpeg",sep="")
     export(squaredACF, file = URL)
     
     print(squaredACF)
+    
+    PACF=pacf(drop(coredata(stockReturns[,stock])),lag.max = 30,plot = F)
+    confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
+    plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(PACF$lag)-1)
+    negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(PACF$lag)-1)
+    
+    
+    PACF=plot_ly(x=drop(PACF$lag)[-1]) %>%
+      add_trace(y =drop(PACF$acf)[-1],type="bar")%>%
+      add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      layout(yaxis=list(title="Partial ACF"),xaxis=list(title="Lag"),showlegend=F)
+    
+    URL=paste(URL.drop,"/Plot/PACF/",stockTicker,"_PACF.jpeg",sep="")
+    export(PACF, file = URL)
+    
+    print(PACF)
+    
+    PACF=pacf(drop(coredata(stockReturns[,stock]))^2,lag.max = 30, plot = F)
+    confidenceInterval=1.96/sqrt(length(drop(coredata(stockReturns[,stock]))))
+    plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(PACF$lag)-1)
+    negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(PACF$lag)-1)
+    
+    
+    squaredPACF=plot_ly(x=drop(PACF$lag)[-1]) %>%
+      add_trace(y =drop(PACF$acf)[-1],type="bar")%>%
+      add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+      layout(yaxis=list(title="Partial ACF"),xaxis=list(title="Lag"),showlegend=F)
+    
+    URL=paste(URL.drop,"/Plot/PACF/",stockTicker,"_SquaredPACF.jpeg",sep="")
+    export(squaredPACF, file = URL)
+    
+    print(squaredPACF)
+    
+    
     
     
     
@@ -283,7 +319,7 @@ if (PLOTTING==T){
   
   print(returnPlot)
   
-  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 30, plot = F)
+  ACF=acf((drop(coredata(OBX.close.return))),lag.max = 50, plot = F)
   confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
@@ -300,7 +336,7 @@ if (PLOTTING==T){
   
   print(ACF)
   
-  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 30, plot = F)
+  ACF=acf((drop(coredata(OBX.close.return)))^2,lag.max = 50, plot = F)
   confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
   plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(ACF$lag)-1)
   negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(ACF$lag)-1)
@@ -316,6 +352,40 @@ if (PLOTTING==T){
   export(squaredACF, file = URL)
   
   print(squaredACF)
+  
+  PACF=pacf((drop(coredata(OBX.close.return))),lag.max = 50, plot = F)
+  confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
+  plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(PACF$lag)-1)
+  negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(PACF$lag)-1)
+  
+  
+  PACF=plot_ly(x=drop(PACF$lag)[-1]) %>%
+    add_trace(y =drop(PACF$acf)[-1],type="bar")%>%
+    add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    layout(yaxis=list(title="Partial ACF"),xaxis=list(title="Lag"),showlegend=F)
+  
+  URL=paste(URL.drop,"/Plot/PACF/OBXTotalReturnIndex_PACF.jpeg",sep="")
+  export(PACF, file = URL)
+  
+  print(PACF)
+  
+  PACF=pacf((drop(coredata(OBX.close.return)))^2,lag.max = 50, plot = F)
+  confidenceInterval=1.96/sqrt(length(drop(coredata(OBX.close.return))))
+  plussConfindenceVector=seq(from = confidenceInterval, to = confidenceInterval, length.out = length(PACF$lag)-1)
+  negativeConfindenceVector=seq(from = (-1*confidenceInterval), to = (-1*confidenceInterval), length.out = length(PACF$lag)-1)
+  
+  
+  squaredPACF=plot_ly(x=drop(PACF$lag)[-1]) %>%
+    add_trace(y =drop(PACF$acf)[-1],type="bar")%>%
+    add_trace(y = plussConfindenceVector, type='scatter', mode = 'lines', line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    add_trace(y = negativeConfindenceVector, type='scatter', mode = 'lines',line = list(color = 'rgb(255,127,80)',dash = 'dash'))%>%
+    layout(yaxis=list(title="Partial ACF"),xaxis=list(title="Lag"),showlegend=F)
+  
+  URL=paste(URL.drop,"/Plot/PACF/OBXTotalReturnIndex_SquaredPACF.jpeg",sep="")
+  export(squaredPACF, file = URL)
+  
+  print(squaredPACF)
   
   
 }
