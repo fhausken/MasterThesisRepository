@@ -6,7 +6,7 @@ library(xts)
 rm(list=ls()) #Clears environment
 
 URL.repo=getwd()
-URL=paste(URL.repo,"/Data/StocksOBX.xlsx",sep="")
+URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
