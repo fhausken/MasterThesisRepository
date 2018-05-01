@@ -89,10 +89,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)
           shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)
         }else{
-          hitVector[length(hitVector)+1]=1 #Hit
-          accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-transactionCost.variable
-          shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
-          numberOfTransactions=numberOfTransactions+1
+          if (position==0){
+            hitVector[length(hitVector)+1]=1 #Hit
+            accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-1*transactionCost.variable
+            shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-1*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+1
+          }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+            hitVector[length(hitVector)+1]=1 #Hit
+            accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-2*transactionCost.variable
+            shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-2*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+2
+          }
         }
     
         
@@ -102,10 +109,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)
           shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)
         }else{
-          hitVector[length(hitVector)+1]=0 #Miss
-          accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-transactionCost.variable
-          shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-transactionCost.variable
-          numberOfTransactions=numberOfTransactions+1
+          if (position==0){
+            hitVector[length(hitVector)+1]=0 #Miss
+            accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-1*transactionCost.variable
+            shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-1*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+1
+          }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+            hitVector[length(hitVector)+1]=0 #Miss
+            accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-2*transactionCost.variable
+            shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-2*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+2
+          }
         }
         
       }

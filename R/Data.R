@@ -208,6 +208,7 @@ names(distributionsFitResults.average)=c("Normal Distribution","Generalized Erro
 URL=paste(URL.repo,"/Data/distributionFitResults.Rda",sep="")
 save(distributionsFitResults,file=URL)
 
+
 #Plotting
 
 
@@ -216,6 +217,11 @@ if (PLOTTING==T){
   no_cores=detectCores() -2 #Beholder to logisk kjerne til operativsystem operasjoner
   c1=makeCluster(no_cores)
   registerDoParallel(c1)
+  
+  individualStockReturnACF=vector()
+  individualStockReturnPACF=vector()
+  individualStockSquaredReturnACF=vector()
+  individualStockSquaredReturnPACF=vector()
   
   individualStockPlot=foreach(stock=1:numberOfStocks) %dopar%{
     library(tseries)
@@ -314,9 +320,6 @@ if (PLOTTING==T){
     print(squaredPACF)
     
     
-    
-    
-    
   }
   
   stopCluster(c1)
@@ -407,6 +410,66 @@ if (PLOTTING==T){
   
   
 }
+
+#ACF and PACF Tables
+boldTable=function(vector,confidenceLevel){
+  roundedVector=c()
+  newVector=c()
+  for (index in 1:length(vector)){
+    if (abs(vector[index])>=confidenceLevel){
+      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 2)
+      newVector[length(newVector)+1]=paste("\\textbf{",roundedVector[index],"}",sep="")
+    }else{
+      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 2)
+      newVector[length(newVector)+1]=paste("",roundedVector[index],"",sep="")
+    }
+  }
+  return(newVector)
+  
+}
+
+confidenceLevel=1.96/sqrt(length(drop(coredata(OBX.close.return))))
+for (stock in 1:nrow(stocks)){
+  
+  returnACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 15,plot = F)$acf[-1]
+  returnACF=boldTable(returnACF,confidenceLevel)
+  returnPACF=pacf(drop(coredata(stockReturns[,stock])),lag.max = 15,plot = F)$acf
+  returnPACF=boldTable(returnPACF,confidenceLevel)
+  squaredReturnACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 15,plot = F)$acf[-1]
+  squaredReturnACF=boldTable(squaredReturnACF,confidenceLevel)
+  squaredReturnPACF=pacf(drop(coredata(stockReturns[,stock]))^2,lag.max = 15,plot = F)$acf
+  squaredReturnPACF=boldTable(squaredReturnPACF,confidenceLevel)
+
+  if (stock==1){
+    stockReturnACF=data.frame(returnACF)
+    stockReturnPACF=data.frame(returnPACF)
+    
+    stockSquaredReturnACF=squaredReturnACF
+    stockSquaredReturnPACF=squaredReturnPACF
+  }else{
+    stockReturnACF=cbind(stockReturnACF,returnACF)
+    stockReturnPACF=cbind(stockReturnPACF,returnPACF)
+    
+    stockSquaredReturnACF=cbind(stockSquaredReturnACF,squaredReturnACF)
+    stockSquaredReturnPACF=cbind(stockSquaredReturnPACF,squaredReturnPACF)
+  }
+}
+stockReturnACF=data.frame(t(stockReturnACF))
+names(stockReturnACF)=seq(from =1, to = 15, by = 1)
+row.names(stockReturnACF)=stocks[[1]]
+
+stockReturnPACF=data.frame(t(stockReturnPACF))
+names(stockReturnPACF)=seq(from =1, to = 15, by = 1)
+row.names(stockReturnPACF)=stocks[[1]]
+
+stockSquaredReturnACF=data.frame(t(stockSquaredReturnACF))
+names(stockSquaredReturnACF)=seq(from =1, to = 15, by = 1)
+row.names(stockSquaredReturnACF)=stocks[[1]]
+
+stockSquaredReturnPACF=data.frame(t(stockSquaredReturnPACF))
+names(stockSquaredReturnPACF)=seq(from =1, to = 15, by = 1)
+row.names(stockSquaredReturnPACF)=stocks[[1]]
+
 
 # TABLES-TO-LATEX
 bold <- function(x){
