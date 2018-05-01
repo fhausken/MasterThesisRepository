@@ -67,7 +67,7 @@ archpow.switch=1
 timeOutCounter=120
 forecastTimeOut=2
 distributionFitTimOut=20
-dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*10) #satt til + inf
+dayTimeOutCounter=(timeOutCounter*(ARLag.max+1)*(MALag.max+1)*length(garchModels)*1000000) #satt til + inf
 
 start_time <- Sys.time()
 allStocksResults=list()

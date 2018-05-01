@@ -511,7 +511,7 @@ if(PLOTTING == TRUE) {
     OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
     
     OSEBXPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates) %>%
-      add_trace(y = OBX.close.return.plotVector, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
+      add_trace(y = OBX.close.return.plotVector^2, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
       layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
     
     GARCHPlot=subplot(nrows=2,GARCHPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
@@ -539,7 +539,7 @@ if(PLOTTING == TRUE) {
   OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
   
   OSEBXPlot=plot_ly(data=ARPlotDataFrame, x=~dates) %>%
-    add_trace(y = OBX.close.return.plotVector, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
+    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
     layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
   
   
@@ -576,7 +576,7 @@ if(PLOTTING == TRUE) {
   OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize+1):length(vectorizedOSEBXReturn)]
   
   OSEBXPlot=plot_ly(data=sampleAverageStdMAEPlotDataFrameList[[1]], x=~dates) %>%
-    add_trace(y = OBX.close.return.plotVector, name = "OBX Return",type='scatter',mode = 'lines')%>%
+    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Return",type='scatter',mode = 'lines')%>%
     layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
   
   MAEPlot=subplot(nrows=2,MAEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)

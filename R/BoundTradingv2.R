@@ -92,10 +92,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
           accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)
           boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)
         }else{#Hadde ikke predikert posisjon fra f?r av, m? gj?re en transaksjon
-          hitVector[length(hitVector)+1]=1 #Hit
-          accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-transactionCost.variable
-          boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-transactionCost.variable
-          numberOfTransactions=numberOfTransactions+1
+          if(position==0){
+            hitVector[length(hitVector)+1]=1 #Hit
+            accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-1*transactionCost.variable
+            boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-1*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+1
+          }else{ #Dobbelt transaksjonsgebyr. Kjøpe og selge
+            hitVector[length(hitVector)+1]=1 #Hit
+            accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-2*transactionCost.variable
+            boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-2*transactionCost.variable
+            numberOfTransactions=numberOfTransactions+2
+          }
         }
         
         
@@ -133,10 +140,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
             accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)
             boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)
           }else{#Hadde ikke predikert posisjon fra f?r av, m? gj?re en transaksjon
-            hitVector[length(hitVector)+1]=0 #Miss 
-            accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-transactionCost.variable
-            boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-transactionCost.variable
-            numberOfTransactions=numberOfTransactions+1
+            if(position==0){
+              hitVector[length(hitVector)+1]=0 #Miss 
+              accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-1*transactionCost.variable
+              boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-1*transactionCost.variable
+              numberOfTransactions=numberOfTransactions+1
+            }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+              hitVector[length(hitVector)+1]=0 #Miss 
+              accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-2*transactionCost.variable
+              boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-2*transactionCost.variable
+              numberOfTransactions=numberOfTransactions+2
+            }
         }
       }
     }
