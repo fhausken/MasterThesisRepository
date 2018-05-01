@@ -6,8 +6,7 @@ library(xts)
 rm(list=ls()) #Clears environment
 
 URL.repo=getwd()
-#URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
-URL=paste(URL.repo,"/Data/StocksOBX.xlsx",sep="")
+URL=paste(URL.repo,"/Data/Stocks.xlsx",sep="")
 stocks <- read_excel(URL,sheet = "Sheet1")
 
 
@@ -16,7 +15,7 @@ stocks <- read_excel(URL,sheet = "Sheet1")
 
 #DISCARDED STOCKS
 
-discardedStocksVector=c()
+discardedStocksVector=c("Aker BP","Aker Solutions","Bakkafrost","BW LPG","Gjensidige Forsikring","Golden Ocean Group","Grieg Seafood","Leroy Seafood Group","Marine Harvest","Norwegian Finans Holding","Orkla","SalMar","Schibsted ser. A","Storebrand","TGS-NOPEC Geophysical Company")
 
 # SET FROM DATE
 from.date <- as.Date("01/04/10", format="%m/%d/%y")

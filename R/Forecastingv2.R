@@ -26,7 +26,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-PLOTTING=TRUE
+PLOTTING=F
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -511,7 +511,7 @@ if(PLOTTING == TRUE) {
     OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
     
     OSEBXPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates) %>%
-      add_trace(y = OBX.close.return.plotVector, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
+      add_trace(y = OBX.close.return.plotVector^2, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
       layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
     
     GARCHPlot=subplot(nrows=2,GARCHPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
@@ -643,7 +643,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   add.to.row$command <- command
 
   URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
-  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Model Diagnostics"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], label = c(paste0("modelDiagnostics",sampleSize)),auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste0("Model characteristics for OBX constituents for sample size ",sampleSize), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL))
 }
 
 # STATISTICAL METRICS
