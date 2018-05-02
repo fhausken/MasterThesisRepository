@@ -54,6 +54,28 @@ load(URL)
 URL=paste(URL.repo,"/Data/OBXReturn.Rda",sep="")
 load(URL)
 
+#Forecast Outlier Removal (Kaster feil hvis dag 1 har for stor forecast og skal settes til forecastet dagen f??r (som er dag 0 som ikke finnes ))
+for (sampleSizesIndex in 1:length(sampleSizes)){
+  sampleSize = max(sampleSizes)
+  rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
+  
+  for (stocksIndex in 1:nrow(stocks)){
+    stockName=stocks[stocksIndex,1]
+    
+    for (day in 1:(rollingWindowSize)){
+      meanForecast=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[2]]
+      volatilityForecast=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[9]]
+      if(abs(meanForecast>2)){
+        allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[2]]=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day-1]][[2]]
+        
+      }
+      if(abs(volatilityForecast>2)){
+        volatilityForecast=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day]][[9]]=volatilityForecast=allStocksResults[[stocksIndex]][[sampleSizesIndex]][[day-1]][[9]]
+      }
+      
+    }
+  }
+}
 
 #DIAGNOSTICS
 sampleRunTimeDiagnosticsList=list()
@@ -97,7 +119,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   }
   
   stocksRunTimeDiagnosticsDataFrame=data.frame(stocks[,1],matrix(stocksRunTimeDiagnosticsList, ncol=(length(garchModels)+2), byrow=TRUE),stringsAsFactors=FALSE)
-  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", garchModels, "Mean AR-LAG","Mean MA-Lag")
+  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", toupper(garchModels), "Mean AR-LAG","Mean MA-Lag")
   sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stocksRunTimeDiagnosticsDataFrame
   
   ARLagDataFrame=cbind(ARLagDataFrame,(rowMeans(ARLagDataFrame)))
@@ -643,7 +665,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   add.to.row$command <- command
 
   URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
-  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], label = c(paste0("modelDiagnostics",sampleSize)),auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste0("Model characteristics for OBX constituents for sample size ",sampleSize), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL))
+  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], label = c(paste0("modelDiagnostics",sampleSize)),auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste0("Model Characteristics for OBX Constituents For Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 }
 
 # STATISTICAL METRICS
@@ -660,4 +682,4 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/statisticalMetrics.txt",sep="")
-print(xtable(sampleStdMAE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "MAE metric and standard deviation of mean error"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(sampleStdMAE.MAE.dataFrame, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Mean Absolute Error and Standard Deviation of Absolute Error"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
