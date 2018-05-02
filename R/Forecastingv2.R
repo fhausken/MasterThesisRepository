@@ -26,7 +26,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-PLOTTING=T
+PLOTTING=F
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -54,7 +54,7 @@ load(URL)
 URL=paste(URL.repo,"/Data/OBXReturn.Rda",sep="")
 load(URL)
 
-#Forecast Outlier Removal (Kaster feil hvis dag 1 har for stor forecast og skal settes til forecastet dagen før (som er dag 0 som ikke finnes ))
+#Forecast Outlier Removal (Kaster feil hvis dag 1 har for stor forecast og skal settes til forecastet dagen f??r (som er dag 0 som ikke finnes ))
 for (sampleSizesIndex in 1:length(sampleSizes)){
   sampleSize = max(sampleSizes)
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
@@ -119,7 +119,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   }
   
   stocksRunTimeDiagnosticsDataFrame=data.frame(stocks[,1],matrix(stocksRunTimeDiagnosticsList, ncol=(length(garchModels)+2), byrow=TRUE),stringsAsFactors=FALSE)
-  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", garchModels, "Mean AR-LAG","Mean MA-Lag")
+  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", toupper(garchModels), "Mean AR-LAG","Mean MA-Lag")
   sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stocksRunTimeDiagnosticsDataFrame
   
   ARLagDataFrame=cbind(ARLagDataFrame,(rowMeans(ARLagDataFrame)))

@@ -30,8 +30,8 @@ if (grepl("Fredrik", URL.repo)){
 #INPUT
 
 tradingBound=0 #Number of times the standard deviation
-transactionCost.variable=0.0001
-PLOTTING = TRUE
+transactionCost.variable=0
+PLOTTING = F
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
@@ -315,4 +315,9 @@ save(sampleBoundAlphaDataFramesList,file=URL)
 # Number of transactions
 URL=paste(URL.repo,"/Data/sampleBoundNumberOfTransactionsDataFramesList.Rda",sep="")
 save(sampleBoundNumberOfTransactionsDataFramesList,file=URL)
+
+# TRANSACTION COST
+URL=paste(URL.repo,"/Data/sampleBoundtransactionCostvariable.Rda",sep="")
+sampleBoundtransactionCostvariable = transactionCost.variable
+save(sampleBoundtransactionCostvariable,file=URL)
 

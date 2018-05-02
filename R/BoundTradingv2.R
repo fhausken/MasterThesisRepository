@@ -97,7 +97,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
             accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-1*transactionCost.variable
             boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-1*transactionCost.variable
             numberOfTransactions=numberOfTransactions+1
-          }else{ #Dobbelt transaksjonsgebyr. Kjøpe og selge
+          }else{ #Dobbelt transaksjonsgebyr. Kj??pe og selge
             hitVector[length(hitVector)+1]=1 #Hit
             accumulatedBoundReturn=accumulatedBoundReturn+abs(nextDayReturn)-2*transactionCost.variable
             boundReturnVector[length(boundReturnVector)+1] = abs(nextDayReturn)-2*transactionCost.variable
@@ -145,7 +145,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
               accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-1*transactionCost.variable
               boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-1*transactionCost.variable
               numberOfTransactions=numberOfTransactions+1
-            }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+            }else{#Dobbelt transaksjonsgebyr. Kj??pe og selge
               hitVector[length(hitVector)+1]=0 #Miss 
               accumulatedBoundReturn=accumulatedBoundReturn-abs(nextDayReturn)-2*transactionCost.variable
               boundReturnVector[length(boundReturnVector)+1] = -abs(nextDayReturn)-2*transactionCost.variable
@@ -328,7 +328,7 @@ if(PLOTTING == TRUE) {
       fullPlot=subplot(nrows=2,subplotOne,subplotTwo, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
       
       
-      URL=paste(URL.drop,"/Plot/BoundTrading/",stockName,"_",sampleSize,"_Bound Strategy",".jpeg",sep="")
+      URL=paste(URL.drop,"/Plot/BoundTrading/",stockName,"_",sampleSize,"_BoundStrategy",".jpeg",sep="")
       export(fullPlot, file = URL)
       return(fullPlot)
     }
@@ -369,4 +369,9 @@ save(sampleBoundAlphaDataFramesList,file=URL)
 # Number of transactions
 URL=paste(URL.repo,"/Data/sampleBoundNumberOfTransactionsDataFramesList.Rda",sep="")
 save(sampleBoundNumberOfTransactionsDataFramesList,file=URL)
+
+# TRANSACTION COST
+URL=paste(URL.repo,"/Data/sampleBoundtransactionCostvariable.Rda",sep="")
+sampleBoundtransactionCostvariable = transactionCost.variable
+save(sampleBoundtransactionCostvariable,file=URL)
 

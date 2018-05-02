@@ -28,8 +28,8 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-transactionCost.variable=0.001
-PLOTTING = T
+transactionCost.variable=0
+PLOTTING = F
 
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
@@ -94,7 +94,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
             accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-1*transactionCost.variable
             shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-1*transactionCost.variable
             numberOfTransactions=numberOfTransactions+1
-          }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+          }else{#Dobbelt transaksjonsgebyr. Kj??pe og selge
             hitVector[length(hitVector)+1]=1 #Hit
             accumulatedShortLongReturn=accumulatedShortLongReturn+abs(nextDayReturn)-2*transactionCost.variable
             shortLongReturnVector[length(shortLongReturnVector)+1] = abs(nextDayReturn)-2*transactionCost.variable
@@ -114,7 +114,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
             accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-1*transactionCost.variable
             shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-1*transactionCost.variable
             numberOfTransactions=numberOfTransactions+1
-          }else{#Dobbelt transaksjonsgebyr. Kjøpe og selge
+          }else{#Dobbelt transaksjonsgebyr. Kj??pe og selge
             hitVector[length(hitVector)+1]=0 #Miss
             accumulatedShortLongReturn=accumulatedShortLongReturn-abs(nextDayReturn)-2*transactionCost.variable
             shortLongReturnVector[length(shortLongReturnVector)+1] = -abs(nextDayReturn)-2*transactionCost.variable
@@ -325,3 +325,10 @@ save(sampleAlphaDataFramesList,file=URL)
 # Number of transactions
 URL=paste(URL.repo,"/Data/sampleShortLongNumberOfTransactionsDataFramesList.Rda",sep="")
 save(sampleShortLongNumberOfTransactionsDataFramesList,file=URL)
+
+# TRANSACTION COST
+URL=paste(URL.repo,"/Data/sampleShortLongtransactionCostvariable.Rda",sep="")
+sampleShortLongtransactionCostvariable = transactionCost.variable
+save(sampleShortLongtransactionCostvariable,file=URL)
+
+
