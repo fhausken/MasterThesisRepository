@@ -39,7 +39,7 @@ load(URL)
 # remove=file.remove(URL)
 
 typeCluster="PSOCK"
-debugging=T
+debugging=F
 
 sampleSizes=c(750,1500)
 
