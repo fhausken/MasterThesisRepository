@@ -26,7 +26,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-PLOTTING=TRUE
+PLOTTING=F
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -634,16 +634,16 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   digits = 2
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
 
   add.to.row <- list(pos = list(0,0), command = command)
-  add.to.row$pos[[1]] = 1
+  add.to.row$pos[[1]] = 0
   add.to.row$pos[[2]] = nrow(x)
 
   add.to.row$command <- command
 
   URL=paste(URL.drop,"/Tables/modelDiagnostics_",sampleSize,".txt",sep="")
-  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Model Diagnostics"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+  print(xtable(sampleRunTimeDiagnosticsList[[sampleSizesIndex]], label = c(paste0("modelDiagnostics",sampleSize)),auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste0("Model characteristics for OBX constituents for sample size ",sampleSize), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL))
 }
 
 # STATISTICAL METRICS
@@ -651,10 +651,10 @@ x = sampleStdMAE.MAE.dataFrame
 digits = 3
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleStdMAE.MAE.dataFrame.average,digits,(ncol(x))))
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleStdMAE.MAE.dataFrame.average,digits,(ncol(x))))
 
 add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
+add.to.row$pos[[1]] = 0
 add.to.row$pos[[2]] = nrow(x)
 
 add.to.row$command <- command
