@@ -500,7 +500,6 @@ createAverageLineOBX <- function(x, digits,totCols) {
 
 
 createAverageLine <- function(x, digits,totCols) {
-  print(totCols)
   resultString = ""
   for(i in 1:length(x)) {
     if (i == 1) {
@@ -553,6 +552,7 @@ createDigitsandAlignVectors <- function(dataFrame,digits,descStat) {
   for (i in 1:colDim) {
     if(descStat == TRUE) {
       digitsVector = c(digitsVector,0)
+      descStat = FALSE
     }
     else {
       digitsVector = c(digitsVector,digits)  
@@ -569,10 +569,10 @@ digits = 4
 descStat = TRUE
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,descStat)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),paste0(createAverageLine(descriptiveStatisticsResults.average,digits,ncol(x)),"\n \\",createAverageLineOBX(OBX.average,digits,ncol(x))))
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),paste0(createAverageLine(descriptiveStatisticsResults.average,digits,ncol(x)),"\n \\",createAverageLineOBX(OBX.average,digits,ncol(x))))
 
 add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
+add.to.row$pos[[1]] = 0
 add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
 
 
@@ -586,10 +586,10 @@ x = phillipPerronResults
 digits = 3
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),paste0(createAverageLine(phillipPerronResults.average,digits,ncol(x)),"{ \\bfseries Stationary } &"))
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),paste0(createAverageLine(phillipPerronResults.average,digits,ncol(x)),"{ \\bfseries Stationary } &"))
 
 add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
+add.to.row$pos[[1]] = 0
 add.to.row$pos[[2]] = nrow(phillipPerronResults)
 
 add.to.row$command <- command
@@ -602,10 +602,10 @@ x = distributionsFitResults[-c(ncol(distributionsFitResults))]
 digits = 0
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
 
 add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
+add.to.row$pos[[1]] = 0
 add.to.row$pos[[2]] = nrow(x)
 
 add.to.row$command <- command
@@ -619,10 +619,11 @@ x = stocks
 digits = 0
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
 # GENERAL LONG-TABLE COMMAND
-command <- c("")
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
 
-add.to.row <- list(pos = list(0), command = command)
-add.to.row$pos[[1]] <- nrow(x)
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] <- 0
+add.to.row$pos[[2]] <- nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stocks.txt", sep="")
@@ -635,10 +636,11 @@ x = stocksRemoved
 digits = 0
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"))
-add.to.row <- list(pos = list(0), command = command)
-add.to.row$pos[[1]] = 1
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
 
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] <- 0
+add.to.row$pos[[2]] <- nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stocksRemoved.txt", sep="")
@@ -646,4 +648,69 @@ names(x)=c("Stock","Ticker", "Reason for removal")
 print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The removed OBX Constituents", label="StocksRemoved"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 
+
+# STOCK RETURN ACF
+x = stockReturnACF
+digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
+# GENERAL LONG-TABLE COMMAND
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 0
+add.to.row$pos[[2]] = nrow(x)
+
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/stockReturnsACF.txt", sep="")
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock return ACF results", label="ACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+# STOCK RETURN PACF
+x = stockReturnPACF
+digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
+# GENERAL LONG-TABLE COMMAND
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 0
+add.to.row$pos[[2]] = nrow(x)
+
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/stockReturnsPACF.txt", sep="")
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock return PACF results", label="PACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+
+# STOCK SQUARED RETURN ACF
+x = stockSquaredReturnACF
+digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
+# GENERAL LONG-TABLE COMMAND
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 0
+add.to.row$pos[[2]] = nrow(x)
+
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/stockSquaredReturnsACF.txt", sep="")
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock squared return ACF results", label="SquaredACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+
+# STOCK SQUARED RETURN PACF
+x = stockSquaredReturnPACF
+digits = 3
+alignAndDigitsVectors = createDigitsandAlignVectors(x,digits,FALSE)
+# GENERAL LONG-TABLE COMMAND
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),"")#,createAverageLineDistribution(distributionsFitResults.average,digits,ncol(x)))
+
+add.to.row <- list(pos = list(0,0), command = command)
+add.to.row$pos[[1]] = 0
+add.to.row$pos[[2]] = nrow(x)
+
+add.to.row$command <- command
+
+URL=paste(URL.drop,"/Tables/stockSquaredReturnsPACF.txt", sep="")
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock squared return PACF results", label="SquaredPACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 

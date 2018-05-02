@@ -43,7 +43,7 @@ load(URL)
 
 debugging=F
 
-sampleSizes=c(1750)
+sampleSizes=c(1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 

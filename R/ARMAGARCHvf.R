@@ -10,7 +10,7 @@ library(xts,warn.conflicts = FALSE)
 library(tseries,warn.conflicts = FALSE)
 library(bigmemory,warn.conflicts = FALSE)
 library(R.utils,warn.conflicts = FALSE)
-library(sys,warn.conflicts = FALSE)
+#library(sys,warn.conflicts = FALSE)
 
 no_cores=detectCores() -2 #Beholder to logisk kjerne til operativsystem operasjoner
 c1=makeCluster(no_cores,type = "PSOCK")
@@ -44,15 +44,15 @@ load(URL)
 
 debugging=F
 
-sampleSizes=c(1500)
+sampleSizes=c(1000)
 
 garchModels=c('sGARCH','gjrGARCH','eGARCH')
 
-distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
-distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
+#distributions=c("norm","ged","std","snorm","sged","sstd","ghyp","nig","ghst")
+#distributions.fullname=c("Normal Distribution","Generalized Error Distribution","Student Distribution","Skewed Normal Distribution","Skewed Generalized Error Distribution","Skewed Student Distribution","Generalized Hyperbolic Function Distribution","Normal Inverse Gaussian Distribution","Generalized Hyperbolic Skew Student Distribution")
 
-#distributions=c("norm","std","snorm")
-#distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
+distributions=c("norm","std","snorm")
+distributions.fullname=c("Normal Distribution","Student Distribution","Skewed Normal Distribution")
 
 
 ARLag.max=6
@@ -121,7 +121,7 @@ for (stocksIndex in 1:nrow(stocks)){
           library(tseries)
           library(bigmemory)
           library(R.utils)
-          library(sys)
+          #library(sys)
           
           
           URL=paste(URL.repo,"/Data/data.desc",sep="")
@@ -319,9 +319,9 @@ for (stocksIndex in 1:nrow(stocks)){
             }
           }
           
-          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullført!","\n",sep=""), file=URL.logging, append=TRUE) },timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
+          writeFile=tryCatch({withTimeout({cat(paste(Sys.time(), "\t\t","Iteration: ",stocksIndex,"/" , nrow(stocks),". Stock: ",stocks[stocksIndex,1] ,". Sample size: ",sampleSize,". Day: ",day,"/" , rollingWindowSize,". Distribution: ",bestDistributionFit.fullname, ". Model: " ,garchModel.final,"(",ARLag.final,MALag.final,GARCHLagOne.final,GARCHLagTwo.final,"). Iterasjon fullf??rt!","\n",sep=""), file=URL.logging, append=TRUE) },timeout = 1,elapsed=1,onTimeout = "error")}, error=function(e) e, warning=function(w) w)
     
-          results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man må bruke to brackets for å legge til en liste inni en liste
+          results=list(AIC.final, forecastOneDayAhead.mean.final, garchModel.final,ARLag.final, MALag.final, GARCHLagOne.final, GARCHLagTwo.final, bestDistributionFit.fullname, forecastOneDayAhead.volatility.final) # Merk at man m?? bruke to brackets for ?? legge til en liste inni en liste
           
           names(results)=c("AIC", "One-Day-Ahead Mean Forecast",  "Garch Model","AR Lag","MA Lag", "GARCH Lag 1","GARCH Lag 2","Stock Distribution","One-Day-Ahead VOlatility Forecast" )
           #individualStockResults[[length(individualStockResults)+1]]=results

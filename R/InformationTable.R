@@ -135,7 +135,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   average.sr.bh = mean(informationShortLongDataFrame$`Buy-and-hold SR`)
   average.sr.ls = mean(informationShortLongDataFrame$`Short-long SR`)
   
-  end.line.ls.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.ls, average.mean.ls, average.stDev.ls, average.return.ls, average.alpha.ls, average.nTrans.ls, average.sr.ls, average.sr.ls)
+  end.line.ls.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.ls, average.mean.ls, average.stDev.ls, average.return.ls, average.alpha.ls, average.nTrans.ls, average.sr.bh, average.sr.ls)
   
   # SET LATEX COL NAMES
   colnames(informationShortLongDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{SL}}$", "$\\boldsymbol{\\sigma_{SL}}$", "$\\boldsymbol{r_{SL}}$", "$\\boldsymbol{\\alpha}$", "Trades","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{SL}}$")
@@ -190,7 +190,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   average.sr.bh = mean(informationBoundDataFrame$`Buy-and-hold SR`)
   average.sr.b = mean(informationBoundDataFrame$`Bound SR`)
   
-  end.line.bound.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.b, average.mean.b, average.stDev.b, average.return.b, average.alpha.b, average.nTrans.b,average.sr.bh, average.sr.b)
+  end.line.bound.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.b, average.mean.b, average.stDev.b, average.return.b, average.alpha.b, average.nTrans.b, average.sr.bh, average.sr.b)
   
   # SET LATEX COL NAMES
   colnames(informationBoundDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{Bound}}$", "$\\boldsymbol{\\sigma_{Bound}}$", "$\\boldsymbol{r_{Bound}}$", "$\\boldsymbol{\\alpha}$", "N. transactions","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{Bound}}$")
@@ -250,10 +250,10 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.ls.infoTable, digits))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.ls.infoTable, digits))
 
   add.to.row <- list(pos = list(0,0), command = command)
-  add.to.row$pos[[1]] = 1
+  add.to.row$pos[[1]] = 0
   add.to.row$pos[[2]] = nrow(informationShortLongDataFrameList[[sampleSizesIndex]])
 
   add.to.row$command <- command
@@ -270,10 +270,10 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.bound.infoTable, digits))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.bound.infoTable, digits))
 
   add.to.row <- list(pos = list(0,0), command = command)
-  add.to.row$pos[[1]] = 1
+  add.to.row$pos[[1]] = 0
   add.to.row$pos[[2]] = nrow(informationBoundDataFrameList[[sampleSizesIndex]])
 
   add.to.row$command <- command

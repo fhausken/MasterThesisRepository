@@ -634,10 +634,10 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   digits = 2
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleRunTimeDiagnosticsList.average[[sampleSizesIndex]],digits,(ncol(x))))
 
   add.to.row <- list(pos = list(0,0), command = command)
-  add.to.row$pos[[1]] = 1
+  add.to.row$pos[[1]] = 0
   add.to.row$pos[[2]] = nrow(x)
 
   add.to.row$command <- command
@@ -651,10 +651,10 @@ x = sampleStdMAE.MAE.dataFrame
 digits = 3
 alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 # GENERAL LONG-TABLE COMMAND
-command <- c(paste0("\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleStdMAE.MAE.dataFrame.average,digits,(ncol(x))))
+command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(sampleStdMAE.MAE.dataFrame.average,digits,(ncol(x))))
 
 add.to.row <- list(pos = list(0,0), command = command)
-add.to.row$pos[[1]] = 1
+add.to.row$pos[[1]] = 0
 add.to.row$pos[[2]] = nrow(x)
 
 add.to.row$command <- command
