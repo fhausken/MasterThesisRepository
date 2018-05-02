@@ -28,7 +28,7 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-tradingBound=0.1 #Number of times the standard deviation
+tradingBound=0.3 #Number of times the standard deviation
 transactionCost.variable=0.001
 PLOTTING = TRUE
 
