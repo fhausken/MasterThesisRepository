@@ -71,6 +71,10 @@ load(URL)
 URL=paste(URL.repo,"/Data/sampleShortLongNumberOfTransactionsDataFramesList.Rda",sep="")
 load(URL)
 
+URL=paste(URL.repo,"/Data/sampleShortLongtransactionCostvariable.Rda",sep="")
+load(URL)
+
+
 # BOUND TRADING
 URL=paste(URL.repo,"/Data/sampleBoundHitRatioDataFramesList.Rda",sep="")
 load(URL)
@@ -89,6 +93,23 @@ load(URL)
 
 URL=paste(URL.repo,"/Data/sampleBoundNumberOfTransactionsDataFramesList.Rda",sep="")
 load(URL)
+
+URL=paste(URL.repo,"/Data/sampleBoundtransactionCostvariable.Rda",sep="")
+load(URL)
+
+
+TRANSACTION.COST.SHORTLONG = FALSE  
+TRANSACTION.COST.BOUND = FALSE  
+# SET TRANSACTION COST BOOLEAN
+if (sampleBoundtransactionCostvariable > 0) {
+  TRANSACTION.COST.BOUND = TRUE  
+}
+
+if (sampleShortLongtransactionCostvariable > 0) {
+  TRANSACTION.COST.SHORTLONG = TRUE  
+}
+
+
 
 
 # SHORT LONG: CREATE INFORMATION METRIC TABLE (Stock, mean_buy-and-hold, std.dev_buy-and-hold, r_buy-and-hold, Sign Ratio, mean_short-long, std.dev_short-long, return_short-long, alpha, SR_buy-and-hold, SR_short-long)
@@ -193,7 +214,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   end.line.bound.infoTable = c(average.mean.bh, average.stDev.bh, average.return.bh, average.hitratio.b, average.mean.b, average.stDev.b, average.return.b, average.alpha.b, average.nTrans.b, average.sr.bh, average.sr.b)
   
   # SET LATEX COL NAMES
-  colnames(informationBoundDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{Bound}}$", "$\\boldsymbol{\\sigma_{Bound}}$", "$\\boldsymbol{r_{Bound}}$", "$\\boldsymbol{\\alpha}$", "N. transactions","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{Bound}}$")
+  colnames(informationBoundDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{Bound}}$", "$\\boldsymbol{\\sigma_{Bound}}$", "$\\boldsymbol{r_{Bound}}$", "$\\boldsymbol{\\alpha}$", "Trades","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{Bound}}$")
   
   informationBoundDataFrameList[[length(informationBoundDataFrameList)+1]] = informationBoundDataFrame
   
@@ -258,8 +279,14 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   add.to.row$command <- command
 
-  URL=paste(URL.drop,"/Tables/informationTable_","shortLong","sampleSize",sampleSizesIndex,".txt",sep="")
-  print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock metrics short long trading strategy and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  if(TRANSACTION.COST.SHORTLONG == TRUE) {
+    URL=paste(URL.drop,"/Tables/informationTable_","shortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
+  }
+  else {
+    URL=paste(URL.drop,"/Tables/informationTable_","TshortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
+  }
+  
+  print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Short Long Trading Strategy and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 }
 
 # BOUND: RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
@@ -278,8 +305,16 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   add.to.row$command <- command
 
-  URL=paste(URL.drop,"/Tables/informationTable_","tradingBound",tradingBound,"sampleSize",sampleSizesIndex,".txt",sep="")
-  print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock metrics with trading bound ",tradingBound,"and sample size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  if(TRANSACTION.COST.BOUND == TRUE) {
+    URL=paste(URL.drop,"/Tables/informationTable_","tradingBound",tradingBound,"sampleSize",sampleSizesIndex,".txt",sep="")
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics with Trading Bound ",tradingBound,"and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  }
+  else {
+    URL=paste(URL.drop,"/Tables/informationTable_","TtradingBound",tradingBound,"sampleSize",sampleSizesIndex,".txt",sep="")
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics with Transaction costs with Trading Bound ",tradingBound,"and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  }
+  
+  
 
 }
 
