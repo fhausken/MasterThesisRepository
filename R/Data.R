@@ -417,10 +417,10 @@ boldTable=function(vector,confidenceLevel){
   newVector=c()
   for (index in 1:length(vector)){
     if (abs(vector[index])>=confidenceLevel){
-      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 2)
+      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 3)
       newVector[length(newVector)+1]=paste("\\textbf{",roundedVector[index],"}",sep="")
     }else{
-      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 2)
+      roundedVector[length(roundedVector)+1]=format(round(vector[index], 3), nsmall = 3)
       newVector[length(newVector)+1]=paste("",roundedVector[index],"",sep="")
     }
   }
@@ -431,21 +431,21 @@ boldTable=function(vector,confidenceLevel){
 confidenceLevel=1.96/sqrt(length(drop(coredata(OBX.close.return))))
 for (stock in 1:nrow(stocks)){
   
-  returnACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 15,plot = F)$acf[-1]
+  returnACF=acf(drop(coredata(stockReturns[,stock])),lag.max = 12,plot = F)$acf[-1]
   returnACF=boldTable(returnACF,confidenceLevel)
-  returnPACF=pacf(drop(coredata(stockReturns[,stock])),lag.max = 15,plot = F)$acf
+  returnPACF=pacf(drop(coredata(stockReturns[,stock])),lag.max = 12,plot = F)$acf
   returnPACF=boldTable(returnPACF,confidenceLevel)
-  squaredReturnACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 15,plot = F)$acf[-1]
+  squaredReturnACF=acf(drop(coredata(stockReturns[,stock]))^2,lag.max = 12,plot = F)$acf[-1]
   squaredReturnACF=boldTable(squaredReturnACF,confidenceLevel)
-  squaredReturnPACF=pacf(drop(coredata(stockReturns[,stock]))^2,lag.max = 15,plot = F)$acf
+  squaredReturnPACF=pacf(drop(coredata(stockReturns[,stock]))^2,lag.max = 12,plot = F)$acf
   squaredReturnPACF=boldTable(squaredReturnPACF,confidenceLevel)
 
   if (stock==1){
     stockReturnACF=data.frame(returnACF)
     stockReturnPACF=data.frame(returnPACF)
     
-    stockSquaredReturnACF=squaredReturnACF
-    stockSquaredReturnPACF=squaredReturnPACF
+    stockSquaredReturnACF=data.frame(squaredReturnACF)
+    stockSquaredReturnPACF=data.frame(squaredReturnPACF)
   }else{
     stockReturnACF=cbind(stockReturnACF,returnACF)
     stockReturnPACF=cbind(stockReturnPACF,returnPACF)
@@ -455,21 +455,25 @@ for (stock in 1:nrow(stocks)){
   }
 }
 stockReturnACF=data.frame(t(stockReturnACF))
-names(stockReturnACF)=seq(from =1, to = 15, by = 1)
-row.names(stockReturnACF)=stocks[[1]]
+names(stockReturnACF)=seq(from =1, to = 12, by = 1)
 
 stockReturnPACF=data.frame(t(stockReturnPACF))
-names(stockReturnPACF)=seq(from =1, to = 15, by = 1)
-row.names(stockReturnPACF)=stocks[[1]]
+names(stockReturnPACF)=seq(from =1, to = 12, by = 1)
 
 stockSquaredReturnACF=data.frame(t(stockSquaredReturnACF))
-names(stockSquaredReturnACF)=seq(from =1, to = 15, by = 1)
-row.names(stockSquaredReturnACF)=stocks[[1]]
+names(stockSquaredReturnACF)=seq(from =1, to = 12, by = 1)
 
 stockSquaredReturnPACF=data.frame(t(stockSquaredReturnPACF))
-names(stockSquaredReturnPACF)=seq(from =1, to = 15, by = 1)
-row.names(stockSquaredReturnPACF)=stocks[[1]]
+names(stockSquaredReturnPACF)=seq(from =1, to = 12, by = 1)
 
+
+stockNameColumn=data.frame(stocks[[1]])
+names(stockNameColumn)=c("Stock")
+
+stockReturnACF=cbind(stockNameColumn,stockReturnACF)
+stockReturnPACF=cbind(stockNameColumn,stockReturnPACF)
+stockSquaredReturnACF=cbind(stockNameColumn,stockSquaredReturnACF)
+stockSquaredReturnPACF=cbind(stockNameColumn,stockSquaredReturnPACF)
 
 # TABLES-TO-LATEX
 bold <- function(x){
@@ -579,7 +583,7 @@ add.to.row$pos[[2]] = nrow(descriptiveStatisticsResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/descriptiveStatisticsResults.txt",sep="")
-print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Descriptive Statistics for OBX Constituents",label="DescriptiveStats"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+print(xtable(descriptiveStatisticsResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Descriptive Statistics for the OBX Constituents",label="DescriptiveStats"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
 
 # PHILLIP PERRON TEST
 x = phillipPerronResults
@@ -595,7 +599,7 @@ add.to.row$pos[[2]] = nrow(phillipPerronResults)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/ppResults.txt",sep="")
-print(xtable(phillipPerronResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Phillips-Perron Test for OBX Constituents", label="StationarityTest"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(phillipPerronResults, auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Phillips-Perron Test for the OBX Constituents", label="StationarityTest"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # DISTRIBUTION FIT
 x = distributionsFitResults[-c(ncol(distributionsFitResults))]
@@ -612,7 +616,7 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/distributionFitResults.txt", sep="")
 names(x)=c("Stock", "NORM","GED","STD","SNORM","SGED","SSTD","GHYP","NIG","GHST","Best Fit")
-print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "AIC Results for Various Distributions for OBX Constituents", label="DistributionFits"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE, display = c('d','s','f','f','f','f','f','f','f','f','f','s'),digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "AIC Results for Various Distributions for the OBX Constituents", label="DistributionFits"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # STOCKS
 x = stocks
@@ -628,7 +632,7 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stocks.txt", sep="")
 names(x)=c("Stock","Ticker")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The OBX Constituents used in this analysis", label="Stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable", file = URL) 
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The OBX Constituents Used in This Analysis", label="Stocks"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable", file = URL) 
 
 
 # STOCKS REMOVED
@@ -645,7 +649,7 @@ add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stocksRemoved.txt", sep="")
 names(x)=c("Stock","Ticker", "Reason for removal")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The removed OBX Constituents", label="StocksRemoved"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The Removed OBX Constituents Not Used in This Analysis", label="StocksRemoved"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 
 
@@ -663,7 +667,7 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stockReturnsACF.txt", sep="")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock return ACF results", label="ACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock Return ACF Results", label="ACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # STOCK RETURN PACF
 x = stockReturnPACF
@@ -679,7 +683,7 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stockReturnsPACF.txt", sep="")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock return PACF results", label="PACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock Return PACF Results", label="PACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 
 # STOCK SQUARED RETURN ACF
@@ -696,7 +700,7 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stockSquaredReturnsACF.txt", sep="")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock squared return ACF results", label="SquaredACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock Squared Return ACF Results", label="SquaredACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 # STOCK SQUARED RETURN PACF
 x = stockSquaredReturnPACF
@@ -712,5 +716,5 @@ add.to.row$pos[[2]] = nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stockSquaredReturnsPACF.txt", sep="")
-print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock squared return PACF results", label="SquaredPACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
+print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "Stock Squared Return PACF Results", label="SquaredPACF"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 

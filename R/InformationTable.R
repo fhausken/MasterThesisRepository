@@ -114,6 +114,7 @@ if (sampleShortLongtransactionCostvariable > 0) {
 
 # SHORT LONG: CREATE INFORMATION METRIC TABLE (Stock, mean_buy-and-hold, std.dev_buy-and-hold, r_buy-and-hold, Sign Ratio, mean_short-long, std.dev_short-long, return_short-long, alpha, SR_buy-and-hold, SR_short-long)
 informationShortLongDataFrameList = list()
+end.line.ls.infoTableList = list()
 TRADING.DAYS.PER.YEAR = 250
 for (sampleSizesIndex in 1:length(sampleSizes)){
   
@@ -162,14 +163,17 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   colnames(informationShortLongDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{SL}}$", "$\\boldsymbol{\\sigma_{SL}}$", "$\\boldsymbol{r_{SL}}$", "$\\boldsymbol{\\alpha}$", "Trades","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{SL}}$")
   
   informationShortLongDataFrameList[[length(informationShortLongDataFrameList)+1]] = informationShortLongDataFrame
+  end.line.ls.infoTableList[[length(end.line.ls.infoTableList)+1]] = end.line.ls.infoTable
   
 }
 
 names(informationShortLongDataFrameList) = sampleSizes
+names(end.line.ls.infoTableList) = sampleSizes
 
 
 # BOUND: CREATE INFORMATION METRIC TABLE (Stock, mean_buy-and-hold, std.dev_buy-and-hold, r_buy-and-hold, Sign Ratio, mean_short-long, std.dev_short-long, return_short-long, alpha, SR_buy-and-hold, SR_short-long)
 informationBoundDataFrameList = list()
+end.line.bound.infoTableList = list()
 
 for (sampleSizesIndex in 1:length(sampleSizes)){
   
@@ -217,24 +221,27 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   colnames(informationBoundDataFrame) = c("Stock","$\\boldsymbol{\\mu_{BH}}$", "$\\boldsymbol{\\sigma_{BH}}$","$\\boldsymbol{r_{BH}}$", "Hit Ratio","$\\boldsymbol{\\mu_{Bound}}$", "$\\boldsymbol{\\sigma_{Bound}}$", "$\\boldsymbol{r_{Bound}}$", "$\\boldsymbol{\\alpha}$", "Trades","$\\boldsymbol{SR_{BH}}$", "$\\boldsymbol{SR_{Bound}}$")
   
   informationBoundDataFrameList[[length(informationBoundDataFrameList)+1]] = informationBoundDataFrame
+  end.line.bound.infoTableList[[length(end.line.bound.infoTableList)+1]] = end.line.bound.infoTable
   
 }
 
 names(informationBoundDataFrameList) = sampleSizes
+names(end.line.bound.infoTableList) = sampleSizes
+
 
 # TABLES-TO-LATEX
 bold <- function(x){
   paste0('{\\bfseries ', x, '}')
 }
 
-createAverageLine <- function(x, digits) {
+createAverageLine <- function(x, d) {
   resultString = ""
   for(i in 1:length(x)) {
     if (i == 1) {
-      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ",round(x[i], digits = digits),"}")
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ", round(x[i], digits = d),"}")
     }
     else {
-      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = digits),"}")
+      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = d),"}")
     }
   }
   
@@ -242,7 +249,7 @@ createAverageLine <- function(x, digits) {
 }
 
 createDigitsandAlignVectors <- function(dataFrame,digits) {
-  colDim = dim(dataFrame)[2] - 1
+  colDim = dim(dataFrame)[2] -1
   
   alignVector = c('c','l')
   for (i in 1:colDim) {
@@ -271,7 +278,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.ls.infoTable, digits))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.ls.infoTableList[[sampleSizesIndex]], digits))
 
   add.to.row <- list(pos = list(0,0), command = command)
   add.to.row$pos[[1]] = 0
@@ -279,14 +286,16 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   add.to.row$command <- command
 
-  if(TRANSACTION.COST.SHORTLONG == TRUE) {
+  if(TRANSACTION.COST.SHORTLONG == FALSE) {
     URL=paste(URL.drop,"/Tables/informationTable_","shortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
+    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SL",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transactions Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   else {
     URL=paste(URL.drop,"/Tables/informationTable_","TshortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
+    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SLwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transaction Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   
-  print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Short Long Trading Strategy and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  
 }
 
 # BOUND: RETURN, VARIANCE, SIGN RATIO AND ALPHA METRICS FOR ALL STOCKS
@@ -297,7 +306,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   alignAndDigitsVectors = createDigitsandAlignVectors(x,digits)
 
   # GENERAL LONG-TABLE COMMAND
-  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.bound.infoTable, digits))
+  command <- c(paste0(" \\hline ","\\endhead\n","\n","\\multicolumn{", dim(x)[2] + 1, "}{l}","{\\footnotesize Continued on next page}\n","\\endfoot\n","\\endlastfoot\n"),createAverageLine(end.line.bound.infoTableList[[sampleSizesIndex]], digits))
 
   add.to.row <- list(pos = list(0,0), command = command)
   add.to.row$pos[[1]] = 0
@@ -305,13 +314,13 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   add.to.row$command <- command
 
-  if(TRANSACTION.COST.BOUND == TRUE) {
-    URL=paste(URL.drop,"/Tables/informationTable_","tradingBound",tradingBound,"sampleSize",sampleSizesIndex,".txt",sep="")
-    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics with Trading Bound ",tradingBound,"and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+  if(TRANSACTION.COST.BOUND == FALSE) {
+    URL=paste(URL.drop,"/Tables/informationTable_","tradingBound","sampleSize",sampleSizesIndex,".txt",sep="")
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("B",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transaction Costs For the Bound Trading Strategy With Bound",tradingBound," of Current Volatility Forecast and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   else {
-    URL=paste(URL.drop,"/Tables/informationTable_","TtradingBound",tradingBound,"sampleSize",sampleSizesIndex,".txt",sep="")
-    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics with Transaction costs with Trading Bound ",tradingBound,"and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+    URL=paste(URL.drop,"/Tables/informationTable_","TtradingBound","sampleSize",sampleSizesIndex,".txt",sep="")
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("BwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transaction Costs For the Bound Trading Strategy With Bound ",tradingBound," of Current Volatility Forecast and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   
   
