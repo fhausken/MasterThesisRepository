@@ -26,7 +26,7 @@ if (grepl("Fredrik", URL.repo)){
 
 #INPUT
 
-PLOTTING=F
+PLOTTING=T
 
 URL=paste(URL.repo,"/Data/ARMAGARCHResults.Rda",sep="")
 load(URL)
@@ -37,7 +37,7 @@ load(URL)
 URL=paste(URL.repo,"/Data/garchModels.Rda",sep="")
 load(URL)
 
-#garchModels=c(garchModels,"Not Converged")
+#garchModels=c("S-GARCH", "GJR-GARCH","E-GARCH") 
 
 URL=paste(URL.repo,"/Data/stockReturns.Rda",sep="")
 load(URL)
@@ -520,11 +520,12 @@ if(PLOTTING == TRUE) {
     rowNamesGARCHModelPlotDataFrame=as.Date(row.names(GARCHModelDataFrame))
     GARCHModelPlotDataFrame=data.frame(rowNamesGARCHModelPlotDataFrame, matrix(GARCHModelDataFrameVector, ncol=length(garchModels), byrow=TRUE))
     names(GARCHModelPlotDataFrame)=c("dates",garchModels)
+    garchModelNameVector=c("S-GARCH","GJR-GARCH","E-GARCH")
 
     GARCHPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates)
     for (garchModelsIndex in 1:length(garchModels)){
       garchModel = garchModels[garchModelsIndex]
-      GARCHPlot=add_trace(GARCHPlot, y = GARCHModelPlotDataFrame[,(1+garchModelsIndex)], name = garchModel,type='scatter',mode = 'lines', fill='tonexty')
+      GARCHPlot=add_trace(GARCHPlot, y = GARCHModelPlotDataFrame[,(1+garchModelsIndex)], name = garchModelNameVector[garchModelsIndex],type='scatter',mode = 'lines', fill='tonexty')
     }
     GARCHPlot=layout(GARCHPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Percentage of Stocks"), xaxis=list(title="Date"))
 
@@ -533,8 +534,8 @@ if(PLOTTING == TRUE) {
     OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
     
     OSEBXPlot=plot_ly(data=GARCHModelPlotDataFrame, x=~dates) %>%
-      add_trace(y = OBX.close.return.plotVector^2, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
-      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+      add_trace(y = OBX.close.return.plotVector^2, name = "OBX Squared Return",line = list(color = 'rgb(215,41,36)'),type='scatter',mode = 'lines')%>%
+      layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Squared Return"), xaxis=list(title="Date"))
     
     GARCHPlot=subplot(nrows=2,GARCHPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
     print(GARCHPlot) #Printer plottet
@@ -553,16 +554,16 @@ if(PLOTTING == TRUE) {
     ARPlot=add_trace(ARPlot, y = ARPlotDataFrame[,(1+sampleSizesIndex)], name = sampleSize,type='scatter',mode = 'lines')
     MAPlot=add_trace(MAPlot, y = MAPlotDataFrame[,(1+sampleSizesIndex)], name = sampleSize,type='scatter',mode = 'lines')
   }
-  ARPlot=layout(ARPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean AR Lag"), xaxis=list(title="Date"))
-  MAPlot=layout(MAPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MA Lag"), xaxis=list(title="Date"))
+  ARPlot=layout(ARPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean AR-Lag"), xaxis=list(title="Date"))
+  MAPlot=layout(MAPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean MA-Lag"), xaxis=list(title="Date"))
   
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   vectorizedOSEBXReturn=drop(coredata(OBX.close.return))
   OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize):length(vectorizedOSEBXReturn)]
   
   OSEBXPlot=plot_ly(data=ARPlotDataFrame, x=~dates) %>%
-    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Total Return Index Return",type='scatter',mode = 'lines')%>%
-    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Squared Return",line = list(color = 'rgb(215,41,36)'),type='scatter',mode = 'lines')%>%
+    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Squared Return"), xaxis=list(title="Date"))
   
   
   ARPlot=subplot(nrows=2,ARPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
@@ -591,15 +592,15 @@ if(PLOTTING == TRUE) {
     StdMAEPlot=add_trace(StdMAEPlot, y = sampleAverageStdMAEPlotDataFrameList[[sampleSizesIndex]][,2], name = sampleSize,type='scatter',mode = 'lines')
   }
   MAEPlot=layout(MAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean Daily Absolute Error"), xaxis=list(title="Date"))
-  StdMAEPlot=layout(StdMAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean Daily St. Dev. from MAE"), xaxis=list(title="Date"))
+  StdMAEPlot=layout(StdMAEPlot,legend = list(x = 100, y = 0.5), yaxis=list(title="Mean Daily St. Dev. from AE"), xaxis=list(title="Date"))
   
   rollingWindowSize = nrow(stockReturns) - max(sampleSizes)
   vectorizedOSEBXReturn=drop(coredata(OBX.close.return))
   OBX.close.return.plotVector=vectorizedOSEBXReturn[(length(vectorizedOSEBXReturn)-rollingWindowSize+1):length(vectorizedOSEBXReturn)]
   
   OSEBXPlot=plot_ly(data=sampleAverageStdMAEPlotDataFrameList[[1]], x=~dates) %>%
-    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Return",type='scatter',mode = 'lines')%>%
-    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Return"), xaxis=list(title="Date"))
+    add_trace(y = OBX.close.return.plotVector^2, name = "OBX Squared Return",line = list(color = 'rgb(215,41,36)'),type='scatter',mode = 'lines')%>%
+    layout(legend = list(x = 100, y = 0.5),yaxis=list(title="Squared Return"), xaxis=list(title="Date"))
   
   MAEPlot=subplot(nrows=2,MAEPlot,OSEBXPlot, shareX = TRUE, heights = c(0.75,0.25), titleX = TRUE, titleY = TRUE)
   print(MAEPlot) #Printer plottet

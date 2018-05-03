@@ -28,9 +28,9 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-transactionCost.variable=0
-PLOTTING = F
+transactionCost.variable=0.001
 
+PLOTTING = T
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
@@ -266,7 +266,7 @@ if(PLOTTING == TRUE) {
       library(plotly)
       library(webshot)
       
-      stockName=stocks[stocksIndex,1]
+      stockName=stocks[stocksIndex,2]
       
       accumulatedShortLongReturnVector=drop(sampleAccumulatedShortLongReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
       accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
