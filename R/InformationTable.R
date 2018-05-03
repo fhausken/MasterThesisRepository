@@ -242,10 +242,16 @@ createAverageLine <- function(x, d) {
   resultString = ""
   for(i in 1:length(x)) {
     if (i == 1) {
-      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ", round(x[i], digits = d),"}")
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ", format(round(x[i], d), nsmall = d),"}")
     }
     else {
-      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = d),"}")
+      if(x[i]%%1==0) {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", format(round(x[i], d), nsmall = 0),"}")
+      }
+      else {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", format(round(x[i], d), nsmall = d),"}")
+      }
+      
     }
   }
   
