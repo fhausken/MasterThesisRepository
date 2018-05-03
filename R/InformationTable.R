@@ -238,10 +238,16 @@ createAverageLine <- function(x, d) {
   resultString = ""
   for(i in 1:length(x)) {
     if (i == 1) {
-      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ", round(x[i], digits = d),"}")
+      resultString = paste0(resultString," \\hline & ","{ \\bfseries ", "Average ","} &", "{ \\bfseries ", format(round(x[i], d), nsmall = d),"}")
     }
     else {
-      resultString = paste0(resultString, " & ","{ \\bfseries ", round(x[i], digits = d),"}")
+      if(x[i]%%1==0) {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", format(round(x[i], d), nsmall = 0),"}")
+      }
+      else {
+        resultString = paste0(resultString, " & ","{ \\bfseries ", format(round(x[i], d), nsmall = d),"}")
+      }
+      
     }
   }
   
@@ -288,11 +294,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   if(TRANSACTION.COST.SHORTLONG == FALSE) {
     URL=paste(URL.drop,"/Tables/informationTable_","shortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
-    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SL",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transactions Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SL",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transactions Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   else {
     URL=paste(URL.drop,"/Tables/informationTable_","TshortLong","sampleSize",sampleSizesIndex,".txt",sep="")  
-    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SLwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transaction Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+    print(xtable(informationShortLongDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("SLwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transaction Costs For the Short-Long Trading Strategy and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   
   
@@ -316,11 +322,11 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
 
   if(TRANSACTION.COST.BOUND == FALSE) {
     URL=paste(URL.drop,"/Tables/informationTable_","tradingBound","sampleSize",sampleSizesIndex,".txt",sep="")
-    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("B",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transaction Costs For the Bound Trading Strategy With Bound",tradingBound," of Current Volatility Forecast and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("B",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transaction Costs For the Bound Trading Strategy With Bound",tradingBound," of Current Volatility Forecast and Sample Size ",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   else {
     URL=paste(URL.drop,"/Tables/informationTable_","TtradingBound","sampleSize",sampleSizesIndex,".txt",sep="")
-    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("BwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics Without Transaction Costs For the Bound Trading Strategy With Bound ",tradingBound," of Current Volatility Forecast and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
+    print(xtable(informationBoundDataFrameList[[sampleSizesIndex]], auto=FALSE, digits=alignAndDigitsVectors[[2]], label = paste0("BwTrans",sampleSize), align = alignAndDigitsVectors[[1]], type = "latex", caption = paste("Stock Metrics With Transaction Costs For the Bound Trading Strategy With Bound ",tradingBound," of Current Volatility Forecast and Sample Size",sampleSize)), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row, tabular.environment = "longtable",file = URL)
   }
   
   
