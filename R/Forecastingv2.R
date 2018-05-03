@@ -119,7 +119,7 @@ for (sampleSizesIndex in 1:length(sampleSizes)){
   }
   
   stocksRunTimeDiagnosticsDataFrame=data.frame(stocks[,1],matrix(stocksRunTimeDiagnosticsList, ncol=(length(garchModels)+2), byrow=TRUE),stringsAsFactors=FALSE)
-  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", toupper(garchModels), "Mean AR-LAG","Mean MA-Lag")
+  names(stocksRunTimeDiagnosticsDataFrame)=c("Stock", "S-GARCH", "GJR-GARCH", "E-GARCH", "Mean AR-LAG","Mean MA-Lag")
   sampleRunTimeDiagnosticsList[[length(sampleRunTimeDiagnosticsList)+1]]=stocksRunTimeDiagnosticsDataFrame
   
   ARLagDataFrame=cbind(ARLagDataFrame,(rowMeans(ARLagDataFrame)))
