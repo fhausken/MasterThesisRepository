@@ -648,7 +648,7 @@ add.to.row$pos[[2]] <- nrow(x)
 add.to.row$command <- command
 
 URL=paste(URL.drop,"/Tables/stocksRemoved.txt", sep="")
-names(x)=c("Stock","Ticker", "Reason for removal")
+names(x)=c("Stock","Ticker", "Reason for Removal")
 print(xtable(x, auto=TRUE,digits=alignAndDigitsVectors[[2]], align = alignAndDigitsVectors[[1]], type = "latex", caption = "The removed OBX Constituents", label="StocksRemoved"), sanitize.text.function = function(x) {x}, sanitize.colnames.function = bold, hline.after=c(-1,0), add.to.row = add.to.row,tabular.environment = "longtable",file = URL)
 
 

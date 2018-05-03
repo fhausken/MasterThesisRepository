@@ -28,9 +28,9 @@ if (grepl("Fredrik", URL.repo)){
 }
 
 #INPUT
-tradingBound=0.3 #Number of times the standard deviation
+tradingBound=0.5 #Number of times the standard deviation
 transactionCost.variable=0.001
-PLOTTING = TRUE
+PLOTTING = T
 
 URL=paste(URL.repo,"/Data/sampleSizes.Rda",sep="")
 load(URL)
@@ -307,7 +307,7 @@ if(PLOTTING == TRUE) {
       library(rugarch)
       library(plotly)
       library(webshot)
-      stockName=stocks[stocksIndex,1]
+      stockName=stocks[stocksIndex,2]
       
       accumulatedBoundReturnVector=drop(sampleAccumulatedBoundReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
       accumulatedBuyAndHoldReturnVector=drop(sampleAccumulatedBuyAndHoldReturnDataFramesList[[sampleSizesIndex]][,stocksIndex])
